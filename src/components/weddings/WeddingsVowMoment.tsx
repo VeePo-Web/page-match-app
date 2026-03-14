@@ -12,6 +12,13 @@ export function WeddingsVowMoment() {
       style={{ background: "hsl(var(--cream))" }}
       aria-label="The sacred vow"
     >
+      {/* Radial warmth glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at center, hsl(var(--gold) / 0.03), transparent 70%)" }}
+        aria-hidden="true"
+      />
+
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <blockquote className="text-[clamp(42px,5.5vw,64px)] font-display font-light italic leading-[1.2] text-foreground">

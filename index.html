@@ -16,20 +16,61 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" />
     <meta name="theme-color" content="#3d5a47" />
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MusicGroup",
+      "@type": ["LocalBusiness", "MusicGroup"],
       "name": "Parker Gawryletz",
       "description": "Ceremony pianist serving Calgary, Cochrane, Canmore, and Banff. Wedding piano, private lessons, and live events.",
       "url": "https://parkergawryletz.com",
       "email": "parker@parkergawryletz.com",
       "telephone": "+14038308930",
-      "areaServed": ["Calgary", "Cochrane", "Canmore", "Banff"]
+      "areaServed": ["Calgary", "Cochrane", "Canmore", "Banff"],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.0447,
+        "longitude": -114.0719
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Calgary",
+        "addressRegion": "AB",
+        "addressCountry": "CA"
+      },
+      "sameAs": [
+        "https://instagram.com",
+        "https://youtube.com"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Wedding Piano Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "The Vow",
+            "description": "Ceremony piano — processional through recessional",
+            "price": "650",
+            "priceCurrency": "CAD"
+          },
+          {
+            "@type": "Offer",
+            "name": "The Hour",
+            "description": "Full ceremony + cocktail hour",
+            "price": "750",
+            "priceCurrency": "CAD"
+          },
+          {
+            "@type": "Offer",
+            "name": "The Story",
+            "description": "Complete wedding-day coverage — rehearsal through last dance",
+            "price": "1200",
+            "priceCurrency": "CAD"
+          }
+        ]
+      }
     }
     </script>
   </head>

@@ -4,10 +4,13 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { CredentialStrip } from "@/components/CredentialStrip";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 type Category = "All" | "Ceremony" | "Logistics" | "Pricing";
 

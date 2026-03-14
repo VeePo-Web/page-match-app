@@ -25,7 +25,9 @@ function useSubPageMeta(meta: { title: string; description: string }) {
 function SubPageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
+      <BackToTop />
       <main id="main-content">{children}</main>
       <Footer />
       <MobileStickyBar />

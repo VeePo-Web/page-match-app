@@ -102,7 +102,7 @@ export function Footer() {
               { to: "/terms", label: "Terms" },
               { to: "/accessibility", label: "Accessibility" },
             ].map((link) => (
-              <NavLink key={link.to} to={link.to} className="transition-all duration-[180ms] hover:text-gold" style={{ color: "hsl(var(--warm-white) / 0.4)" }}>{link.label}</NavLink>
+              <Link key={link.to} to={link.to} className="transition-all duration-[180ms] hover:text-gold" style={{ color: "hsl(var(--warm-white) / 0.4)" }}>{link.label}</Link>
             ))}
           </div>
         </div>

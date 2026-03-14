@@ -134,7 +134,7 @@ export default function Gateway() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 + i * 0.15, duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
             whileHover={{ y: -6, scale: 1.01, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-            className="flex-1 min-h-0 md:flex-none md:aspect-[6/7] md:flex-1"
+            className="flex-1 min-h-[160px] md:flex-none md:aspect-[6/7] md:flex-1"
           >
             <Link
               to={s.href}

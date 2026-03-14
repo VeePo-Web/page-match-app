@@ -42,6 +42,7 @@ export default function Events() {
           height="h-[70vh]"
           backgroundImage={heroEvents}
           watermark="Events"
+          showScrollCue
         />
 
         {/* Why Live Piano */}

@@ -99,12 +99,12 @@ export default function Listen() {
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll variant="up">
               <p className="text-muted-foreground mb-fitz-7">Audio samples coming soon. In the meantime, reach out and I'll share recordings that match your ceremony vision.</p>
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Request Samples
-              </a>
+              </Link>
             </RevealOnScroll>
           </div>
         </Section>

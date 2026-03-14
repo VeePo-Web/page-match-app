@@ -79,12 +79,12 @@ export default function Proof() {
             <RevealOnScroll variant="up">
               <p className="text-muted-foreground mb-fitz-3">Every claim on this website is backed by documentation.</p>
               <p className="text-muted-foreground mb-fitz-7 text-sm">Ask me for SPL reports, insurance certificates, or references — I'll send them within 24 hours.</p>
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Ask Me Anything
-              </a>
+              </Link>
             </RevealOnScroll>
           </div>
         </Section>

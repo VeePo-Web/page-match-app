@@ -427,12 +427,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .cta-glow { animation: cta-glow 3.5s ease-in-out infinite; }
 
-/* Semicolon breathe — legacy */
-@keyframes semicolon-breathe {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.85; }
-}
-.semicolon-breathe { animation: semicolon-breathe 3.5s ease-in-out infinite; }
+/* (semicolon-breathe removed — legacy) */
 
 /* Gold frame corner animation */
 @keyframes gold-frame-draw {

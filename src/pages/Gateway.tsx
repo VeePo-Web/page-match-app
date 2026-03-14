@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useCallback, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import gatewayWeddings from "@/assets/gateway-weddings-new.jpg";
@@ -77,37 +77,32 @@ function CardImage({ src }: { src: string }) {
 }
 
 export default function Gateway() {
+  const reducedMotion = useReducedMotion();
+
   usePageMeta({
     title: "Parker Gawryletz — Ceremony Pianist",
     description: "Ceremony pianist serving Calgary to Banff. Weddings, teaching, and live events.",
   });
 
+  const initial = reducedMotion ? false : { opacity: 0, y: 16 };
+  const cardInitial = reducedMotion ? false : { opacity: 0, y: 24 };
+
   return (
     <main id="main-content" className="min-h-screen w-screen overflow-hidden bg-background flex flex-col items-center py-12 md:py-0 md:justify-center relative" aria-label="Choose your path">
-      {/* Watermark monogram */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-        aria-hidden="true"
-      >
-        <span
-          className="font-display font-light"
-          style={{ fontSize: "clamp(200px, 30vw, 400px)", opacity: 0.02, color: "hsl(var(--sage))" }}
-        >
-          PG
-        </span>
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+        <span className="font-display font-light" style={{ fontSize: "clamp(200px, 30vw, 400px)", opacity: 0.02, color: "hsl(var(--sage))" }}>PG</span>
       </div>
 
-      {/* Wordmark */}
       <motion.header
         className="text-center mb-4 md:mb-8 shrink-0"
-        initial={{ opacity: 0, y: 16 }}
+        initial={initial}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
       >
         <h1 className="font-display text-[32px] md:text-[38px] font-light tracking-tight text-foreground">Parker Gawryletz</h1>
         <motion.p
           className="font-sans text-[11px] uppercase tracking-[0.22em] text-muted-foreground mt-2"
-          initial={{ opacity: 0 }}
+          initial={reducedMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
@@ -115,25 +110,23 @@ export default function Gateway() {
         </motion.p>
       </motion.header>
 
-      {/* Editorial intro */}
       <motion.p
         className="font-display text-[15px] italic text-muted-foreground tracking-wide mb-6 md:mb-10 text-center"
-        initial={{ opacity: 0 }}
+        initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.8 }}
       >
         Three paths. One devotion.
       </motion.p>
 
-      {/* Service Cards */}
       <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 px-6 max-w-5xl w-full flex-1 md:flex-initial min-h-0">
         {services.map((s, i) => (
           <motion.div
             key={s.title}
-            initial={{ opacity: 0, y: 24 }}
+            initial={cardInitial}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 + i * 0.15, duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
-            whileHover={{ y: -6, scale: 1.01, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+            whileHover={reducedMotion ? undefined : { y: -6, scale: 1.01, transition: { type: "spring", stiffness: 300, damping: 20 } }}
             className="flex-1 min-h-[160px] md:flex-none md:aspect-[6/7] md:flex-1"
           >
             <Link
@@ -160,10 +153,9 @@ export default function Gateway() {
         ))}
       </div>
 
-      {/* Credential strip */}
       <motion.div
         className="mt-8 md:mt-10 flex items-center gap-4 md:gap-6"
-        initial={{ opacity: 0 }}
+        initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
       >
@@ -178,10 +170,9 @@ export default function Gateway() {
         ))}
       </motion.div>
 
-      {/* Tagline */}
       <motion.footer
         className="mt-6 md:mt-10 shrink-0 text-center"
-        initial={{ opacity: 0 }}
+        initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}
       >

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { GoldFrame } from "@/components/GoldFrame";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 interface HeroStripProps {
@@ -26,16 +26,26 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
   const watermarkY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
+  // Preload background image for fast LCP
+  useEffect(() => {
+    if (!backgroundImage) return;
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = backgroundImage;
+    link.setAttribute("fetchpriority", "high");
+    document.head.appendChild(link);
+    return () => { document.head.removeChild(link); };
+  }, [backgroundImage]);
+
   return (
     <section
       ref={sectionRef}
       className={cn("relative flex items-center justify-center overflow-hidden", height)}
       data-theme="death"
     >
-      {/* Background */}
       <div className="absolute inset-0 bg-sage-deep" aria-hidden="true" />
 
-      {/* Parallax image */}
       {backgroundImage && (
         <motion.div
           className="absolute inset-0"
@@ -46,23 +56,19 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
             backgroundPosition: "center",
             opacity: 0.12,
             filter: "brightness(0.7) contrast(1.08) saturate(0.8)",
-            willChange: "transform",
           }}
           aria-hidden="true"
         />
       )}
 
-      {/* Grain */}
       <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.04 }} aria-hidden="true" />
 
-      {/* Vignette */}
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{ background: "radial-gradient(ellipse at center, transparent 30%, hsl(var(--sage-deep) / 0.7) 100%)" }}
         aria-hidden="true"
       />
 
-      {/* Watermark */}
       {watermark && (
         <motion.div
           className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none select-none"
@@ -75,10 +81,8 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
         </motion.div>
       )}
 
-      {/* Gold frame corners */}
       <GoldFrame />
 
-      {/* Content — parallax fade on scroll */}
       <motion.div
         className="relative z-10 text-center px-fitz-4 md:px-fitz-6 max-w-3xl mx-auto"
         style={{ opacity: contentOpacity, y: contentY }}
@@ -113,7 +117,6 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
         )}
       </motion.div>
 
-      {/* Scroll cue */}
       {showScrollCue && (
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none"

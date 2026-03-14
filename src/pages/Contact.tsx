@@ -5,7 +5,7 @@ import { Section } from "@/components/Section";
 import { ContactWizard } from "@/components/contact/ContactWizard";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
-import { MobileStickyBar } from "@/components/MobileStickyBar";
+
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useLocation } from "react-router-dom";
 

@@ -425,6 +425,19 @@ html.lenis, html.lenis body { height: auto; }
 }
 .cta-glow { animation: cta-glow 3.5s ease-in-out infinite; }
 
+/* Diamond burst for success state */
+@keyframes diamond-burst {
+  0% { opacity: 0.8; transform: rotate(45deg) translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: rotate(45deg) translate(var(--dx, 30px), var(--dy, -30px)) scale(0.4); }
+}
+.diamond-burst-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: hsl(var(--gold));
+  animation: diamond-burst 0.8s var(--ease-exhale) forwards;
+}
+
 /* (semicolon-breathe removed — legacy) */
 
 /* Gold frame corner animation */

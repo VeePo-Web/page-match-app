@@ -1,33 +1,38 @@
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { useCallback, useRef, useEffect } from "react";
+import { useCallback, useRef } from "react";
+import { motion } from "framer-motion";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import gatewayWeddings from "@/assets/gateway-weddings.jpg";
 import gatewayTeaching from "@/assets/gateway-teaching.jpg";
 import gatewayEvents from "@/assets/gateway-events.jpg";
+import { useEffect } from "react";
 
 const services = [
   {
     title: "Weddings",
     description: "I carry every vow so it lands where it belongs",
     href: "/weddings",
-    delay: 800,
     image: gatewayWeddings,
   },
   {
     title: "Teaching",
     description: "Learn the instrument that speaks when words fall short",
     href: "/teaching",
-    delay: 1000,
     image: gatewayTeaching,
   },
   {
     title: "Events",
     description: "Live piano for moments that demand presence",
     href: "/events",
-    delay: 1200,
     image: gatewayEvents,
   },
+];
+
+const credentials = [
+  { stat: "5–10", label: "Weddings / Year" },
+  { stat: "Calgary to Banff", label: "Service Area" },
+  { stat: "Est. 2018", label: "Serving Since" },
 ];
 
 function CardImage({ src }: { src: string }) {
@@ -78,49 +83,111 @@ export default function Gateway() {
 
   return (
     <main className="min-h-screen w-screen overflow-hidden bg-background flex flex-col items-center py-12 md:py-0 md:justify-center relative" aria-label="Choose your path">
+      {/* Watermark monogram */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        aria-hidden="true"
+      >
+        <span
+          className="font-display font-light"
+          style={{ fontSize: "clamp(200px, 30vw, 400px)", opacity: 0.02, color: "hsl(var(--sage))" }}
+        >
+          PG
+        </span>
+      </div>
+
       {/* Wordmark */}
-      <header className="text-center mb-8 md:mb-14 shrink-0 opacity-0 animate-fade-in" style={{ animationDelay: "200ms", animationFillMode: "forwards" }}>
+      <motion.header
+        className="text-center mb-4 md:mb-8 shrink-0"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+      >
         <h1 className="font-display text-[32px] md:text-[38px] font-light tracking-tight text-foreground">Parker Gawryletz</h1>
-        <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-muted-foreground mt-2 opacity-0 animate-fade-in" style={{ animationDelay: "400ms", animationFillMode: "forwards" }}>
+        <motion.p
+          className="font-sans text-[11px] uppercase tracking-[0.22em] text-muted-foreground mt-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
           Ceremony Pianist
-        </p>
-      </header>
+        </motion.p>
+      </motion.header>
+
+      {/* Editorial intro */}
+      <motion.p
+        className="font-display text-[15px] italic text-muted-foreground tracking-wide mb-6 md:mb-10 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+      >
+        Three paths. One devotion.
+      </motion.p>
 
       {/* Service Cards */}
       <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 px-6 max-w-5xl w-full flex-1 md:flex-initial min-h-0">
-        {services.map((s) => (
-          <Link
+        {services.map((s, i) => (
+          <motion.div
             key={s.title}
-            to={s.href}
-            className={cn(
-              "group relative overflow-hidden rounded-md flex-1 min-h-0 md:flex-none md:aspect-[6/7] md:flex-1",
-              "border border-lines/60 bg-card transition-all duration-300 opacity-0 animate-fade-in",
-              "cursor-pointer hover:-translate-y-1 hover:border-sage/30 hover:shadow-editorial-hover"
-            )}
-            style={{ animationDelay: `${s.delay}ms`, animationFillMode: "forwards" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 + i * 0.15, duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+            whileHover={{ y: -4 }}
+            className="flex-1 min-h-0 md:flex-none md:aspect-[6/7] md:flex-1"
           >
-            <CardImage src={s.image} />
-            {/* Gentle gradient overlay */}
-            <div className="absolute inset-0 z-[1]" style={{ background: 'linear-gradient(to top, hsl(var(--cream) / 0.95) 0%, hsl(var(--cream) / 0.6) 50%, hsl(var(--cream) / 0.3) 100%)' }} aria-hidden="true" />
-            <div className="relative z-10 flex flex-col justify-end h-full p-6 md:p-8">
-              <h2 className="font-display text-[28px] font-light text-foreground tracking-tight">{s.title}</h2>
-              <p className="font-sans text-[14px] text-muted-foreground mt-2 leading-relaxed font-light">{s.description}</p>
-              <span className="mt-3 font-sans text-[12px] uppercase tracking-[0.16em] inline-flex items-center gap-1.5 text-sage font-normal">
-                Step Inside
-                <span className="inline-block opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-[250ms] ease-out">→</span>
-              </span>
-            </div>
-          </Link>
+            <Link
+              to={s.href}
+              className={cn(
+                "group relative overflow-hidden rounded-md block h-full",
+                "border border-lines/60 bg-card transition-all duration-300",
+                "cursor-pointer hover:border-sage/30 hover:shadow-editorial-hover"
+              )}
+            >
+              <CardImage src={s.image} />
+              <div className="absolute inset-0 z-[1]" style={{ background: 'linear-gradient(to top, hsl(var(--cream) / 0.95) 0%, hsl(var(--cream) / 0.6) 50%, hsl(var(--cream) / 0.3) 100%)' }} aria-hidden="true" />
+              <div className="relative z-10 flex flex-col justify-end h-full p-6 md:p-8">
+                <h2 className="font-display text-[28px] font-light text-foreground tracking-tight">{s.title}</h2>
+                <p className="font-sans text-[14px] text-muted-foreground mt-2 leading-relaxed font-light">{s.description}</p>
+                <span className="mt-3 font-sans text-[12px] uppercase tracking-[0.16em] inline-flex items-center gap-1.5 text-sage font-normal">
+                  Step Inside
+                  <span className="inline-block opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-[250ms] ease-out">→</span>
+                </span>
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
 
+      {/* Credential strip */}
+      <motion.div
+        className="mt-8 md:mt-10 flex items-center gap-4 md:gap-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+      >
+        {credentials.map((c, i) => (
+          <div key={c.label} className="flex items-center gap-4 md:gap-6">
+            <div className="text-center">
+              <p className="font-display text-sm md:text-base font-light text-foreground">{c.stat}</p>
+              <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-muted-foreground mt-0.5">{c.label}</p>
+            </div>
+            {i < credentials.length - 1 && <BreathingDiamond />}
+          </div>
+        ))}
+      </motion.div>
+
       {/* Tagline */}
-      <footer className="mt-8 md:mt-14 shrink-0 text-center opacity-0 animate-fade-in" style={{ animationDelay: "1400ms", animationFillMode: "forwards" }}>
-        <BreathingDiamond className="mb-4" />
+      <motion.footer
+        className="mt-6 md:mt-10 shrink-0 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+      >
+        <div className="editorial-rule mb-4" />
         <p className="font-display text-[15px] font-light italic text-muted-foreground tracking-wide">
           Every note crafted to honour your moment.
         </p>
-      </footer>
+      </motion.footer>
     </main>
   );
 }

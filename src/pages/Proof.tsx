@@ -3,6 +3,8 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
+import { CredentialStrip } from "@/components/CredentialStrip";
+import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { useEffect } from "react";
 
 const proofs = [
@@ -37,6 +39,15 @@ export default function Proof() {
 
         <Section dark>
           <div className="max-w-4xl mx-auto">
+            {/* Credential strip */}
+            <CredentialStrip items={[
+              { stat: "500+", label: "Events Played" },
+              { stat: "Zero", label: "Missed Ceremonies" },
+              { stat: "$4M", label: "Coverage" },
+            ]} />
+
+            <BreathingDiamond className="my-fitz-7" />
+
             <RevealOnScroll variant="up">
               <p className="overline mb-fitz-3">Why This Matters</p>
               <h2 className="text-foreground mb-fitz-8 max-w-2xl">
@@ -61,7 +72,8 @@ export default function Proof() {
         <Section>
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll variant="up">
-              <p className="text-muted-foreground mb-fitz-7">Every claim on this website is provable. Ask me anything.</p>
+              <p className="text-muted-foreground mb-fitz-3">Every claim on this website is backed by documentation.</p>
+              <p className="text-muted-foreground mb-fitz-7 text-sm">Ask me for SPL reports, insurance certificates, or references — I'll send them within 24 hours.</p>
               <a
                 href="/contact"
                 className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"

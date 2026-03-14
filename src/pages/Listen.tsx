@@ -3,15 +3,44 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import heroWeddings from "@/assets/hero-weddings.jpg";
 
 const movements = [
-  { number: "I", title: "The Vigil", description: "What plays while the room holds its breath. Prelude selections that honour the weight of anticipation." },
-  { number: "II", title: "The Processional", description: "The music that carries you down the aisle. Arrangements crafted to match the pace of your heartbeat." },
-  { number: "III", title: "The Covenant", description: "What surrounds the vows. Gentle, present, holding the silence between sacred words." },
-  { number: "IV", title: "The Recessional", description: "The exhale. The celebration. The music that sends you into your new life together." },
+  { number: "I", title: "The Vigil", description: "What plays while the room holds its breath. Prelude selections that honour the weight of anticipation.", duration: "4:32" },
+  { number: "II", title: "The Processional", description: "The music that carries you down the aisle. Arrangements crafted to match the pace of your heartbeat.", duration: "3:18" },
+  { number: "III", title: "The Covenant", description: "What surrounds the vows. Gentle, present, holding the silence between sacred words.", duration: "5:47" },
+  { number: "IV", title: "The Recessional", description: "The exhale. The celebration. The music that sends you into your new life together.", duration: "2:54" },
 ];
+
+function PlayerShell({ movement }: { movement: typeof movements[0] }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div className="flex items-center gap-3 mt-fitz-4">
+      {/* Play button */}
+      <button
+        type="button"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`w-9 h-9 rounded-sm border flex items-center justify-center transition-all duration-default shrink-0 ${
+          isHovered ? "border-gold/50 shadow-[0_0_12px_hsl(var(--gold)/0.15)]" : "border-gold/20"
+        }`}
+        aria-label={`Play ${movement.title} (coming soon)`}
+      >
+        <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-transparent border-l-gold/50 ml-0.5" />
+      </button>
+
+      {/* Progress bar */}
+      <div className="flex-1 flex items-center gap-3">
+        <div className="flex-1 h-[2px] bg-lines/20 rounded-full overflow-hidden">
+          <div className="h-full w-0 bg-gold/40 rounded-full" />
+        </div>
+        <span className="font-sans text-xs text-muted-foreground/50 tabular-nums w-10 text-right">{movement.duration}</span>
+      </div>
+    </div>
+  );
+}
 
 export default function Listen() {
   useEffect(() => { document.title = "Listen — Parker Gawryletz"; }, []);
@@ -25,6 +54,16 @@ export default function Listen() {
           backgroundImage={heroWeddings}
           height="h-[50vh]"
         />
+
+        <Section>
+          <div className="max-w-2xl mx-auto">
+            <RevealOnScroll>
+              <p className="p-lead text-muted-foreground text-center mx-auto mb-fitz-9">
+                Every ceremony has a shape — a rise and fall of emotion that moves through the room. These four movements follow that arc.
+              </p>
+            </RevealOnScroll>
+          </div>
+        </Section>
 
         <Section dark>
           <div className="max-w-3xl mx-auto">
@@ -40,15 +79,10 @@ export default function Listen() {
                     <span className="font-display text-[36px] font-light text-gold/40 leading-none shrink-0 w-12 text-right">
                       {m.number}
                     </span>
-                    <div className="border-l border-gold/10 pl-fitz-5">
+                    <div className="border-l border-gold/10 pl-fitz-5 flex-1">
                       <h3 className="text-foreground mb-fitz-2">{m.title}</h3>
                       <p className="text-muted-foreground">{m.description}</p>
-                      <div className="mt-fitz-4 flex items-center gap-3 opacity-50">
-                      <div className="w-8 h-8 rounded-sm border border-gold/20 flex items-center justify-center">
-                          <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-transparent border-l-gold/40 ml-0.5" />
-                        </div>
-                        <span className="font-sans text-xs text-muted-foreground tracking-[0.08em] uppercase">Coming Soon</span>
-                      </div>
+                      <PlayerShell movement={m} />
                     </div>
                   </div>
                 </RevealOnScroll>
@@ -60,7 +94,7 @@ export default function Listen() {
         <Section>
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll variant="up">
-              <p className="text-muted-foreground mb-fitz-7">In the meantime, reach out and I'll share recordings that match your ceremony vision.</p>
+              <p className="text-muted-foreground mb-fitz-7">Audio samples coming soon. In the meantime, reach out and I'll share recordings that match your ceremony vision.</p>
               <a
                 href="/contact"
                 className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"

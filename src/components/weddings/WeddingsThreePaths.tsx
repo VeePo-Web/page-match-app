@@ -72,7 +72,7 @@ export function WeddingsThreePaths() {
                 className={cn("w-full mt-auto", tier.isChosen ? "bg-gold text-sage-deep hover:bg-gold-light" : "bg-transparent border border-sage/30 text-foreground hover:bg-sage/5")}
                 asChild
               >
-                <Link to="/contact" className="uppercase tracking-[0.1em] text-sm">{tier.ctaText}</Link>
+                <Link to="/weddings/contact" className="uppercase tracking-[0.1em] text-sm">{tier.ctaText}</Link>
               </Button>
             </div>
           ))}

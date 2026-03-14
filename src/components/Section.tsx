@@ -47,7 +47,7 @@ export function Section({ children, dark = false, id, className, backgroundImage
             opacity: dark ? 0.06 : 0.04,
             filter: "brightness(0.8) contrast(1.05) saturate(0.85)",
             animation: "ken-burns 30s ease-in-out infinite alternate",
-            willChange: "transform",
+            /* willChange removed — CSS animation triggers compositing */
           }}
           aria-hidden="true"
         />

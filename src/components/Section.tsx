@@ -12,6 +12,7 @@ interface SectionProps {
   noPadding?: boolean;
   watermark?: string;
   glow?: boolean;
+  stagger?: boolean;
 }
 
 export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark, glow = false }: SectionProps) {

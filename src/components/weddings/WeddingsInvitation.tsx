@@ -2,6 +2,7 @@ import { useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { GoldFrame } from "@/components/GoldFrame";
 import invitationPortrait from "@/assets/invitation-portrait.jpg";
 
 export function WeddingsInvitation() {

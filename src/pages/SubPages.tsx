@@ -324,7 +324,7 @@ export function WeddingsAbout() {
 }
 
 export function TeachingAbout() {
-  useEffect(() => { document.title = "About (Teaching) — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "About (Teaching) — Parker Gawryletz", description: "Piano instruction with intention, patience, and respect for each student's voice." });
   return (
     <SubPageLayout>
       <HeroStrip title="Music is a language." subtitle="About Parker" height="h-[40vh]" />

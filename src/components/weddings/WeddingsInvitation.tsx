@@ -60,6 +60,7 @@ export function WeddingsInvitation() {
             style={{ transitionDelay: isVisible ? "300ms" : "0ms", willChange: "transform" }}
           >
             <div className="aspect-[3/4] overflow-hidden relative rounded-sm" style={{ border: "1px solid hsl(var(--gold) / 0.15)", boxShadow: "0 20px 60px -12px hsl(var(--sage-deep) / 0.3)" }}>
+              <GoldFrame animate={false} />
               <img
                 src={invitationPortrait}
                 alt="Grand piano keys stretching into soft bokeh with a single candle flame reflected in polished black lacquer"

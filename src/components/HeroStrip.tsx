@@ -112,6 +112,28 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
           </motion.div>
         )}
       </motion.div>
+
+      {/* Scroll cue */}
+      {showScrollCue && (
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none"
+          style={{ opacity: scrollCueOpacity }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        >
+          <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Scroll</span>
+          <motion.div
+            className="w-[1px] h-6"
+            style={{ background: "hsl(var(--gold) / 0.4)" }}
+            animate={{ scaleY: [0.4, 1, 0.4] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="text-gold/40">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.div>
+      )}
     </section>
   );
 }

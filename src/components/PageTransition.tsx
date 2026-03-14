@@ -1,14 +1,18 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useMemo, useCallback, useRef, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransitionContext, TransitionPhase, getRouteTiming } from '@/hooks/usePageTransition';
+
+const pageVariants = {
+  initial: { opacity: 0, y: 8, filter: 'blur(3px)' },
+  enter: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  exit: { opacity: 0, y: -4, filter: 'blur(3px)' },
+};
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [phase, setPhase] = useState<TransitionPhase>('idle');
-  const [displayLocation, setDisplayLocation] = useState(location);
-  const pendingPathRef = useRef<string | null>(null);
   const isTransitioningRef = useRef(false);
   const prefersReducedMotion = useRef(false);
 
@@ -19,38 +23,41 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   const navigateWithTransition = useCallback((path: string) => {
     if (path === location.pathname || isTransitioningRef.current) return;
     isTransitioningRef.current = true;
-    pendingPathRef.current = path;
-    const exitDuration = prefersReducedMotion.current ? 150 : getRouteTiming(path).exit;
     setPhase('exiting');
-    setTimeout(() => { navigate(path); pendingPathRef.current = null; }, exitDuration);
+    navigate(path);
   }, [location.pathname, navigate]);
 
-  useEffect(() => {
-    if (location.pathname === displayLocation.pathname && location.key === displayLocation.key) return;
-    const enterDuration = prefersReducedMotion.current ? 150 : getRouteTiming(location.pathname).enter;
+  const timing = getRouteTiming(location.pathname);
+  const duration = prefersReducedMotion.current ? 0.1 : timing.enter / 1000;
+  const exitDuration = prefersReducedMotion.current ? 0.1 : timing.exit / 1000;
 
-    if (phase === 'exiting') {
-      setDisplayLocation(location);
-      setPhase('entering');
-      setTimeout(() => { setPhase('idle'); isTransitioningRef.current = false; }, enterDuration);
-    } else {
-      isTransitioningRef.current = true;
-      setPhase('exiting');
-      setTimeout(() => {
-        setDisplayLocation(location);
-        setPhase('entering');
-        setTimeout(() => { setPhase('idle'); isTransitioningRef.current = false; }, enterDuration);
-      }, prefersReducedMotion.current ? 100 : 250);
-    }
-  }, [location]);
-
-  const contextValue = useMemo(() => ({ phase, navigateWithTransition, displayLocation }), [phase, navigateWithTransition, displayLocation]);
+  const contextValue = useMemo(() => ({
+    phase,
+    navigateWithTransition,
+    displayLocation: location,
+  }), [phase, navigateWithTransition, location]);
 
   return (
     <PageTransitionContext.Provider value={contextValue}>
-      <div className={cn('page-transition-content', phase === 'exiting' && 'page-transition-content--exit', phase === 'entering' && 'page-transition-content--enter', phase === 'idle' && 'page-transition-content--idle')}>
-        {children}
-      </div>
+      <AnimatePresence mode="wait" onExitComplete={() => {
+        setPhase('entering');
+        isTransitioningRef.current = false;
+      }}>
+        <motion.div
+          key={location.pathname}
+          variants={pageVariants}
+          initial="initial"
+          animate="enter"
+          exit="exit"
+          transition={{ duration, ease: [0.22, 0.61, 0.36, 1] }}
+          onAnimationComplete={() => setPhase('idle')}
+          onAnimationStart={() => {
+            if (phase !== 'exiting') setPhase('entering');
+          }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
     </PageTransitionContext.Provider>
   );
 }

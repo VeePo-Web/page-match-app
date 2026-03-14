@@ -447,21 +447,7 @@ html.lenis, html.lenis body { height: auto; }
 /* Safe area for mobile sticky bar */
 .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
 
-/* Page transition */
-.page-transition-content {
-  transition: opacity 350ms var(--ease-sacred), filter 350ms var(--ease-sacred);
-}
-.page-transition-content--exit {
-  opacity: 0;
-  filter: blur(4px);
-}
-.page-transition-content--enter {
-  animation: fade-in 450ms var(--ease-sacred) both;
-}
-.page-transition-content--idle {
-  opacity: 1;
-  filter: none;
-}
+/* Page transitions now handled by framer-motion AnimatePresence */
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

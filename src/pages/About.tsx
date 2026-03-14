@@ -43,8 +43,16 @@ export default function About() {
             </div>
             <div className="md:col-span-5 hidden md:block">
               <RevealOnScroll delay={200}>
-                <div className="aspect-[4/5] rounded-md bg-sage-light/30 border border-lines/20 flex items-center justify-center">
-                  <span className="font-display text-6xl font-light" style={{ opacity: 0.06, color: "hsl(var(--sage))" }}>PG</span>
+                <div className="aspect-[4/5] rounded-md overflow-hidden border border-lines/20">
+                  <img
+                    src={aboutKeys}
+                    alt="Close-up of grand piano keys in warm golden hour light"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={1024}
+                    height={1280}
+                  />
                 </div>
               </RevealOnScroll>
             </div>

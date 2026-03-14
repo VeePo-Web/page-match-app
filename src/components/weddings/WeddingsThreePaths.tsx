@@ -52,7 +52,7 @@ export function WeddingsThreePaths() {
               className={cn(
                 "relative p-fitz-6 md:p-fitz-7 rounded-md border transition-all duration-700 flex flex-col",
                 tier.isChosen
-                  ? "bg-sage-deep text-warm-white border-gold/20"
+                  ? "bg-sage-deep text-warm-white border-gold/20 hover:shadow-[0_8px_32px_hsl(var(--gold)/0.12)]"
                   : "bg-card border-lines/40 hover:-translate-y-1 hover:shadow-editorial-hover",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}

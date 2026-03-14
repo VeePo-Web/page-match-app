@@ -1,191 +1,162 @@
 
-# Wedding Website - Multi-Page Implementation Plan
 
-## Overview
-Creating a complete multi-page wedding website for "Alicia & Andres" with faithful recreation of the design, including 5 main pages matching the navigation structure.
+# Wireframe Plan: Gawryletz Music Services — Full Visual Overhaul
 
-## Page Structure
+## What We Are Building
 
-Based on the navigation in the design image, we'll create these pages:
+A complete rebuild of this project to match the Vow Architect's site architecture (Gateway → three service verticals, each with sub-pages) but with the design system described in your Sacred Sound prompt — dark, cinematic, ceremony-paced, built on charcoal/gold/green palette with Cormorant Garamond + Inter typography.
 
-| Route | Page | Content |
-|-------|------|---------|
-| `/` | Home | Hero section with full navigation |
-| `/our-story` | Our Story | Couple's story with photos |
-| `/details` | Details | Location, Wedding Party, Accommodations |
-| `/schedule` | Schedule | Itinerary/Timeline for wedding weekend |
-| `/registry` | Registry | Gift registry information and links |
+This first phase is the **wireframe**: establishing routes, page shells, layout skeletons, design tokens, shared components, and navigation — without final polish or imagery.
 
-## Design System
+---
 
-### Color Palette (to add to CSS variables)
+## Site Architecture (Matching Vow Architect)
+
 ```text
---wedding-sage: 65 12% 45%        (Olive/sage for hero overlay, location section)
---wedding-cream: 40 30% 97%       (Off-white background sections)
---wedding-text: 0 0% 20%          (Dark text color)
---wedding-teal: 175 50% 35%       (Accent for buttons, day labels)
+/                    → Gateway (3 service cards)
+/weddings            → Wedding landing (long-scroll, 11 acts)
+/weddings/pricing    → Wedding pricing (3 tiers + add-ons + FAQ)
+/weddings/about      → About Parker (wedding context)
+/weddings/contact    → Wedding inquiry form
+/teaching            → Teaching landing (8 sections)
+/teaching/pricing    → Teaching pricing ($60/hr)
+/teaching/about      → About Parker (teaching context)
+/teaching/contact    → Teaching inquiry form
+/events              → Events landing (8 sections)
+/events/pricing      → Events pricing (3 presences)
+/events/about        → About Parker (events context)
+/events/contact      → Events inquiry form
+/listen              → Listening room (audio player)
+/proof               → Proof of craft (SPL, insurance, gear)
+/faq                 → FAQ (chips + top 10 fears)
+/contact             → General contact (wedding-focused)
+/about               → General about Parker
+/privacy-policy      → Privacy policy
+/terms               → Terms of service
+/accessibility       → Accessibility statement
 ```
 
-### Typography (Google Fonts to import)
-- **Great Vibes**: Script font for "Alicia & Andres" title
-- **Cormorant Garamond**: Elegant serif for section headings
-- **Open Sans**: Clean sans-serif for body text and navigation
+---
 
-## Files to Create
+## Phase 1 Tasks (Wireframe)
 
-### Shared Components
-```text
-src/components/wedding/
-├── Navigation.tsx         - Persistent navigation header
-├── Footer.tsx             - RSVP footer section
-├── BranchDecoration.tsx   - Reusable SVG branch illustration
-```
+### 1. Replace Design System (index.css + tailwind.config.ts)
 
-### Page Components
-```text
-src/pages/
-├── Index.tsx              - Home page (Hero + overview)
-├── OurStory.tsx           - Our Story page
-├── Details.tsx            - Details page (Location, Party, Hotels)
-├── Schedule.tsx           - Schedule/Itinerary page
-├── Registry.tsx           - Registry page
-```
+Strip all Hickory & Rose tokens. Replace with the Sacred Sound system:
 
-### Section Components
-```text
-src/components/wedding/
-├── HeroSection.tsx        - Full-height hero with overlay
-├── StorySection.tsx       - Story content with photo
-├── WeddingPartySection.tsx - Groomsmen/Bridesmaids tabs
-├── LocationSection.tsx    - Venue information
-├── AccommodationsSection.tsx - Hotel cards
-├── ItinerarySection.tsx   - Timeline with day tabs
-├── RegistrySection.tsx    - Registry logos and info
-```
+- **Colors**: `--rich-black` (240 9% 4%), `--ebon-charcoal` (222 10% 7%), `--deep-graphite` (218 11% 11%), `--vow-yellow` (45 100% 76%), `--vine-green` (88 76% 62%), `--porcelain` (210 17% 95%)
+- **Semantic tokens**: background = rich-black, foreground = porcelain, primary = vow-yellow, accent = vine-green, card = ebon-charcoal
+- **Typography**: `font-display` = Cormorant Garamond (300-400), `font-sans` = Inter (400-500)
+- **Spacing**: Fitzgerald scale (fitz-1 through fitz-10)
+- **Shadows**: fantasy-card, fantasy-cta
+- **Transitions**: --transition-fast (150ms), --transition-default (250ms), --transition-slow (400ms)
+- **Radius**: 0.5rem max (8px, never larger)
+- **Utility classes**: `.overline`, `.h1`–`.h4`, `.p-lead`, `.p-body`, `.chapter-rule`, `.grain`, `.section-padding`, `.section--dark`, `.section--surface`
 
-## Files to Modify
+### 2. Remove All Hickory & Rose Components
 
-### 1. src/index.css
-Add wedding-specific CSS variables and Google Fonts import:
-- Import Great Vibes, Cormorant Garamond, Open Sans from Google Fonts
-- Add wedding color variables
-- Add custom font-family classes
+Delete the entire `src/components/wedding/` directory (130+ files) and all Hickory & Rose pages. These are for a wedding planner brand and have no relevance.
 
-### 2. tailwind.config.ts
-Extend theme with:
-- Wedding color palette using CSS variables
-- Font family definitions for script, serif, sans
+Delete the `src/config/` brand identity/persona files.
 
-### 3. src/App.tsx
-Add routes:
-- `/` - Home
-- `/our-story` - Our Story
-- `/details` - Details
-- `/schedule` - Schedule
-- `/registry` - Registry
+### 3. Create Shared Layout Components
 
-## Detailed Component Specifications
+Port and adapt from Vow Architect:
 
-### Navigation Component
-- Fixed/sticky header on all pages
-- Links: Home, Our Story, Details, Schedule, Registry
-- Active state with underline accent
-- On hero: transparent overlay style
-- On other pages: solid cream background
+- **MinimalHeader** — Fixed header, logo left, nav center (Cormorant Garamond light), CTA right. Collapses on scroll with backdrop-blur.
+- **Footer** — Dark, minimal. Tagline, nav links, legal links, copyright.
+- **MobileStickyBar** — Bottom CTA bar on mobile.
+- **PianoKeyNav** — Vertical section navigation (screen edge).
+- **PageTransition** — Fade transitions between routes.
+- **RevealOnScroll** — IntersectionObserver reveal (up/scale/blur variants).
+- **StaggerChildren** — Staggered child animations.
+- **ThemeProvider** — Death/Life theme context.
+- **SmoothScrollProvider** — Lenis smooth scroll (already exists, keep).
 
-### Hero Section (Home Page)
-- Full viewport height (100vh)
-- Background: Placeholder couple photo with sage overlay
-- Centered script title "Alicia & Andres"
-- Date line: "February 15, 2025 | Joshua Tree, California"
-- Scroll indicator arrow at bottom
+### 4. Create Gateway Page (`/`)
 
-### Our Story Page
-- Branch decoration SVG at top
-- "Our Story" heading in serif
-- Two-column layout: text left, photo right
-- Cream background
-- Story paragraphs with date highlights
+Three bento cards: Weddings, Teaching, Events. Each with:
+- Background image (AI-generated, no faces/text — piano keys, candlelight, hands on keys)
+- Gradient overlay
+- Title, one-line description, "Step Inside →"
+- Parallax mouse-follow on hover
+- Footer tagline: "'Til Death ; Unto Life."
 
-### Details Page
-Contains 3 sections:
+### 5. Create Wedding Landing Page (`/weddings`)
 
-**Wedding Party Section:**
-- Tab switcher: Groomsmen | Bridesmaids
-- 4 circular avatar photos per tab
-- Names beneath each photo
-- Groomsmen: Julian Bernard, Damien Huber, Mark Pavone, David Blaine
-- Bridesmaids: Similar structure with female names
+11 acts, matching Vow Architect structure:
+1. **Hero** — Vigil sequence (8s pause, flame, Ken Burns drift, tagline reveal)
+2. **The Exhale** — Sacred pause, 3 text elements
+3. **Process Section** — Composer's journal (months of preparation)
+4. **Vow Moment** — Altar interstitial
+5. **The Invitation** — Meet the witness (Parker intro)
+6. **The Sound** — Dark listening environment
+7. **The Transformation** — Fear→resolution cards
+8. **The Witness** — About Parker (exhale surface)
+9. **Three Paths** — Pricing preview (3 tiers)
+10. **The Witnesses** — Testimonials
+11. **The Crossing** — Final CTA
 
-**Location Section:**
-- Sage/olive background color
-- "The Location" label
-- "Joshua Tree Carmine Resort" large heading
-- Description paragraph
-- Full-width venue/couple photo
+### 6. Create Teaching Landing Page (`/teaching`)
 
-**Accommodations Section:**
-- White background
-- 3-column grid of hotel cards
-- Each card: Name, description, "Reserve" button
-- Hotels: Joshua Tree Inn, Desert Sage Lodge, Carmine Resort
+8 sections: Hero, Exhale, Pillars, Methodology, Threshold (fears), Stories, Offering, Crossing.
 
-### Schedule Page
-- "Itinerary" heading
-- 3 date tabs: Feb 14, Feb 15 (Wedding Day), Feb 16
-- Each day has timeline entries:
-  - Time marker
-  - Event name
-  - Location/venue
-  - Brief description
+### 7. Create Events Landing Page (`/events`)
 
-### Registry Page
-- Branch decoration SVG
-- "Registry" heading
-- Paragraph about gifts
-- 3 registry badges/logos as styled text blocks:
-  - Crate & Barrel
-  - Target
-  - Williams Sonoma
+8 sections: Hero, Exhale, Occasions, Approach, Threshold, Experience, Offering, Crossing.
 
-### Footer Component
-- Simple cream background
-- Centered "RSVP" text or button
-- Optional: Copyright line
+### 8. Create Sub-Pages (Pricing, About, Contact per vertical)
 
-## Responsive Breakpoints
+Each follows the Vow Architect pattern:
+- **Pricing pages**: Hero + inclusions + tiers + comparison + FAQ + CTA
+- **About pages**: Hero + origin + sustain + presence + covenant + crossing
+- **Contact pages**: Cinematic hero strip + form card (glassmorphism) + trust stats
 
-### Desktop (default)
-- Full layouts as designed
-- 3-column grids for accommodations
-- 4 avatars in row for wedding party
+### 9. Create Shared Utility Pages
 
-### Tablet (md: 768px)
-- 2-column grids where applicable
-- Slightly reduced padding
+- **Listen** — Audio player with 4 movements, now-playing bar
+- **Proof** — SPL triptych, setup gallery, insurance, redundancy, downloads
+- **FAQ** — Chips + top 10 fears + policy download + trust stack
+- **About** — General (witness pattern)
+- **Contact** — General wedding contact form
+- **Legal pages** — Privacy, Terms, Accessibility (simple policy layouts)
 
-### Mobile (sm: 640px)
-- Single column layouts
-- Hamburger menu for navigation
-- Stacked sections
-- 2x2 grid for wedding party avatars
+### 10. Set Up Routing (App.tsx)
 
-## Image Strategy
-Using placeholder images from Unsplash or similar:
-- Hero: Desert/couple themed landscape
-- Story: Couple portrait
-- Location: Joshua Tree landscape
-- Accommodations: Hotel exterior placeholders
-- Wedding Party: Generic avatar placeholders
+Replace current routing with the full route tree above. Wrap in ThemeProvider, SmoothScrollProvider, PageTransition.
 
-## Implementation Order
+### 11. Update index.html
 
-1. **Foundation** - Update design system (CSS, Tailwind config)
-2. **Shared Components** - Navigation, Footer, Branch decoration
-3. **Home Page** - Hero section with navigation overlay
-4. **Our Story Page** - Story content and layout
-5. **Details Page** - Location, Wedding Party, Accommodations
-6. **Schedule Page** - Itinerary with tabs
-7. **Registry Page** - Registry section
-8. **App Routes** - Wire up all routes in App.tsx
-9. **Polish** - Responsive adjustments, smooth scroll, hover states
+- Load Cormorant Garamond + Inter via Google Fonts `<link>`
+- Preload hero image for LCP
+- Update meta tags, title, favicon
+- Add film grain CSS (`@keyframes grain`)
+- Add Ken Burns CSS (`@keyframes ken-burns`)
+
+---
+
+## Copy Approach
+
+- **Wedding pages**: Keep copy very close to Vow Architect (Parker's voice, first-person, sacred framing)
+- **Teaching pages**: Keep similar structure, adapt slightly
+- **Events pages**: Keep similar structure
+- **All CTA text**: Verb-forward ("Hold my date.", "Begin the conversation.", "Tell me your story.")
+
+## Image Approach
+
+- AI-generated images where needed (piano keys, candlelight, ceremony venues, hands on keys)
+- No faces, no text on images
+- Warm, desaturated, shallow DOF, cinematic
+- All at 6-15% opacity as backgrounds with Ken Burns drift
+
+---
+
+## Technical Details
+
+- All pages are wireframe shells with placeholder content and correct structure
+- Design tokens fully functional from day one
+- Shared components (Header, Footer, PianoKeyNav, RevealOnScroll) built once, used everywhere
+- Responsive: mobile-first, single column on mobile, full atmospheric on desktop
+- `prefers-reduced-motion` respected on all animations
+- Film grain, vignettes, and warm fog overlays on every section
+

@@ -500,7 +500,7 @@ export function WeddingsContact() {
 }
 
 export function TeachingContact() {
-  useEffect(() => { document.title = "Teaching Inquiry — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Teaching Inquiry — Parker Gawryletz", description: "Begin piano lessons in Calgary. All ages and levels welcome." });
   return (
     <SubPageLayout>
       <HeroStrip title="Begin the conversation." subtitle="Teaching Inquiry" height="h-[40vh]" />

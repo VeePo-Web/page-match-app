@@ -15,7 +15,7 @@ export default function Contact() {
 
         <Section>
           <div className="max-w-xl mx-auto">
-            <div className="p-fitz-6 md:p-fitz-7 rounded-lg border border-lines/20 bg-card/50 backdrop-blur-sm">
+            <div className="p-fitz-6 md:p-fitz-7 rounded-md border border-lines/20 bg-card/50 backdrop-blur-sm">
               <form className="space-y-fitz-5">
                 {[
                   { label: "Your Name", type: "text" },

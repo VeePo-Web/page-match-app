@@ -26,6 +26,11 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     navigate(path);
   }, [location.pathname, navigate]);
 
+  // Scroll to top on route change
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const timing = getRouteTiming(location.pathname);
   const duration = prefersReducedMotion.current ? 0.1 : timing.enter / 1000;
   const exitDuration = prefersReducedMotion.current ? 0.1 : timing.exit / 1000;

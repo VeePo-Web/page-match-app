@@ -225,7 +225,7 @@ function MobileBlackKey({
     >
       <Link
         to={service.href}
-        className="group relative overflow-hidden block rounded-md border border-transparent shadow-[0_4px_20px_hsl(var(--charcoal)/0.2)] hover:shadow-[0_2px_10px_hsl(var(--charcoal)/0.3)] transition-all duration-300"
+        className="group relative overflow-hidden block rounded-md border-l-2 border-l-gold/40 border border-transparent shadow-[0_4px_20px_hsl(var(--charcoal)/0.2)] hover:shadow-[0_2px_10px_hsl(var(--charcoal)/0.3)] transition-all duration-300"
         style={{
           background:
             "linear-gradient(180deg, hsl(148 22% 32%) 0%, hsl(148 22% 24%) 60%, hsl(148 22% 18%) 100%)",

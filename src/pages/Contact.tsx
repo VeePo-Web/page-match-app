@@ -54,7 +54,6 @@ export default function Contact() {
         </Section>
       </main>
       <Footer />
-      <MobileStickyBar />
       <BackToTop />
     </div>
   );

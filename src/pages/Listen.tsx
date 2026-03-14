@@ -56,8 +56,10 @@ export default function Listen() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
       <BackToTop />
+      <MobileStickyBar />
       <main id="main-content">
         <HeroStrip
           title="Hear the ceremony."

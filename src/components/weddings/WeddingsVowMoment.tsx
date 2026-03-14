@@ -42,7 +42,7 @@ export function WeddingsVowMoment() {
               aria-hidden="true"
             />
           </span>
-          <span className={cn("block transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")} style={{ transitionDelay: isVisible ? "800ms" : "0ms" }}>
+          <span className={cn("block transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")} style={{ transitionDelay: isVisible ? "1000ms" : "0ms" }}>
             the moment it's heard.
           </span>
         </blockquote>

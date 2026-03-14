@@ -37,7 +37,7 @@ export default function Contact() {
                   </div>
                 </RevealOnScroll>
                 <RevealOnScroll>
-                  <button type="submit" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
+                  <button type="submit" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
                     Hold My Date.
                   </button>
                 </RevealOnScroll>

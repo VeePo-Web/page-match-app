@@ -7,6 +7,7 @@ import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import aboutKeys from "@/assets/about-keys.jpg";
 
 export default function About() {
   usePageMeta({

@@ -24,6 +24,7 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.6], ["0%", "12%"]);
   const watermarkY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
     <section

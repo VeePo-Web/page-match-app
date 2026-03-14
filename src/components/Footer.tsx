@@ -13,10 +13,18 @@ export function Footer() {
       className="relative overflow-hidden bg-sage-deep text-warm-white"
       aria-label="Site footer"
     >
-      {/* Subtle grain */}
       <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.03 }} aria-hidden="true" />
 
       <div className="container mx-auto py-fitz-9 md:py-fitz-10 px-fitz-4 md:px-fitz-5 lg:px-fitz-6 relative z-[2]">
+        {/* Editorial pull quote */}
+        <div className={cn("text-center mb-fitz-9 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
+          <div className="editorial-rule mb-fitz-5" />
+          <blockquote className="font-display text-lg md:text-xl font-light italic max-w-lg mx-auto" style={{ color: "hsl(var(--warm-white) / 0.7)" }}>
+            "Every note crafted to honour your moment."
+          </blockquote>
+          <div className="editorial-rule mt-fitz-5" />
+        </div>
+
         <BreathingDiamond className="mb-fitz-9" />
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-fitz-9">
@@ -61,7 +69,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact + Newsletter */}
           <div className={cn("transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")} style={{ transitionDelay: isVisible ? "300ms" : "0ms" }}>
             <h4 className="font-sans text-xs uppercase tracking-[0.2em] mb-6" style={{ color: "hsl(var(--gold))" }}>Reach Me</h4>
             <ul className="space-y-3" style={{ color: "hsl(var(--warm-white) / 0.6)" }}>
@@ -69,6 +77,22 @@ export function Footer() {
               <li><a href="mailto:parker@parkergawryletz.com" className="hover:text-gold transition-colors">parker@parkergawryletz.com</a></li>
               <li><a href="tel:+14038308930" className="hover:text-gold transition-colors">+1-403-830-8930</a></li>
             </ul>
+
+            {/* Newsletter placeholder */}
+            <div className="mt-8">
+              <label className="font-sans text-[10px] uppercase tracking-[0.2em] block mb-3" style={{ color: "hsl(var(--gold))" }}>Stay Informed</label>
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  className="flex-1 bg-transparent border-b border-lines/30 focus:border-gold outline-none py-2 text-sm transition-colors duration-default"
+                  style={{ color: "hsl(var(--warm-white) / 0.8)" }}
+                />
+                <button className="text-xs uppercase tracking-[0.12em] px-3 py-2 border border-gold/30 rounded-sm hover:bg-gold/10 transition-all duration-fast" style={{ color: "hsl(var(--gold))" }}>
+                  →
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

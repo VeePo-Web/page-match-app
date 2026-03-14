@@ -5,6 +5,8 @@ import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { CredentialStrip } from "@/components/CredentialStrip";
+import { ContactWizard } from "@/components/contact/ContactWizard";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -20,7 +22,9 @@ function SubPageLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ─── PRICING PAGES ─── */
+/* ═══════════════════════════════════════════════
+   PRICING PAGES
+   ═══════════════════════════════════════════════ */
 
 export function WeddingsPricing() {
   useEffect(() => { document.title = "Wedding Pricing — Parker Gawryletz"; }, []);
@@ -53,6 +57,7 @@ export function WeddingsPricing() {
             ].map((tier, i) => (
               <RevealOnScroll key={tier.name} delay={i * 100}>
                 <div className={`p-fitz-6 rounded-md ${tier.isChosen ? 'border border-gold/20' : 'border border-lines/20'}`}>
+                  {tier.isChosen && <span className="inline-block text-[10px] uppercase tracking-[0.2em] font-sans mb-fitz-3" style={{ color: "hsl(var(--gold))" }}>Most Chosen</span>}
                   <h3 className="text-foreground">{tier.name}</h3>
                   <p className="font-display text-3xl font-light mt-fitz-2" style={{ color: "hsl(var(--gold))" }}>{tier.price}</p>
                   <ul className="mt-fitz-5 space-y-fitz-2 text-muted-foreground text-sm font-light">
@@ -62,10 +67,49 @@ export function WeddingsPricing() {
               </RevealOnScroll>
             ))}
           </div>
+
+          {/* Add-ons */}
+          <RevealOnScroll delay={400}>
+            <div className="mt-fitz-9 border-t border-lines/20 pt-fitz-7">
+              <p className="overline mb-fitz-5 text-center">Add-Ons</p>
+              <div className="grid md:grid-cols-3 gap-fitz-5 text-center">
+                {[
+                  { name: "Custom Song", price: "$75–$150", desc: "A unique arrangement of any song you choose" },
+                  { name: "Short-Notice Booking", price: "+$250", desc: "For bookings within 30 days" },
+                  { name: "Travel Beyond Banff", price: "Quoted", desc: "Per-km rate for venues beyond the Banff corridor" },
+                ].map((addon) => (
+                  <div key={addon.name} className="p-fitz-4">
+                    <p className="font-display text-base text-foreground">{addon.name}</p>
+                    <p className="text-sm mt-1" style={{ color: "hsl(var(--gold))" }}>{addon.price}</p>
+                    <p className="text-xs text-muted-foreground mt-2">{addon.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealOnScroll>
+
+          {/* Reassurance */}
+          <RevealOnScroll delay={500}>
+            <p className="text-center text-sm text-muted-foreground mt-fitz-7 italic font-display">
+              You can switch tiers up to two weeks before your ceremony.
+            </p>
+          </RevealOnScroll>
         </div>
       </Section>
 
+      {/* Investment philosophy */}
       <Section>
+        <div className="max-w-2xl mx-auto">
+          <RevealOnScroll>
+            <p className="overline mb-fitz-3">Investment Philosophy</p>
+            <p className="text-muted-foreground leading-relaxed">
+              These prices reflect months of preparation, not just hours of playing. When you invest in ceremony piano, you're investing in someone who will learn your love story, arrange your songs by hand, arrive early, stay late, and carry the emotional weight of your most important day with the care it deserves.
+            </p>
+          </RevealOnScroll>
+        </div>
+      </Section>
+
+      <Section dark>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
             <BreathingDiamond className="mb-fitz-5" />
@@ -73,7 +117,7 @@ export function WeddingsPricing() {
             <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">I accept only 5–10 weddings per year.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <Link to="/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
+            <Link to="/weddings/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               Hold My Date.
             </Link>
           </RevealOnScroll>
@@ -100,8 +144,29 @@ export function TeachingPricing() {
               ))}
             </ul>
           </RevealOnScroll>
-          <RevealOnScroll delay={240}>
-            <Link to="/teaching/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
+        </div>
+      </Section>
+
+      <Section dark>
+        <div className="max-w-2xl mx-auto">
+          <RevealOnScroll>
+            <p className="overline mb-fitz-3">What a Typical Lesson Looks Like</p>
+            <p className="text-muted-foreground leading-relaxed">
+              We begin with a brief warm-up — scales, finger exercises, or a review of last week's work. Then we move into the core of the lesson: learning new pieces, refining technique, or exploring theory. The final minutes are spent setting clear goals for the week ahead. Every lesson is tailored to you — no rigid curriculum.
+            </p>
+          </RevealOnScroll>
+          <RevealOnScroll delay={120}>
+            <p className="text-sm text-muted-foreground mt-fitz-5 italic font-display">
+              RCM examination preparation available upon request.
+            </p>
+          </RevealOnScroll>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="max-w-2xl mx-auto text-center">
+          <RevealOnScroll>
+            <Link to="/teaching/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               Begin the Conversation.
             </Link>
           </RevealOnScroll>
@@ -183,6 +248,13 @@ export function EventsPricing() {
               </tbody>
             </table>
           </div>
+
+          {/* Trust reassurance */}
+          <RevealOnScroll delay={200}>
+            <p className="text-center text-sm text-muted-foreground mt-fitz-7 italic font-display">
+              Every quote is transparent. No hidden fees, no surprises.
+            </p>
+          </RevealOnScroll>
         </div>
       </Section>
 
@@ -204,7 +276,9 @@ export function EventsPricing() {
   );
 }
 
-/* ─── ABOUT PAGES ─── */
+/* ═══════════════════════════════════════════════
+   ABOUT PAGES
+   ═══════════════════════════════════════════════ */
 
 export function WeddingsAbout() {
   useEffect(() => { document.title = "About (Weddings) — Parker Gawryletz"; }, []);
@@ -224,10 +298,25 @@ export function WeddingsAbout() {
           </RevealOnScroll>
         </div>
       </Section>
+
+      {/* Philosophy pull quote */}
       <Section dark>
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/weddings/contact" className="inline-flex items-center px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta text-sm uppercase tracking-[0.12em]">Hold My Date.</Link>
+            <div className="editorial-rule mb-fitz-7" />
+            <blockquote className="font-display text-xl md:text-2xl font-light italic leading-snug" style={{ color: "hsl(var(--warm-white) / 0.85)" }}>
+              "Your ceremony is not a performance. It is a covenant — and the music must honour that distinction."
+            </blockquote>
+            <div className="editorial-rule mt-fitz-7" />
+          </RevealOnScroll>
+        </div>
+      </Section>
+
+      <Section>
+        <CredentialStrip />
+        <div className="max-w-2xl mx-auto text-center mt-fitz-7">
+          <RevealOnScroll>
+            <Link to="/weddings/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">Hold My Date.</Link>
           </RevealOnScroll>
         </div>
       </Section>
@@ -248,12 +337,28 @@ export function TeachingAbout() {
           <RevealOnScroll delay={120}>
             <p className="text-muted-foreground leading-relaxed mt-fitz-5 font-light">My approach balances strong technical foundations with expressive freedom, helping students develop not just the ability to play, but the ability to communicate through music.</p>
           </RevealOnScroll>
+          <RevealOnScroll delay={240}>
+            <p className="text-muted-foreground leading-relaxed mt-fitz-5 font-light">Whether you're a complete beginner or preparing for RCM examinations, I adapt every lesson to meet you where you are — and take you where you want to go.</p>
+          </RevealOnScroll>
         </div>
       </Section>
+
       <Section dark>
+        <div className="max-w-3xl mx-auto text-center">
+          <RevealOnScroll>
+            <div className="editorial-rule mb-fitz-7" />
+            <blockquote className="font-display text-xl md:text-2xl font-light italic leading-snug" style={{ color: "hsl(var(--warm-white) / 0.85)" }}>
+              "The goal isn't perfection. It's expression."
+            </blockquote>
+            <div className="editorial-rule mt-fitz-7" />
+          </RevealOnScroll>
+        </div>
+      </Section>
+
+      <Section>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/teaching/contact" className="inline-flex items-center px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta text-sm uppercase tracking-[0.12em]">Begin the Conversation.</Link>
+            <Link to="/teaching/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">Begin the Conversation.</Link>
           </RevealOnScroll>
         </div>
       </Section>
@@ -276,10 +381,24 @@ export function EventsAbout() {
           </RevealOnScroll>
         </div>
       </Section>
+
       <Section dark>
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/events/contact" className="inline-flex items-center px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta text-sm uppercase tracking-[0.12em]">Discuss Your Event.</Link>
+            <div className="editorial-rule mb-fitz-7" />
+            <blockquote className="font-display text-xl md:text-2xl font-light italic leading-snug" style={{ color: "hsl(var(--warm-white) / 0.85)" }}>
+              "I read the room before I play a note."
+            </blockquote>
+            <div className="editorial-rule mt-fitz-7" />
+          </RevealOnScroll>
+        </div>
+      </Section>
+
+      <Section>
+        <CredentialStrip />
+        <div className="max-w-2xl mx-auto text-center mt-fitz-7">
+          <RevealOnScroll>
+            <Link to="/events/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">Discuss Your Event.</Link>
           </RevealOnScroll>
         </div>
       </Section>
@@ -287,56 +406,87 @@ export function EventsAbout() {
   );
 }
 
-/* ─── CONTACT PAGES ─── */
+/* ═══════════════════════════════════════════════
+   CONTACT PAGES — Multi-Step Wizard
+   ═══════════════════════════════════════════════ */
 
-function ContactForm({ fields, ctaLabel, textareaLabel }: { fields: string[]; ctaLabel: string; textareaLabel: string }) {
-  return (
-    <div className="max-w-xl mx-auto">
-      <div className="p-fitz-6 md:p-fitz-7 rounded-md border border-lines/30 bg-card/80 backdrop-blur-sm">
-        <form className="space-y-fitz-5">
-          {fields.map((label) => (
-            <RevealOnScroll key={label}>
-              <div>
-                <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-fitz-2 font-sans">{label}</label>
-                <input
-                  type={label.toLowerCase().includes('email') ? 'email' : label.toLowerCase().includes('phone') ? 'tel' : 'text'}
-                  className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground"
-                />
-              </div>
-            </RevealOnScroll>
-          ))}
-          <RevealOnScroll>
-            <div>
-              <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-fitz-2 font-sans">{textareaLabel}</label>
-              <textarea rows={4} className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground resize-none" />
-            </div>
-          </RevealOnScroll>
-          <RevealOnScroll>
-            <button type="submit" className="px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
-              {ctaLabel}
-            </button>
-          </RevealOnScroll>
-        </form>
-      </div>
+const weddingSteps = [
+  {
+    title: "About You",
+    fields: [
+      { label: "Your Name", type: "text" as const, required: true },
+      { label: "Partner's Name", type: "text" as const },
+      { label: "Email", type: "email" as const, required: true },
+      { label: "Phone", type: "tel" as const },
+    ],
+  },
+  {
+    title: "Ceremony Details",
+    fields: [
+      { label: "Wedding Date", type: "date" as const },
+      { label: "Venue", type: "text" as const },
+      { label: "Guest Count", type: "text" as const, placeholder: "Approximate" },
+      { label: "Ceremony Vibe", options: ["Intimate", "Grand", "Joyful", "Reflective"] },
+    ],
+  },
+  {
+    title: "Your Story",
+    fields: [
+      { label: "Song Requests", type: "text" as const, placeholder: "Any songs that are meaningful to you" },
+      { label: "Tell me about your ceremony", type: "textarea" as const },
+    ],
+  },
+];
 
-      {/* Trust stats */}
-      <RevealOnScroll delay={200}>
-        <div className="flex justify-center gap-fitz-7 mt-fitz-7 text-center">
-          {[
-            { stat: "< 24hr", label: "Response time" },
-            { stat: "100%", label: "Reply rate" },
-            { stat: "Free", label: "Initial consultation" },
-          ].map((s) => (
-            <div key={s.label}>
-              <p className="font-display text-xl" style={{ color: "hsl(var(--sage))" }}>{s.stat}</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-[0.1em] mt-1 font-sans">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </RevealOnScroll>
-    </div>
-  );
-}
+const teachingSteps = [
+  {
+    title: "About You",
+    fields: [
+      { label: "Your Name", type: "text" as const, required: true },
+      { label: "Email", type: "email" as const, required: true },
+      { label: "Phone", type: "tel" as const },
+    ],
+  },
+  {
+    title: "Student Details",
+    fields: [
+      { label: "Student Age", type: "text" as const },
+      { label: "Experience Level", options: ["Beginner", "Intermediate", "Advanced", "RCM Prep"] },
+    ],
+  },
+  {
+    title: "Your Goals",
+    fields: [
+      { label: "What are your goals?", type: "textarea" as const },
+    ],
+  },
+];
+
+const eventsSteps = [
+  {
+    title: "About You",
+    fields: [
+      { label: "Your Name", type: "text" as const, required: true },
+      { label: "Organization", type: "text" as const },
+      { label: "Email", type: "email" as const, required: true },
+      { label: "Phone", type: "tel" as const },
+    ],
+  },
+  {
+    title: "Event Details",
+    fields: [
+      { label: "Event Date", type: "date" as const },
+      { label: "Venue / Location", type: "text" as const },
+      { label: "Event Type", options: ["Corporate", "Private Dinner", "Memorial", "Other"] },
+    ],
+  },
+  {
+    title: "Your Vision",
+    fields: [
+      { label: "Tell me about your event", type: "textarea" as const },
+    ],
+  },
+];
 
 export function WeddingsContact() {
   useEffect(() => { document.title = "Wedding Inquiry — Parker Gawryletz"; }, []);
@@ -344,11 +494,7 @@ export function WeddingsContact() {
     <SubPageLayout>
       <HeroStrip title="Hold my date." subtitle="Wedding Inquiry" height="h-[40vh]" />
       <Section>
-        <ContactForm
-          fields={["Your Name", "Partner's Name", "Email", "Phone", "Wedding Date", "Venue"]}
-          ctaLabel="Hold My Date."
-          textareaLabel="Tell me about your ceremony"
-        />
+        <ContactWizard steps={weddingSteps} ctaLabel="Hold My Date." />
       </Section>
     </SubPageLayout>
   );
@@ -360,11 +506,7 @@ export function TeachingContact() {
     <SubPageLayout>
       <HeroStrip title="Begin the conversation." subtitle="Teaching Inquiry" height="h-[40vh]" />
       <Section>
-        <ContactForm
-          fields={["Your Name", "Email", "Phone", "Student Age", "Experience Level"]}
-          ctaLabel="Begin the Conversation."
-          textareaLabel="What are your goals?"
-        />
+        <ContactWizard steps={teachingSteps} ctaLabel="Begin the Conversation." />
       </Section>
     </SubPageLayout>
   );
@@ -376,11 +518,7 @@ export function EventsContact() {
     <SubPageLayout>
       <HeroStrip title="Discuss your event." subtitle="Event Inquiry" height="h-[40vh]" />
       <Section>
-        <ContactForm
-          fields={["Your Name", "Organization", "Email", "Phone", "Event Date", "Venue / Location"]}
-          ctaLabel="Discuss Your Event."
-          textareaLabel="Tell me about your event"
-        />
+        <ContactWizard steps={eventsSteps} ctaLabel="Discuss Your Event." />
       </Section>
     </SubPageLayout>
   );

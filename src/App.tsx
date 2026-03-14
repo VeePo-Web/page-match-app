@@ -3,62 +3,75 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import { lazy, Suspense } from "react";
-import SmoothScrollProvider from "./components/wedding/SmoothScrollProvider";
-import LoadingScreen from "./components/wedding/LoadingScreen";
-import CursorFollower from "./components/wedding/CursorFollower";
-import PageTransition from "./components/wedding/PageTransition";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { PageTransition } from "@/components/PageTransition";
 
-// Lazy-loaded routes for code-splitting
-const Index = lazy(() => import("./pages/Index"));
-const Services = lazy(() => import("./pages/Services"));
-const Portfolio = lazy(() => import("./pages/Portfolio"));
-const About = lazy(() => import("./pages/About"));
-const Approach = lazy(() => import("./pages/Approach"));
-const Journal = lazy(() => import("./pages/Journal"));
-const Inquire = lazy(() => import("./pages/Inquire"));
-const FAQ = lazy(() => import("./pages/FAQ"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Gateway from "./pages/Gateway";
+import Weddings from "./pages/Weddings";
+import Teaching from "./pages/Teaching";
+import Events from "./pages/Events";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Proof from "./pages/Proof";
+import Listen from "./pages/Listen";
+import NotFound from "./pages/NotFound";
+import {
+  WeddingsPricing, WeddingsAbout, WeddingsContact,
+  TeachingPricing, TeachingAbout, TeachingContact,
+  EventsAbout, EventsPricing, EventsContact,
+} from "./pages/SubPages";
+import { PrivacyPolicy, Terms, Accessibility } from "./pages/Legal";
 
 const queryClient = new QueryClient();
 
-const AnimatedRoutes = () => {
+function AppRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <Suspense fallback={null}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-          <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
-          <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
-          <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-          <Route path="/approach" element={<PageTransition><Approach /></PageTransition>} />
-          <Route path="/journal" element={<PageTransition><Journal /></PageTransition>} />
-          <Route path="/inquire" element={<PageTransition><Inquire /></PageTransition>} />
-          <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
-          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-        </Routes>
-      </Suspense>
-    </AnimatePresence>
+    <Routes location={location}>
+      <Route path="/" element={<Gateway />} />
+      <Route path="/weddings" element={<Weddings />} />
+      <Route path="/weddings/pricing" element={<WeddingsPricing />} />
+      <Route path="/weddings/about" element={<WeddingsAbout />} />
+      <Route path="/weddings/contact" element={<WeddingsContact />} />
+      <Route path="/teaching" element={<Teaching />} />
+      <Route path="/teaching/pricing" element={<TeachingPricing />} />
+      <Route path="/teaching/about" element={<TeachingAbout />} />
+      <Route path="/teaching/contact" element={<TeachingContact />} />
+      <Route path="/events" element={<Events />} />
+      <Route path="/events/about" element={<EventsAbout />} />
+      <Route path="/events/pricing" element={<EventsPricing />} />
+      <Route path="/events/contact" element={<EventsContact />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/proof" element={<Proof />} />
+      <Route path="/listen" element={<Listen />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/accessibility" element={<Accessibility />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
-};
+}
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <LoadingScreen>
+  <ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
           <SmoothScrollProvider>
-            <CursorFollower />
-            <AnimatedRoutes />
+            <PageTransition>
+              <AppRoutes />
+            </PageTransition>
           </SmoothScrollProvider>
-        </LoadingScreen>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

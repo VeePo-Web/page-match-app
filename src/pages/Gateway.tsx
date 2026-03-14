@@ -85,15 +85,15 @@ function PianoKeyCard({
           isBlack
             ? [
                 "rounded-b-md",
-                "border border-transparent",
+                "border border-transparent border-b-[hsl(148_22%_38%)]",
                 "shadow-[0_6px_24px_hsl(var(--charcoal)/0.25)]",
                 "hover:shadow-[0_2px_10px_hsl(var(--charcoal)/0.35)]",
               ]
             : [
                 "rounded-b-md",
                 "border border-lines/60",
-                "shadow-[0_4px_16px_hsl(var(--charcoal)/0.06)]",
-                "hover:shadow-[0_2px_8px_hsl(var(--charcoal)/0.12)]",
+                "shadow-[0_4px_16px_hsl(var(--charcoal)/0.06),inset_-1px_0_0_hsl(var(--lines)/0.3),inset_1px_0_0_hsl(var(--lines)/0.3)]",
+                "hover:shadow-[0_2px_8px_hsl(var(--charcoal)/0.12),inset_-1px_0_0_hsl(var(--lines)/0.3),inset_1px_0_0_hsl(var(--lines)/0.3)]",
               ]
         )}
         style={

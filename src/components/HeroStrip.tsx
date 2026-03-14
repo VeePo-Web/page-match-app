@@ -10,6 +10,7 @@ interface HeroStripProps {
   backgroundImage?: string;
   children?: React.ReactNode;
   watermark?: string;
+  showScrollCue?: boolean;
 }
 
 export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImage, children, watermark }: HeroStripProps) {

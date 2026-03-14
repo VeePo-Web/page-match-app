@@ -8,7 +8,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { CredentialStrip } from "@/components/CredentialStrip";
-import { ContactWizard } from "@/components/contact/ContactWizard";
+import { ContactForm } from "@/components/contact/ContactForm";
 import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
@@ -428,91 +428,13 @@ export function EventsAbout() {
    CONTACT PAGES — Multi-Step Wizard
    ═══════════════════════════════════════════════ */
 
-const weddingSteps = [
-  {
-    title: "About You",
-    fields: [
-      { label: "Your Name", type: "text" as const, required: true },
-      { label: "Partner's Name", type: "text" as const },
-      { label: "Email", type: "email" as const, required: true },
-      { label: "Phone", type: "tel" as const },
-    ],
-  },
-  {
-    title: "Ceremony Details",
-    fields: [
-      { label: "Wedding Date", type: "date" as const },
-      { label: "Venue", type: "text" as const },
-      { label: "Guest Count", type: "text" as const, placeholder: "Approximate" },
-      { label: "Ceremony Vibe", options: ["Intimate", "Grand", "Joyful", "Reflective"] },
-    ],
-  },
-  {
-    title: "Your Story",
-    fields: [
-      { label: "Song Requests", type: "text" as const, placeholder: "Any songs that are meaningful to you" },
-      { label: "Tell me about your ceremony", type: "textarea" as const },
-    ],
-  },
-];
-
-const teachingSteps = [
-  {
-    title: "About You",
-    fields: [
-      { label: "Your Name", type: "text" as const, required: true },
-      { label: "Email", type: "email" as const, required: true },
-      { label: "Phone", type: "tel" as const },
-    ],
-  },
-  {
-    title: "Student Details",
-    fields: [
-      { label: "Student Age", type: "text" as const },
-      { label: "Experience Level", options: ["Beginner", "Intermediate", "Advanced", "RCM Prep"] },
-    ],
-  },
-  {
-    title: "Your Goals",
-    fields: [
-      { label: "What are your goals?", type: "textarea" as const },
-    ],
-  },
-];
-
-const eventsSteps = [
-  {
-    title: "About You",
-    fields: [
-      { label: "Your Name", type: "text" as const, required: true },
-      { label: "Organization", type: "text" as const },
-      { label: "Email", type: "email" as const, required: true },
-      { label: "Phone", type: "tel" as const },
-    ],
-  },
-  {
-    title: "Event Details",
-    fields: [
-      { label: "Event Date", type: "date" as const },
-      { label: "Venue / Location", type: "text" as const },
-      { label: "Event Type", options: ["Corporate", "Private Dinner", "Memorial", "Other"] },
-    ],
-  },
-  {
-    title: "Your Vision",
-    fields: [
-      { label: "Tell me about your event", type: "textarea" as const },
-    ],
-  },
-];
-
 export function WeddingsContact() {
   useSubPageMeta({ title: "Wedding Inquiry — Parker Gawryletz", description: "Hold your wedding date. Inquire about ceremony piano for your Calgary or Banff wedding." });
   return (
     <SubPageLayout>
       <HeroStrip title="Hold my date." subtitle="Wedding Inquiry" height="h-[40vh]" />
       <Section>
-        <ContactWizard steps={weddingSteps} ctaLabel="Hold My Date." />
+        <ContactForm serviceContext="Wedding" ctaLabel="Hold My Date" returnPath="/weddings" returnLabel="Back to Weddings" />
       </Section>
     </SubPageLayout>
   );
@@ -524,7 +446,7 @@ export function TeachingContact() {
     <SubPageLayout>
       <HeroStrip title="Begin the conversation." subtitle="Teaching Inquiry" height="h-[40vh]" />
       <Section>
-        <ContactWizard steps={teachingSteps} ctaLabel="Begin the Conversation." />
+        <ContactForm serviceContext="Teaching" ctaLabel="Begin the Conversation" returnPath="/teaching" returnLabel="Back to Teaching" />
       </Section>
     </SubPageLayout>
   );
@@ -536,7 +458,7 @@ export function EventsContact() {
     <SubPageLayout>
       <HeroStrip title="Discuss your event." subtitle="Event Inquiry" height="h-[40vh]" />
       <Section>
-        <ContactWizard steps={eventsSteps} ctaLabel="Discuss Your Event." />
+        <ContactForm serviceContext="Event" ctaLabel="Discuss Your Event" returnPath="/events" returnLabel="Back to Events" />
       </Section>
     </SubPageLayout>
   );

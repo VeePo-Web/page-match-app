@@ -47,9 +47,9 @@ export function WeddingsPricing() {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-fitz-6">
             {[
-              { name: "The Prelude", price: "$1,200", items: ["Ceremony piano (processional → recessional)", "One planning consultation", "Custom arrangements included", "Professional digital piano provided"] },
-              { name: "The Covenant", price: "$2,400", items: ["Everything in The Prelude", "Cocktail hour coverage (60 min)", "Extended song consultation", "On-site sound check"], isChosen: true },
-              { name: "The Chronicle", price: "$4,200", items: ["Everything in The Covenant", "Rehearsal attendance", "Dinner music", "Last dance", "Full-day dedication"] },
+              { name: "The Vow", price: "$650", items: ["Ceremony piano (processional → recessional)", "One planning consultation", "Custom arrangements included", "Professional digital piano provided"] },
+              { name: "The Hour", price: "$750", items: ["Everything in The Vow", "Cocktail hour coverage (60 min)", "Extended song consultation", "On-site sound check"], isChosen: true },
+              { name: "The Story", price: "$1,200", items: ["Everything in The Hour", "Rehearsal attendance", "Dinner music", "Last dance", "Full-day dedication"] },
             ].map((tier, i) => (
               <RevealOnScroll key={tier.name} delay={i * 100}>
                 <div className={`p-fitz-6 rounded-md ${tier.isChosen ? 'border border-gold/20' : 'border border-lines/20'}`}>

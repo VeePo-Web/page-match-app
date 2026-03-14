@@ -488,7 +488,7 @@ const eventsSteps = [
 ];
 
 export function WeddingsContact() {
-  useEffect(() => { document.title = "Wedding Inquiry — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Wedding Inquiry — Parker Gawryletz", description: "Hold your wedding date. Inquire about ceremony piano for your Calgary or Banff wedding." });
   return (
     <SubPageLayout>
       <HeroStrip title="Hold my date." subtitle="Wedding Inquiry" height="h-[40vh]" />

@@ -8,7 +8,6 @@ interface RevealOnScrollProps {
   delay?: number;
   threshold?: number;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
 }
 
 export function RevealOnScroll({
@@ -17,13 +16,12 @@ export function RevealOnScroll({
   delay = 0,
   threshold = 0.15,
   className,
-  as: Tag = "div",
 }: RevealOnScrollProps) {
   const { ref, isVisible } = useScrollReveal({ threshold, delay, triggerOnce: true });
 
   return (
-    <Tag
-      ref={ref as React.RefObject<any>}
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={cn(
         "reveal",
         variant === "up" && "reveal--up",
@@ -35,6 +33,6 @@ export function RevealOnScroll({
       style={{ "--animation-delay": `${delay}ms` } as React.CSSProperties}
     >
       {children}
-    </Tag>
+    </div>
   );
 }

@@ -122,22 +122,24 @@ export default function Events() {
             </RevealOnScroll>
             <div className="grid md:grid-cols-3 gap-fitz-6 mt-fitz-9">
               {[
-                { name: "Ambient", price: "From $800", desc: "Background piano that elevates without interrupting. Perfect for cocktails and dinners." },
-                { name: "Featured", price: "From $1,500", desc: "Curated performance integrated into your event's programme. Sets and transitions designed for your agenda." },
-                { name: "Immersive", price: "From $3,000", desc: "Full evening coverage. I become part of your event's fabric — from guest arrival to final farewell." },
+                { name: "The Moment", duration: "1 hour", desc: "A single set for the defining moment of your event — an opening, a toast, a tribute." },
+                { name: "The Evening", duration: "2–3 hours", desc: "Curated sets that shape the arc of your evening — from arrival through dinner.", isChosen: true },
+                { name: "The Full Occasion", duration: "4+ hours", desc: "Complete musical presence from first guest to final farewell." },
               ].map((tier, i) => (
                 <RevealOnScroll key={tier.name} delay={i * 100}>
-                  <div className="text-left p-fitz-6 border border-lines/40 rounded-md hover:-translate-y-1 transition-transform duration-[180ms] bg-card">
+                  <div className={`text-left p-fitz-6 border rounded-md hover:-translate-y-1 transition-transform duration-[180ms] bg-card ${tier.isChosen ? 'border-gold/20' : 'border-lines/40'}`}>
                     <h3 className="text-foreground">{tier.name}</h3>
-                    <p className="font-display text-2xl font-light mt-fitz-2" style={{ color: "hsl(var(--sage))" }}>{tier.price}</p>
+                    <p className="font-display text-2xl font-light mt-fitz-2" style={{ color: "hsl(var(--sage))" }}>{tier.duration}</p>
                     <p className="text-muted-foreground mt-fitz-3 text-sm font-light">{tier.desc}</p>
+                    {tier.isChosen && <span className="inline-block mt-fitz-3 text-xs uppercase tracking-[0.16em]" style={{ color: "hsl(var(--gold))" }}>Most Selected</span>}
                   </div>
                 </RevealOnScroll>
               ))}
             </div>
             <RevealOnScroll delay={400}>
-              <Link to="/events/pricing" className="inline-flex items-center mt-fitz-7 text-sm tracking-[0.16em] uppercase text-sage story-link">
-                View full details
+              <p className="text-center text-sm text-muted-foreground mt-fitz-5 max-w-md mx-auto">After our conversation, I provide a clear quote tailored to your event.</p>
+              <Link to="/events/contact" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.16em] uppercase text-sage story-link">
+                Request a proposal
               </Link>
             </RevealOnScroll>
           </div>

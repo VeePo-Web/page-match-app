@@ -64,7 +64,7 @@ export default function Proof() {
               <p className="text-muted-foreground mb-fitz-7">Every claim on this website is provable. Ask me anything.</p>
               <a
                 href="/contact"
-                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta transition-all duration-[180ms] text-sm uppercase tracking-[0.18em] breathe-glow"
+                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Ask Me Anything
               </a>

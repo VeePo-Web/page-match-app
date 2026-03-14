@@ -52,7 +52,7 @@ export default function Contact() {
                   { stat: "Free", label: "Initial consultation" },
                 ].map((s) => (
                   <div key={s.label}>
-                    <p className="font-display text-xl text-primary">{s.stat}</p>
+                    <p className="font-display text-xl" style={{ color: "hsl(var(--sage))" }}>{s.stat}</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-[0.12em] mt-1">{s.label}</p>
                   </div>
                 ))}

@@ -118,28 +118,84 @@ export function EventsPricing() {
       <HeroStrip title="Three presences." subtitle="Event Investment" height="h-[40vh]" />
       <Section dark>
         <div className="max-w-4xl mx-auto">
+          <RevealOnScroll>
+            <p className="overline mb-fitz-3 text-center">Every Presence Includes</p>
+            <ul className="text-muted-foreground space-y-fitz-2 mt-fitz-5 text-sm font-light text-center max-w-lg mx-auto mb-fitz-9">
+              {["Pre-event consultation & repertoire curation", "Professional digital piano & sound system", "Real-time room-reading & dynamic adjustment", "Setup and teardown handled seamlessly"].map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
+            </ul>
+          </RevealOnScroll>
           <div className="grid md:grid-cols-3 gap-fitz-6">
             {[
-              { name: "Ambient", price: "From $800", desc: "Background piano for cocktails, dinners, and receptions. 1-2 hours." },
-              { name: "Featured", price: "From $1,500", desc: "Curated performance integrated into your programme. 2-3 hours." },
-              { name: "Immersive", price: "From $3,000", desc: "Full evening coverage from arrival to farewell. 4+ hours." },
+              { name: "The Moment", duration: "1 hour", desc: "A single set for the defining moment of your event — an opening, a toast, a tribute." },
+              { name: "The Evening", duration: "2–3 hours", desc: "Curated sets that shape the arc of your evening — from arrival through dinner.", isChosen: true },
+              { name: "The Full Occasion", duration: "4+ hours", desc: "Complete musical presence from first guest to final farewell." },
             ].map((tier, i) => (
               <RevealOnScroll key={tier.name} delay={i * 100}>
-                <div className="p-fitz-6 border border-lines/20 rounded-md">
+                <div className={`p-fitz-6 border rounded-md ${tier.isChosen ? 'border-gold/20' : 'border-lines/20'}`}>
                   <h3 className="text-foreground">{tier.name}</h3>
-                  <p className="font-display text-3xl font-light mt-fitz-2" style={{ color: "hsl(var(--gold))" }}>{tier.price}</p>
+                  <p className="font-display text-2xl font-light mt-fitz-2" style={{ color: "hsl(var(--gold))" }}>{tier.duration}</p>
                   <p className="text-muted-foreground mt-fitz-3 text-sm font-light">{tier.desc}</p>
+                  {tier.isChosen && <span className="inline-block mt-fitz-3 text-xs uppercase tracking-[0.16em]" style={{ color: "hsl(var(--gold))" }}>Most Selected</span>}
                 </div>
               </RevealOnScroll>
             ))}
           </div>
+          <RevealOnScroll delay={400}>
+            <p className="text-center text-sm text-muted-foreground mt-fitz-7 max-w-md mx-auto">After our conversation, I provide a clear quote tailored to your event's specific needs.</p>
+          </RevealOnScroll>
         </div>
       </Section>
+
+      {/* Comparison */}
       <Section>
+        <div className="max-w-3xl mx-auto">
+          <RevealOnScroll>
+            <p className="overline mb-fitz-3 text-center">The Difference</p>
+            <h2 className="text-center mx-auto mb-fitz-7">Why live piano?</h2>
+          </RevealOnScroll>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-lines/30">
+                  <th className="text-left py-fitz-3 font-sans font-normal text-muted-foreground uppercase tracking-[0.12em] text-xs" />
+                  <th className="text-center py-fitz-3 font-sans font-normal text-muted-foreground uppercase tracking-[0.12em] text-xs">Playlist</th>
+                  <th className="text-center py-fitz-3 font-sans font-normal text-muted-foreground uppercase tracking-[0.12em] text-xs">DJ</th>
+                  <th className="text-center py-fitz-3 font-sans font-normal uppercase tracking-[0.12em] text-xs" style={{ color: "hsl(var(--sage))" }}>Live Piano</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
+                {[
+                  ["Reads the room", "✗", "~", "✓"],
+                  ["Adjusts in real time", "✗", "~", "✓"],
+                  ["Elegant atmosphere", "~", "✗", "✓"],
+                  ["No equipment clutter", "✓", "✗", "✓"],
+                  ["Ceremony appropriate", "~", "✗", "✓"],
+                ].map(([label, ...vals]) => (
+                  <tr key={label} className="border-b border-lines/15">
+                    <td className="py-fitz-3 text-foreground">{label}</td>
+                    {vals.map((v, i) => (
+                      <td key={i} className="text-center py-fitz-3">{v}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Section>
+
+      <Section dark>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/events/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
-              Discuss Your Event.
+            <BreathingDiamond className="mb-fitz-5" />
+            <h2 className="mx-auto">Let's discuss your event.</h2>
+            <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">Every great event starts with a conversation.</p>
+          </RevealOnScroll>
+          <RevealOnScroll delay={120}>
+            <Link to="/events/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
+              Request a Proposal.
             </Link>
           </RevealOnScroll>
         </div>

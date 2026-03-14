@@ -34,7 +34,7 @@ export default function FAQ() {
                 <details className="py-fitz-5 group">
                   <summary className="font-display text-lg cursor-pointer list-none flex justify-between items-center text-foreground">
                     {faq.q}
-                    <span className="text-primary transition-transform duration-[250ms] group-open:rotate-45 ml-4 shrink-0">+</span>
+                    <span className="text-sage transition-transform duration-[250ms] group-open:rotate-45 ml-4 shrink-0">+</span>
                   </summary>
                   <p className="mt-fitz-3 text-muted-foreground leading-relaxed">{faq.a}</p>
                 </details>

@@ -40,7 +40,7 @@ export default function Listen() {
                     <span className="font-display text-[36px] font-light text-gold/40 leading-none shrink-0 w-12 text-right">
                       {m.number}
                     </span>
-                    <div className="border-l border-primary/10 pl-fitz-5">
+                    <div className="border-l border-gold/10 pl-fitz-5">
                       <h3 className="text-foreground mb-fitz-2">{m.title}</h3>
                       <p className="text-muted-foreground">{m.description}</p>
                       <div className="mt-fitz-4 flex items-center gap-3 opacity-50">

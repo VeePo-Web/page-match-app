@@ -35,7 +35,7 @@ export default function Teaching() {
       <MinimalHeader />
       <PianoKeyNav sections={pianoSections} />
 
-      <main>
+      <main id="main-content">
         <HeroStrip
           title="Learn the instrument that speaks when words fall short."
           subtitle="Piano Lessons"

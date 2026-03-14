@@ -4,7 +4,7 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 export default function NotFound() {
   usePageMeta({ title: "Not Found — Parker Gawryletz" });
   return (
-    <main className="h-screen flex flex-col items-center justify-center bg-background text-center px-6 relative overflow-hidden" data-theme="death">
+    <main id="main-content" className="h-screen flex flex-col items-center justify-center bg-background text-center px-6 relative overflow-hidden" data-theme="death">
       {/* Grain */}
       <div className="grain pointer-events-none absolute inset-0" style={{ opacity: 0.08 }} aria-hidden="true" />
       {/* Warm fog */}

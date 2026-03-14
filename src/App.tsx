@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { PageTransition } from "@/components/PageTransition";
 import { SkipToContent } from "@/components/SkipToContent";
+import { StructuredData } from "@/components/StructuredData";
 
 import Gateway from "./pages/Gateway";
 import Weddings from "./pages/Weddings";

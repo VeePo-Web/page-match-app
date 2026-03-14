@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export function WeddingsWitness() {
   return (
-    <Section id="witness">
+    <Section dark id="witness">
       <div className="max-w-2xl mx-auto text-center">
         <RevealOnScroll>
           <p className="overline mb-fitz-3">The Witness</p>
@@ -18,7 +18,7 @@ export function WeddingsWitness() {
           </p>
         </RevealOnScroll>
         <RevealOnScroll delay={360}>
-          <Link to="/about" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.18em] uppercase text-primary story-link">
+          <Link to="/about" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.16em] uppercase story-link" style={{ color: "hsl(var(--gold))" }}>
             Read my story
           </Link>
         </RevealOnScroll>

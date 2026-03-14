@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { GoldFrame } from "@/components/GoldFrame";
 
 interface HeroStripProps {
   title: string;
@@ -14,10 +15,10 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
       className={cn("relative flex items-center justify-center overflow-hidden", height)}
       data-theme="death"
     >
-      {/* Layer 0: Background */}
-      <div className="absolute inset-0 bg-[hsl(var(--rich-black))]" aria-hidden="true" />
+      {/* Background */}
+      <div className="absolute inset-0 bg-sage-deep" aria-hidden="true" />
 
-      {/* Layer 1: Ken Burns image */}
+      {/* Ken Burns image */}
       {backgroundImage && (
         <div
           className="absolute inset-0"
@@ -25,8 +26,8 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: 0.1,
-            filter: "brightness(0.75) contrast(1.08) saturate(0.9)",
+            opacity: 0.12,
+            filter: "brightness(0.7) contrast(1.08) saturate(0.8)",
             animation: "ken-burns 30s ease-in-out infinite alternate",
             willChange: "transform",
           }}
@@ -34,24 +35,20 @@ export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImag
         />
       )}
 
-      {/* Layer 2: Grain */}
-      <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.1 }} aria-hidden="true" />
+      {/* Grain */}
+      <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.04 }} aria-hidden="true" />
 
-      {/* Layer 2b: Warm fog */}
+      {/* Vignette */}
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
-        style={{ background: "radial-gradient(ellipse at 50% 70%, hsl(var(--vow-yellow) / 0.03), transparent 60%)" }}
+        style={{ background: "radial-gradient(ellipse at center, transparent 30%, hsl(var(--sage-deep) / 0.7) 100%)" }}
         aria-hidden="true"
       />
 
-      {/* Layer 3: Vignette */}
-      <div
-        className="pointer-events-none absolute inset-0 z-[1]"
-        style={{ background: "radial-gradient(ellipse at center, transparent 25%, hsl(var(--rich-black) / 0.75) 100%)" }}
-        aria-hidden="true"
-      />
+      {/* Gold frame corners */}
+      <GoldFrame />
 
-      {/* Layer 4: Content */}
+      {/* Content */}
       <div className="relative z-10 text-center px-fitz-4 md:px-fitz-6 max-w-3xl mx-auto">
         {subtitle && (
           <p className="overline mb-fitz-5 opacity-0 animate-fade-in" style={{ animationDelay: "300ms", animationFillMode: "forwards" }}>

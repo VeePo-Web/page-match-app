@@ -5,6 +5,7 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { PianoKeyNav } from "@/components/PianoKeyNav";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { RevealOnScroll } from "@/components/animation";
+import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import heroEvents from "@/assets/hero-events.jpg";
@@ -48,6 +49,9 @@ export default function Events() {
               <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
                 Live piano responds to the energy of your event in real time — adjusting tempo, volume, and mood to match what the room needs in each moment. It's the difference between background noise and a living, breathing atmosphere.
               </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={360}>
+              <BreathingDiamond className="mt-fitz-7" />
             </RevealOnScroll>
           </div>
         </Section>
@@ -99,9 +103,9 @@ export default function Events() {
                 { q: "Do you take requests during the event?", a: "I can, or I can maintain a curated setlist. We decide together during planning." },
               ].map((item, i) => (
                 <RevealOnScroll key={i} delay={i * 100}>
-                  <div className="p-fitz-6 border border-lines/30 rounded-lg">
-                    <p className="font-display text-lg italic text-primary mb-fitz-3">"{item.q}"</p>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{item.a}</p>
+                  <div className="p-fitz-6 rounded-md" style={{ borderLeft: "2px solid hsl(var(--gold) / 0.3)" }}>
+                    <p className="font-display text-lg italic mb-fitz-3" style={{ color: "hsl(var(--gold))" }}>"{item.q}"</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed font-light">{item.a}</p>
                   </div>
                 </RevealOnScroll>
               ))}
@@ -123,16 +127,16 @@ export default function Events() {
                 { name: "Immersive", price: "From $3,000", desc: "Full evening coverage. I become part of your event's fabric — from guest arrival to final farewell." },
               ].map((tier, i) => (
                 <RevealOnScroll key={tier.name} delay={i * 100}>
-                  <div className="text-left p-fitz-6 border border-lines/30 rounded-lg hover:-translate-y-1 transition-transform duration-[180ms]">
+                  <div className="text-left p-fitz-6 border border-lines/40 rounded-md hover:-translate-y-1 transition-transform duration-[180ms] bg-card">
                     <h3 className="text-foreground">{tier.name}</h3>
-                    <p className="font-display text-2xl font-light text-primary mt-fitz-2">{tier.price}</p>
-                    <p className="text-muted-foreground mt-fitz-3 text-sm">{tier.desc}</p>
+                    <p className="font-display text-2xl font-light mt-fitz-2" style={{ color: "hsl(var(--sage))" }}>{tier.price}</p>
+                    <p className="text-muted-foreground mt-fitz-3 text-sm font-light">{tier.desc}</p>
                   </div>
                 </RevealOnScroll>
               ))}
             </div>
             <RevealOnScroll delay={400}>
-              <Link to="/events/pricing" className="inline-flex items-center mt-fitz-7 text-sm tracking-[0.18em] uppercase text-primary story-link">
+              <Link to="/events/pricing" className="inline-flex items-center mt-fitz-7 text-sm tracking-[0.16em] uppercase text-sage story-link">
                 View full details
               </Link>
             </RevealOnScroll>
@@ -143,6 +147,9 @@ export default function Events() {
         <Section dark id="crossing">
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll>
+              <BreathingDiamond className="mb-fitz-5" />
+            </RevealOnScroll>
+            <RevealOnScroll>
               <h2 className="mx-auto">Let's discuss your event.</h2>
             </RevealOnScroll>
             <RevealOnScroll delay={120}>
@@ -151,7 +158,7 @@ export default function Events() {
             <RevealOnScroll delay={240}>
               <Link
                 to="/events/contact"
-                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]"
+                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Discuss Your Event.
               </Link>

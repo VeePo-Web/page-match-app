@@ -13,7 +13,7 @@ export default {
     extend: {
       fontFamily: {
         display: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Jost', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -34,10 +34,13 @@ export default {
         accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
         popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
-        "vow-yellow": "hsl(var(--vow-yellow))",
-        "vine-green": "hsl(var(--vine-green))",
-        "rich-black": "hsl(var(--rich-black))",
-        "ebon-charcoal": "hsl(var(--ebon-charcoal))",
+        "sage-deep": "hsl(var(--sage-deep))",
+        "sage": "hsl(var(--sage))",
+        "sage-light": "hsl(var(--sage-light))",
+        "cream": "hsl(var(--cream))",
+        "gold": "hsl(var(--gold))",
+        "gold-light": "hsl(var(--gold-light))",
+        "warm-white": "hsl(var(--warm-white))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -67,9 +70,10 @@ export default {
         'fitz-10': '120px',
       },
       boxShadow: {
-        'fantasy-card': '0 6px 30px hsl(var(--rich-black) / 0.35)',
-        'fantasy-cta': '0 8px 24px hsl(var(--vow-yellow) / 0.18)',
-        'fantasy-cta-hover': '0 12px 32px hsl(var(--vow-yellow) / 0.24)',
+        'editorial': '0 4px 24px hsl(var(--charcoal, 30 8% 18%) / 0.08)',
+        'editorial-hover': '0 8px 32px hsl(var(--charcoal, 30 8% 18%) / 0.12)',
+        'cta': '0 4px 16px hsl(var(--sage-deep) / 0.15)',
+        'cta-hover': '0 6px 24px hsl(var(--sage-deep) / 0.22)',
       },
       keyframes: {
         "accordion-down": {
@@ -88,7 +92,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.22s ease-out",
         "accordion-up": "accordion-up 0.22s ease-out",
-        "fade-in": "fade-in 0.22s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
       },
       transitionDuration: {
         fast: '150ms',

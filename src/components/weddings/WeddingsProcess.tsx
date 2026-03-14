@@ -1,5 +1,6 @@
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
+import { BreathingDiamond } from "@/components/BreathingDiamond";
 
 export function WeddingsProcess() {
   return (
@@ -17,10 +18,9 @@ export function WeddingsProcess() {
           </p>
         </RevealOnScroll>
 
-        {/* Golden thread vertical */}
-        <div className="mx-auto mt-fitz-7" style={{ width: "1px", height: "60px" }} aria-hidden="true">
-          <div className="w-full h-full" style={{ background: "linear-gradient(to bottom, hsl(var(--vow-yellow) / 0.3), transparent)", animation: "golden-thread-breathe 4s ease-in-out infinite" }} />
-        </div>
+        <RevealOnScroll delay={360}>
+          <BreathingDiamond className="mt-fitz-7" />
+        </RevealOnScroll>
       </div>
     </Section>
   );

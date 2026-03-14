@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { BreathingDiamond } from "@/components/BreathingDiamond";
 
 const fears = [
   "What if the music sounds like every other ceremony your guests have sat through",
@@ -22,22 +23,14 @@ export function WeddingsTransformation() {
     <section
       id="transformation"
       ref={sectionRef as React.RefObject<HTMLElement>}
-      className="relative overflow-hidden min-h-[80vh]"
+      className="relative overflow-hidden"
       aria-label="The Transformation — fears honoured, promises made"
-      style={{ background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--card)) 40%, hsl(var(--card)) 60%, hsl(var(--background)) 100%)" }}
+      style={{ background: "hsl(var(--cream))" }}
     >
-      <span className="sr-only">This section mirrors the fears you may carry about your ceremony music, then answers each one with a first-person promise from Parker.</span>
-
-      {/* Warm glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 65%, hsl(var(--vow-yellow) / 0.05) 0%, transparent 50%)" }} aria-hidden="true" />
-
-      {/* Film grain */}
-      <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.03 }} aria-hidden="true" />
-
-      <div className="relative z-10 mx-auto px-6 md:px-8 py-fitz-10">
+      <div className="relative z-10 mx-auto px-6 md:px-8 py-fitz-9 md:py-fitz-10">
         {/* Fears */}
         <div className="max-w-[640px] mx-auto mb-16 md:mb-24">
-          <p className={cn("text-xs uppercase tracking-[0.22em] text-muted-foreground mb-8 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3")}>
+          <p className={cn("overline mb-8 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3")}>
             The Transformation
           </p>
           <h2 className={cn("font-display text-2xl md:text-3xl font-light tracking-tight text-foreground mb-8 md:mb-12 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")} style={{ transitionDelay: isVisible ? "120ms" : "0ms" }}>
@@ -56,18 +49,17 @@ export function WeddingsTransformation() {
           </div>
         </div>
 
-        {/* Golden Thread Diamond Threshold */}
+        {/* Diamond Threshold */}
         <div className="relative flex flex-col items-center my-12 md:my-16" aria-hidden="true">
-          <div className={cn("w-[1px] h-[40px] mb-2 transition-all duration-700", isVisible ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0")} style={{ background: "linear-gradient(to bottom, transparent, hsl(var(--vow-yellow) / 0.3))", transformOrigin: "top", animation: "golden-thread-breathe 4s ease-in-out infinite", transitionDelay: isVisible ? "750ms" : "0ms" }} />
+          <div className={cn("w-[1px] h-[40px] mb-2 transition-all duration-700", isVisible ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0")} style={{ background: "linear-gradient(to bottom, transparent, hsl(var(--gold) / 0.3))", transformOrigin: "top", transitionDelay: isVisible ? "750ms" : "0ms" }} />
           <div className="flex items-center justify-center w-full">
-            <div className={cn("h-[1px] flex-1 max-w-[160px] origin-right transition-transform duration-700", isVisible ? "scale-x-100" : "scale-x-0")} style={{ background: "linear-gradient(90deg, transparent, hsl(var(--vow-yellow) / 0.5))", transitionDelay: isVisible ? "800ms" : "0ms" }} />
-            <div className="relative mx-4">
-              <div className="absolute inset-0 -inset-x-8 -inset-y-8" style={{ background: "radial-gradient(circle, hsl(var(--vow-yellow) / 0.08) 0%, transparent 70%)" }} />
-              <div className={cn("w-[7px] h-[7px] rotate-45 transition-all duration-700 relative z-10", isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50")} style={{ background: "hsl(var(--vow-yellow))", boxShadow: "0 0 12px 4px hsl(var(--vow-yellow) / 0.4), 0 0 30px 8px hsl(var(--vow-yellow) / 0.15)", transitionDelay: isVisible ? "900ms" : "0ms" }} />
+            <div className={cn("h-[1px] flex-1 max-w-[160px] origin-right transition-transform duration-700", isVisible ? "scale-x-100" : "scale-x-0")} style={{ background: "linear-gradient(90deg, transparent, hsl(var(--gold) / 0.4))", transitionDelay: isVisible ? "800ms" : "0ms" }} />
+            <div className="mx-4">
+              <BreathingDiamond />
             </div>
-            <div className={cn("h-[1px] flex-1 max-w-[160px] origin-left transition-transform duration-700", isVisible ? "scale-x-100" : "scale-x-0")} style={{ background: "linear-gradient(90deg, hsl(var(--vow-yellow) / 0.5), transparent)", transitionDelay: isVisible ? "800ms" : "0ms" }} />
+            <div className={cn("h-[1px] flex-1 max-w-[160px] origin-left transition-transform duration-700", isVisible ? "scale-x-100" : "scale-x-0")} style={{ background: "linear-gradient(90deg, hsl(var(--gold) / 0.4), transparent)", transitionDelay: isVisible ? "800ms" : "0ms" }} />
           </div>
-          <div className={cn("w-[1px] h-[40px] mt-2 transition-all duration-700", isVisible ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0")} style={{ background: "linear-gradient(to top, transparent, hsl(var(--vow-yellow) / 0.3))", transformOrigin: "bottom", animation: "golden-thread-breathe 4s ease-in-out infinite 2s", transitionDelay: isVisible ? "750ms" : "0ms" }} />
+          <div className={cn("w-[1px] h-[40px] mt-2 transition-all duration-700", isVisible ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0")} style={{ background: "linear-gradient(to top, transparent, hsl(var(--gold) / 0.3))", transformOrigin: "bottom", transitionDelay: isVisible ? "750ms" : "0ms" }} />
         </div>
 
         {/* Resolutions */}
@@ -80,10 +72,10 @@ export function WeddingsTransformation() {
               <div
                 key={i}
                 className={cn("transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3")}
-                style={{ borderLeft: "2px solid hsl(var(--vow-yellow) / 0.3)", padding: "0 0 0 24px", transitionDelay: isVisible ? `${1100 + i * 120}ms` : "0ms" }}
+                style={{ borderLeft: "2px solid hsl(var(--gold) / 0.3)", padding: "0 0 0 24px", transitionDelay: isVisible ? `${1100 + i * 120}ms` : "0ms" }}
               >
-                <p className="font-sans text-base md:text-lg leading-relaxed text-foreground">
-                  <span className="inline-block mr-2 font-medium" style={{ color: "hsl(var(--vow-yellow) / 0.7)" }} aria-hidden="true">—</span>
+                <p className="font-sans text-base md:text-lg leading-relaxed text-foreground font-light">
+                  <span className="inline-block mr-2" style={{ color: "hsl(var(--gold) / 0.6)" }} aria-hidden="true">—</span>
                   {resolution}
                 </p>
               </div>
@@ -91,9 +83,6 @@ export function WeddingsTransformation() {
           </div>
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] z-[3]" style={{ background: "linear-gradient(to bottom, transparent, hsl(var(--background)))" }} aria-hidden="true" />
     </section>
   );
 }

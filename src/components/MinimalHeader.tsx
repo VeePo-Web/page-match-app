@@ -58,20 +58,28 @@ export function MinimalHeader() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-[400ms]",
-          isScrolled && "backdrop-blur-md"
+          isScrolled ? "backdrop-blur-md bg-background/95 border-b border-lines/40" : "bg-transparent"
         )}
         style={{
           height: isScrolled ? "56px" : "auto",
-          background: isScrolled ? "hsl(var(--background) / 0.95)" : undefined,
-          borderBottom: isScrolled ? "1px solid hsl(var(--lines) / 0.5)" : undefined,
           transform: isHeaderHidden ? 'translateY(-100%)' : 'translateY(0)',
         }}
       >
-        <div className="flex items-center h-full px-[var(--hero-space-edge,24px)] md:px-[var(--hero-space-edge,48px)] py-6 relative justify-between">
+        {/* Gold scroll progress */}
+        {isScrolled && (
+          <div className="absolute bottom-0 left-0 right-0 h-[1px]">
+            <div
+              className="h-full bg-gold/40 transition-[width] duration-100"
+              style={{ width: `${typeof window !== 'undefined' ? Math.min((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100, 100) : 0}%` }}
+            />
+          </div>
+        )}
+
+        <div className="flex items-center h-full px-[var(--hero-space-edge,24px)] md:px-[var(--hero-space-edge,48px)] py-5 relative justify-between">
           {/* Logo */}
           <NavLink
             to="/"
-            className="font-display text-base text-foreground hover:text-primary transition-colors duration-[180ms] tracking-[0.08em]"
+            className="font-display text-base text-foreground hover:text-accent transition-colors duration-[180ms] tracking-[0.06em] font-light"
           >
             Parker Gawryletz
           </NavLink>
@@ -84,8 +92,8 @@ export function MinimalHeader() {
                   key={link.to}
                   to={link.to}
                   className={({ isActive }) => cn(
-                    "font-display text-sm tracking-[0.08em] story-link transition-colors duration-[180ms]",
-                    isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                    "font-display text-sm tracking-[0.06em] transition-colors duration-[180ms] font-light",
+                    isActive ? "text-accent" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {link.label}
@@ -99,7 +107,7 @@ export function MinimalHeader() {
             {pathname !== '/contact' && (
               <Link
                 to="/contact"
-                className="hidden md:inline-flex items-center px-5 py-2 text-sm font-sans tracking-[0.08em] uppercase bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms]"
+                className="hidden md:inline-flex items-center px-5 py-2 text-sm font-sans tracking-[0.06em] uppercase bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms]"
               >
                 {ctaLabel}
               </Link>
@@ -117,7 +125,7 @@ export function MinimalHeader() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-[55] bg-background flex flex-col items-center justify-center gap-8" data-theme="death">
+        <div className="fixed inset-0 z-[55] bg-background flex flex-col items-center justify-center gap-8">
           <button className="absolute top-6 right-6 text-foreground" onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
             <X size={24} />
           </button>
@@ -128,12 +136,13 @@ export function MinimalHeader() {
             { to: "/about", label: "About" },
             { to: "/proof", label: "Proof" },
             { to: "/contact", label: "Contact" },
-          ].map((link) => (
+          ].map((link, i) => (
             <NavLink
               key={link.to}
               to={link.to}
               onClick={() => setIsMenuOpen(false)}
-              className="font-display text-3xl font-light text-foreground hover:text-primary transition-colors"
+              className="font-display text-3xl font-light text-foreground hover:text-accent transition-colors opacity-0 animate-fade-in"
+              style={{ animationDelay: `${i * 80}ms`, animationFillMode: "forwards" }}
             >
               {link.label}
             </NavLink>

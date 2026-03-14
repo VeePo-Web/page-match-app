@@ -17,7 +17,6 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const setupObserver = useCallback(() => {
-    // Single observer for all sections
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -57,9 +56,9 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
           <div key={section.id} className="relative flex items-center justify-end">
             <span
               className={cn(
-                "absolute right-full mr-3 whitespace-nowrap font-sans text-xs tracking-[0.08em] uppercase transition-all duration-[180ms]",
+                "absolute right-full mr-3 whitespace-nowrap font-sans text-xs tracking-[0.06em] uppercase transition-all duration-[180ms]",
                 isHovered || isActive ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2 pointer-events-none",
-                isActive ? "text-primary" : "text-muted-foreground"
+                isActive ? "text-sage" : "text-muted-foreground"
               )}
             >
               {section.label}
@@ -72,8 +71,8 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
               className={cn(
                 "transition-all duration-[180ms] rounded-sm",
                 section.isBlackKey
-                  ? cn("w-3 h-5", isActive ? "bg-primary" : "bg-muted-foreground/30 hover:bg-muted-foreground/50")
-                  : cn("w-4 h-7", isActive ? "bg-primary" : "bg-foreground/20 hover:bg-foreground/35"),
+                  ? cn("w-3 h-5", isActive ? "bg-sage" : "bg-muted-foreground/25 hover:bg-muted-foreground/40")
+                  : cn("w-4 h-7", isActive ? "bg-sage" : "bg-foreground/15 hover:bg-foreground/30"),
               )}
               aria-label={`Navigate to ${section.label}`}
               aria-current={isActive ? "true" : undefined}
@@ -85,7 +84,7 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
       <div
         className="absolute right-[7px] top-0 bottom-0 w-[1px] -z-10"
         style={{
-          background: "linear-gradient(to bottom, transparent, hsl(var(--vow-yellow) / 0.15), transparent)",
+          background: "linear-gradient(to bottom, transparent, hsl(var(--gold) / 0.15), transparent)",
           animation: "golden-thread-breathe 4s ease-in-out infinite",
         }}
         aria-hidden="true"

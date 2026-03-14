@@ -4,6 +4,7 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -33,7 +34,7 @@ export function WeddingsPricing() {
             <p className="overline mb-fitz-3">Every Package Includes</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <ul className="text-muted-foreground space-y-fitz-2 mt-fitz-5 text-sm">
+            <ul className="text-muted-foreground space-y-fitz-2 mt-fitz-5 text-sm font-light">
               {["Professional digital piano & sound system", "Custom song arrangements", "Pre-ceremony sound check", "Planning consultation(s)", "Travel within Calgary, Cochrane, Canmore & Banff"].map((item) => (
                 <li key={item}>• {item}</li>
               ))}
@@ -47,14 +48,14 @@ export function WeddingsPricing() {
           <div className="grid md:grid-cols-3 gap-fitz-6">
             {[
               { name: "The Prelude", price: "$1,200", items: ["Ceremony piano (processional → recessional)", "One planning consultation", "Custom arrangements included", "Professional digital piano provided"] },
-              { name: "The Covenant", price: "$2,400", items: ["Everything in The Prelude", "Cocktail hour coverage (60 min)", "Extended song consultation", "On-site sound check"] },
+              { name: "The Covenant", price: "$2,400", items: ["Everything in The Prelude", "Cocktail hour coverage (60 min)", "Extended song consultation", "On-site sound check"], isChosen: true },
               { name: "The Chronicle", price: "$4,200", items: ["Everything in The Covenant", "Rehearsal attendance", "Dinner music", "Last dance", "Full-day dedication"] },
             ].map((tier, i) => (
               <RevealOnScroll key={tier.name} delay={i * 100}>
-                <div className="p-fitz-6 border border-lines/30 rounded-lg">
+                <div className={`p-fitz-6 rounded-md ${tier.isChosen ? 'border border-gold/20' : 'border border-lines/20'}`}>
                   <h3 className="text-foreground">{tier.name}</h3>
-                  <p className="font-display text-3xl font-light text-primary mt-fitz-2">{tier.price}</p>
-                  <ul className="mt-fitz-5 space-y-fitz-2 text-muted-foreground text-sm">
+                  <p className="font-display text-3xl font-light mt-fitz-2" style={{ color: "hsl(var(--gold))" }}>{tier.price}</p>
+                  <ul className="mt-fitz-5 space-y-fitz-2 text-muted-foreground text-sm font-light">
                     {tier.items.map((item) => <li key={item}>• {item}</li>)}
                   </ul>
                 </div>
@@ -67,11 +68,12 @@ export function WeddingsPricing() {
       <Section>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
+            <BreathingDiamond className="mb-fitz-5" />
             <h2 className="mx-auto">Ready to hold your date?</h2>
             <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">I accept only 5–10 weddings per year.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <Link to="/weddings/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
+            <Link to="/weddings/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               Hold My Date.
             </Link>
           </RevealOnScroll>
@@ -92,14 +94,14 @@ export function TeachingPricing() {
             <p className="overline mb-fitz-3">What's Included</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <ul className="text-muted-foreground space-y-fitz-2 mt-fitz-5 text-sm">
+            <ul className="text-muted-foreground space-y-fitz-2 mt-fitz-5 text-sm font-light">
               {["Weekly one-hour sessions in Calgary", "All ages and levels welcome", "Technique foundations & theory", "Repertoire development", "Expressive musicality coaching", "Practice guidance between sessions"].map((item) => (
                 <li key={item}>• {item}</li>
               ))}
             </ul>
           </RevealOnScroll>
           <RevealOnScroll delay={240}>
-            <Link to="/teaching/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
+            <Link to="/teaching/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               Begin the Conversation.
             </Link>
           </RevealOnScroll>
@@ -123,10 +125,10 @@ export function EventsPricing() {
               { name: "Immersive", price: "From $3,000", desc: "Full evening coverage from arrival to farewell. 4+ hours." },
             ].map((tier, i) => (
               <RevealOnScroll key={tier.name} delay={i * 100}>
-                <div className="p-fitz-6 border border-lines/30 rounded-lg">
+                <div className="p-fitz-6 border border-lines/20 rounded-md">
                   <h3 className="text-foreground">{tier.name}</h3>
-                  <p className="font-display text-3xl font-light text-primary mt-fitz-2">{tier.price}</p>
-                  <p className="text-muted-foreground mt-fitz-3 text-sm">{tier.desc}</p>
+                  <p className="font-display text-3xl font-light mt-fitz-2" style={{ color: "hsl(var(--gold))" }}>{tier.price}</p>
+                  <p className="text-muted-foreground mt-fitz-3 text-sm font-light">{tier.desc}</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -136,7 +138,7 @@ export function EventsPricing() {
       <Section>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/events/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
+            <Link to="/events/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               Discuss Your Event.
             </Link>
           </RevealOnScroll>
@@ -156,20 +158,20 @@ export function WeddingsAbout() {
       <Section>
         <div className="max-w-2xl mx-auto">
           <RevealOnScroll>
-            <p className="text-muted-foreground leading-relaxed">I am not a performer. I am a witness who translates what two hearts feel into what an entire room hears.</p>
+            <p className="text-muted-foreground leading-relaxed font-light">I am not a performer. I am a witness who translates what two hearts feel into what an entire room hears.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <p className="text-muted-foreground leading-relaxed mt-fitz-5">Every ceremony I play receives months of collaborative preparation. I learn your story — how you met, the songs that matter, the words you'll say — and compose a musical narrative that carries the emotional weight of your covenant.</p>
+            <p className="text-muted-foreground leading-relaxed mt-fitz-5 font-light">Every ceremony I play receives months of collaborative preparation. I learn your story — how you met, the songs that matter, the words you'll say — and compose a musical narrative that carries the emotional weight of your covenant.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={240}>
-            <p className="text-muted-foreground leading-relaxed mt-fitz-5">I serve Calgary, Cochrane, Canmore, and Banff — and I accept only 5–10 weddings per year, because every ceremony deserves my undivided devotion.</p>
+            <p className="text-muted-foreground leading-relaxed mt-fitz-5 font-light">I serve Calgary, Cochrane, Canmore, and Banff — and I accept only 5–10 weddings per year, because every ceremony deserves my undivided devotion.</p>
           </RevealOnScroll>
         </div>
       </Section>
       <Section dark>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/weddings/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta text-sm uppercase tracking-[0.18em]">Hold My Date.</Link>
+            <Link to="/weddings/contact" className="inline-flex items-center px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta text-sm uppercase tracking-[0.12em]">Hold My Date.</Link>
           </RevealOnScroll>
         </div>
       </Section>
@@ -185,17 +187,17 @@ export function TeachingAbout() {
       <Section>
         <div className="max-w-2xl mx-auto">
           <RevealOnScroll>
-            <p className="text-muted-foreground leading-relaxed">I teach piano the way I play ceremonies — with intention, patience, and deep respect for each student's own musical voice.</p>
+            <p className="text-muted-foreground leading-relaxed font-light">I teach piano the way I play ceremonies — with intention, patience, and deep respect for each student's own musical voice.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <p className="text-muted-foreground leading-relaxed mt-fitz-5">My approach balances strong technical foundations with expressive freedom, helping students develop not just the ability to play, but the ability to communicate through music.</p>
+            <p className="text-muted-foreground leading-relaxed mt-fitz-5 font-light">My approach balances strong technical foundations with expressive freedom, helping students develop not just the ability to play, but the ability to communicate through music.</p>
           </RevealOnScroll>
         </div>
       </Section>
       <Section dark>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/teaching/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta text-sm uppercase tracking-[0.18em]">Begin the Conversation.</Link>
+            <Link to="/teaching/contact" className="inline-flex items-center px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta text-sm uppercase tracking-[0.12em]">Begin the Conversation.</Link>
           </RevealOnScroll>
         </div>
       </Section>
@@ -211,17 +213,17 @@ export function EventsAbout() {
       <Section>
         <div className="max-w-2xl mx-auto">
           <RevealOnScroll>
-            <p className="text-muted-foreground leading-relaxed">Every gathered room carries its own emotional weight. Whether it's a corporate gala, a private dinner, or a memorial service, I bring the same devotion to your event that I bring to a wedding ceremony.</p>
+            <p className="text-muted-foreground leading-relaxed font-light">Every gathered room carries its own emotional weight. Whether it's a corporate gala, a private dinner, or a memorial service, I bring the same devotion to your event that I bring to a wedding ceremony.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <p className="text-muted-foreground leading-relaxed mt-fitz-5">I don't play background music. I listen to the room and respond to its energy — creating a musical conversation between the instrument and the moment.</p>
+            <p className="text-muted-foreground leading-relaxed mt-fitz-5 font-light">I don't play background music. I listen to the room and respond to its energy — creating a musical conversation between the instrument and the moment.</p>
           </RevealOnScroll>
         </div>
       </Section>
       <Section dark>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
-            <Link to="/events/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta text-sm uppercase tracking-[0.18em]">Discuss Your Event.</Link>
+            <Link to="/events/contact" className="inline-flex items-center px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta text-sm uppercase tracking-[0.12em]">Discuss Your Event.</Link>
           </RevealOnScroll>
         </div>
       </Section>
@@ -234,27 +236,27 @@ export function EventsAbout() {
 function ContactForm({ fields, ctaLabel, textareaLabel }: { fields: string[]; ctaLabel: string; textareaLabel: string }) {
   return (
     <div className="max-w-xl mx-auto">
-      <div className="p-fitz-6 md:p-fitz-7 rounded-lg border border-lines/20 bg-card/50 backdrop-blur-sm">
+      <div className="p-fitz-6 md:p-fitz-7 rounded-md border border-lines/30 bg-card/80 backdrop-blur-sm">
         <form className="space-y-fitz-5">
           {fields.map((label) => (
             <RevealOnScroll key={label}>
               <div>
-                <label className="block text-xs uppercase tracking-[0.22em] text-muted-foreground mb-fitz-2">{label}</label>
+                <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-fitz-2 font-sans">{label}</label>
                 <input
                   type={label.toLowerCase().includes('email') ? 'email' : label.toLowerCase().includes('phone') ? 'tel' : 'text'}
-                  className="w-full bg-transparent border-b border-lines/50 focus:border-primary outline-none py-fitz-3 text-foreground transition-colors duration-[250ms]"
+                  className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground"
                 />
               </div>
             </RevealOnScroll>
           ))}
           <RevealOnScroll>
             <div>
-              <label className="block text-xs uppercase tracking-[0.22em] text-muted-foreground mb-fitz-2">{textareaLabel}</label>
-              <textarea rows={4} className="w-full bg-transparent border-b border-lines/50 focus:border-primary outline-none py-fitz-3 text-foreground transition-colors duration-[250ms] resize-none" />
+              <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-fitz-2 font-sans">{textareaLabel}</label>
+              <textarea rows={4} className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground resize-none" />
             </div>
           </RevealOnScroll>
           <RevealOnScroll>
-            <button type="submit" className="px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
+            <button type="submit" className="px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               {ctaLabel}
             </button>
           </RevealOnScroll>
@@ -270,8 +272,8 @@ function ContactForm({ fields, ctaLabel, textareaLabel }: { fields: string[]; ct
             { stat: "Free", label: "Initial consultation" },
           ].map((s) => (
             <div key={s.label}>
-              <p className="font-display text-xl text-primary">{s.stat}</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-[0.12em] mt-1">{s.label}</p>
+              <p className="font-display text-xl" style={{ color: "hsl(var(--sage))" }}>{s.stat}</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-[0.1em] mt-1 font-sans">{s.label}</p>
             </div>
           ))}
         </div>

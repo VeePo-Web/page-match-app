@@ -44,8 +44,8 @@ export default function Listen() {
                       <h3 className="text-foreground mb-fitz-2">{m.title}</h3>
                       <p className="text-muted-foreground">{m.description}</p>
                       <div className="mt-fitz-4 flex items-center gap-3 opacity-50">
-                        <div className="w-8 h-8 rounded-sm border border-primary/20 flex items-center justify-center">
-                          <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-transparent border-l-primary/40 ml-0.5" />
+                      <div className="w-8 h-8 rounded-sm border border-gold/20 flex items-center justify-center">
+                          <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-transparent border-l-gold/40 ml-0.5" />
                         </div>
                         <span className="font-sans text-xs text-muted-foreground tracking-[0.08em] uppercase">Coming Soon</span>
                       </div>

@@ -29,12 +29,13 @@ const faqs: { q: string; a: string; cat: Category }[] = [
 
 const categories: Category[] = ["All", "Ceremony", "Logistics", "Pricing"];
 
-function AccordionItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void }) {
+function AccordionItem({ faq, isOpen, onToggle, onKeyNav }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void; onKeyNav: (e: React.KeyboardEvent) => void }) {
   return (
     <div className="py-fitz-5 border-b border-lines/30">
       <button
         onClick={onToggle}
-        className="w-full font-display text-lg text-left flex justify-between items-center text-foreground"
+        onKeyDown={onKeyNav}
+        className="w-full font-display text-lg text-left flex justify-between items-center text-foreground accordion-trigger"
         aria-expanded={isOpen}
       >
         {faq.q}
@@ -112,6 +113,15 @@ export default function FAQ() {
                     faq={faq}
                     isOpen={openIndex === i}
                     onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                    onKeyNav={(e) => {
+                      const triggers = document.querySelectorAll<HTMLButtonElement>('.accordion-trigger');
+                      const arr = Array.from(triggers);
+                      const idx = arr.indexOf(e.currentTarget as HTMLButtonElement);
+                      if (e.key === 'ArrowDown') { e.preventDefault(); arr[(idx + 1) % arr.length]?.focus(); }
+                      else if (e.key === 'ArrowUp') { e.preventDefault(); arr[(idx - 1 + arr.length) % arr.length]?.focus(); }
+                      else if (e.key === 'Home') { e.preventDefault(); arr[0]?.focus(); }
+                      else if (e.key === 'End') { e.preventDefault(); arr[arr.length - 1]?.focus(); }
+                    }}
                   />
                 </RevealOnScroll>
               ))}

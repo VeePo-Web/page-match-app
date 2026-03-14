@@ -12,9 +12,10 @@ interface SectionProps {
   noPadding?: boolean;
   watermark?: string;
   glow?: boolean;
+  stagger?: boolean;
 }
 
-export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark, glow = false }: SectionProps) {
+export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark, glow = false, stagger = false }: SectionProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.08 });
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -103,7 +104,8 @@ export function Section({ children, dark = false, id, className, backgroundImage
         className={cn(
           "relative z-[2] transition-all duration-700",
           !noPadding && "container mx-auto px-fitz-4 md:px-fitz-6 py-fitz-9 md:py-fitz-10",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+          stagger && "stagger-reveal"
         )}
       >
         {children}

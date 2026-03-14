@@ -59,6 +59,7 @@ export function Footer() {
                 { to: "/events", label: "Events" },
                 { to: "/about", label: "About" },
                 { to: "/proof", label: "Proof" },
+                { to: "/listen", label: "Listen" },
                 { to: "/faq", label: "FAQ" },
                 { to: "/contact", label: "Contact" },
               ].map((link) => (

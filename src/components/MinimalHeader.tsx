@@ -107,13 +107,17 @@ export function MinimalHeader() {
 
           {/* CTA + Menu */}
           <div className="flex items-center gap-4">
-            {pathname !== '/contact' && !pathname.endsWith('/contact') && (
+            {pathname !== '/contact' && !pathname.endsWith('/contact') ? (
               <Link
                 to={pathname.startsWith('/weddings') ? '/weddings/contact' : pathname.startsWith('/teaching') ? '/teaching/contact' : pathname.startsWith('/events') ? '/events/contact' : '/contact'}
                 className="hidden md:inline-flex items-center px-5 py-2 text-sm font-sans tracking-[0.06em] uppercase bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms]"
               >
                 {ctaLabel}
               </Link>
+            ) : (
+              <span className="hidden md:inline-flex items-center px-5 py-2 text-sm font-sans tracking-[0.06em] uppercase bg-primary/50 text-primary-foreground/60 rounded-sm cursor-default">
+                You're here
+              </span>
             )}
             <button
               className="md:hidden text-foreground p-2"

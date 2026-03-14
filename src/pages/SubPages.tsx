@@ -4,6 +4,8 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { BackToTop } from "@/components/BackToTop";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { ContactWizard } from "@/components/contact/ContactWizard";
@@ -23,7 +25,9 @@ function useSubPageMeta(meta: { title: string; description: string }) {
 function SubPageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
+      <BackToTop />
       <main id="main-content">{children}</main>
       <Footer />
       <MobileStickyBar />
@@ -365,7 +369,12 @@ export function TeachingAbout() {
       </Section>
 
       <Section>
-        <div className="max-w-2xl mx-auto text-center">
+        <CredentialStrip items={[
+          { stat: "10+", label: "Years Teaching" },
+          { stat: "$60", label: "Per Hour" },
+          { stat: "All Ages", label: "Welcome" },
+        ]} />
+        <div className="max-w-2xl mx-auto text-center mt-fitz-7">
           <RevealOnScroll>
             <Link to="/teaching/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">Begin the Conversation.</Link>
           </RevealOnScroll>

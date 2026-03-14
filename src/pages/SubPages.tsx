@@ -186,7 +186,7 @@ export function TeachingPricing() {
 }
 
 export function EventsPricing() {
-  usePageMeta({ title: "Event Pricing — Parker Gawryletz", description: "Live piano for corporate galas, private dinners, and memorial services. Custom quotes." });
+  useSubPageMeta({ title: "Event Pricing — Parker Gawryletz", description: "Live piano for corporate galas, private dinners, and memorial services. Custom quotes." });
   return (
     <SubPageLayout>
       <HeroStrip title="Three presences." subtitle="Event Investment" height="h-[40vh]" />

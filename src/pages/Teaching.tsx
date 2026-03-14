@@ -42,6 +42,7 @@ export default function Teaching() {
           height="h-[70vh]"
           backgroundImage={heroTeaching}
           watermark="Piano"
+          showScrollCue
         />
 
         {/* The Language */}

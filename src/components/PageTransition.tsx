@@ -1,8 +1,7 @@
-import { useMemo, useCallback, useRef, useEffect, useState } from 'react';
+import { useMemo, useCallback, useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransitionContext, TransitionPhase, getRouteTiming } from '@/hooks/usePageTransition';
-
 const pageVariants = {
   initial: { opacity: 0, y: 8, filter: 'blur(3px)' },
   enter: { opacity: 1, y: 0, filter: 'blur(0px)' },
@@ -26,6 +25,11 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     setPhase('exiting');
     navigate(path);
   }, [location.pathname, navigate]);
+
+  // Scroll to top on route change
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const timing = getRouteTiming(location.pathname);
   const duration = prefersReducedMotion.current ? 0.1 : timing.enter / 1000;

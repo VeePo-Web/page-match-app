@@ -144,7 +144,7 @@ export default function Gateway() {
               )}
             >
               <CardImage src={s.image} />
-              <div className="absolute inset-0 z-[1]" style={{ background: 'linear-gradient(to top, hsl(var(--cream) / 0.95) 0%, hsl(var(--cream) / 0.6) 50%, hsl(var(--cream) / 0.3) 100%)' }} aria-hidden="true" />
+              <div className="absolute inset-0 z-[1]" style={{ background: 'linear-gradient(to top, hsl(var(--cream) / 0.85) 0%, hsl(var(--cream) / 0.4) 50%, hsl(var(--cream) / 0.2) 100%)' }} aria-hidden="true" />
               <div className="relative z-10 flex flex-col justify-end h-full p-6 md:p-8">
                 <h2 className="font-display text-[28px] font-light text-foreground tracking-tight">{s.title}</h2>
                 <p className="font-sans text-[14px] text-muted-foreground mt-2 leading-relaxed font-light">{s.description}</p>

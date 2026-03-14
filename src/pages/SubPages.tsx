@@ -280,7 +280,7 @@ export function EventsPricing() {
    ═══════════════════════════════════════════════ */
 
 export function WeddingsAbout() {
-  useEffect(() => { document.title = "About (Weddings) — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "About (Weddings) — Parker Gawryletz", description: "The witness behind your ceremony. 5–10 weddings per year, Calgary to Banff." });
   return (
     <SubPageLayout>
       <HeroStrip title="The witness behind your ceremony." subtitle="About Parker" height="h-[40vh]" />

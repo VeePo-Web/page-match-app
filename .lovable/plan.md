@@ -1,7 +1,7 @@
 
 # Gawryletz Music Services — Sacred Sound Wireframe
 
-## Status: Phase 1 Complete ✅
+## Status: Phase 6 In Progress
 
 ## Completed
 - Design system replaced (Sacred Sound palette: charcoal/gold/green)
@@ -18,6 +18,24 @@
 - Legal pages: Privacy, Terms, Accessibility
 - NotFound page
 - Death/Life theme system via next-themes
+- Pricing corrected to match Vow Architect source (Phase 5)
+- Shadow/border-radius/accent color polish (Phase 5)
+
+## Phase 6 Progress
+- ✅ framer-motion parallax on HeroStrip + WeddingsHero (useScroll/useTransform)
+- ✅ Watermark text prop on HeroStrip + Section
+- ✅ ScrollProgress component (gold gradient bar)
+- ✅ BackToTop component (appears at 40% scroll)
+- ✅ Lazy loading on Weddings page (React.lazy + Suspense)
+- ✅ ScrollProgress + BackToTop added to Weddings, Teaching, Events
+- ⬜ Multi-step contact form wizard
+- ⬜ Gateway cinematic upgrade (motion cards, credential strip)
+- ⬜ About pages editorial enrichment
+- ⬜ Pricing pages editorial enrichment
+- ⬜ FAQ chip filters + trust stack
+- ⬜ Listen & Proof depth pass
+- ⬜ SEO + structured data
+- ⬜ Footer enrichment
 
 ## Architecture
 ```
@@ -43,12 +61,3 @@
 /terms               → Terms of service
 /accessibility       → Accessibility statement
 ```
-
-## Next Phase: Visual Polish
-- Generate AI images for gateway cards and hero sections
-- Add vigil sequence animation to wedding hero
-- Build PianoKeyNav component
-- Add atmospheric layers (Ken Burns, vignettes, warm fog)
-- Refine typography and spacing details
-- Add mobile sticky CTA bar
-- Performance optimization

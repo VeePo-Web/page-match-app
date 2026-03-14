@@ -1,6 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface SectionProps {
   children: React.ReactNode;
@@ -9,14 +10,24 @@ interface SectionProps {
   className?: string;
   backgroundImage?: string;
   noPadding?: boolean;
+  watermark?: string;
 }
 
-export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false }: SectionProps) {
+export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark }: SectionProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.08 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const watermarkY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
     <section
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={(el) => {
+        (ref as React.MutableRefObject<HTMLElement | null>).current = el;
+        (sectionRef as React.MutableRefObject<HTMLElement | null>).current = el;
+      }}
       id={id}
       className={cn("relative overflow-hidden", dark ? "section--dark" : "section--surface", className)}
       data-theme={dark ? "death" : undefined}
@@ -59,6 +70,22 @@ export function Section({ children, dark = false, id, className, backgroundImage
           }}
           aria-hidden="true"
         />
+      )}
+
+      {/* Watermark */}
+      {watermark && (
+        <motion.div
+          className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none select-none overflow-hidden"
+          style={{ y: watermarkY }}
+          aria-hidden="true"
+        >
+          <span
+            className="font-display text-[12vw] md:text-[8vw] font-light tracking-tight uppercase whitespace-nowrap"
+            style={{ color: dark ? "hsl(var(--warm-white) / 0.025)" : "hsl(var(--sage-deep) / 0.03)" }}
+          >
+            {watermark}
+          </span>
+        </motion.div>
       )}
 
       {/* Layer 4: Content */}

@@ -11,9 +11,10 @@ interface SectionProps {
   backgroundImage?: string;
   noPadding?: boolean;
   watermark?: string;
+  glow?: boolean;
 }
 
-export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark }: SectionProps) {
+export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark, glow = false }: SectionProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.08 });
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -48,6 +49,15 @@ export function Section({ children, dark = false, id, className, backgroundImage
             animation: "ken-burns 30s ease-in-out infinite alternate",
             willChange: "transform",
           }}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Layer 1.5: Glow */}
+      {glow && (
+        <div
+          className="absolute inset-0 z-[0] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at center, hsl(var(--gold) / 0.025), transparent 60%)" }}
           aria-hidden="true"
         />
       )}

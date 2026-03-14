@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 export default function NotFound() {
-  useEffect(() => { document.title = "Not Found — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Not Found — Parker Gawryletz" });
   return (
     <main className="h-screen flex flex-col items-center justify-center bg-background text-center px-6 relative overflow-hidden" data-theme="death">
       {/* Grain */}
@@ -18,7 +18,7 @@ export default function NotFound() {
         <p className="text-muted-foreground mt-fitz-5">The page you're looking for has moved or never was.</p>
         <Link
           to="/"
-          className="mt-fitz-7 inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta text-sm uppercase tracking-[0.18em] breathe-glow"
+          className="mt-fitz-7 inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]"
         >
           Return Home
         </Link>

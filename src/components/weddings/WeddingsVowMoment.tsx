@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { GoldFrame } from "@/components/GoldFrame";
 
 export function WeddingsVowMoment() {
   const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.3 });
@@ -18,6 +19,9 @@ export function WeddingsVowMoment() {
         style={{ background: "radial-gradient(ellipse at center, hsl(var(--gold) / 0.03), transparent 70%)" }}
         aria-hidden="true"
       />
+
+      {/* Gold corner frame */}
+      <GoldFrame animate={false} />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">

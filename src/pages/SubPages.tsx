@@ -8,7 +8,7 @@ import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { ContactWizard } from "@/components/contact/ContactWizard";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 /* ─── Shared Sub-page Shell ─── */
 function SubPageLayout({ children }: { children: React.ReactNode }) {
@@ -27,7 +27,7 @@ function SubPageLayout({ children }: { children: React.ReactNode }) {
    ═══════════════════════════════════════════════ */
 
 export function WeddingsPricing() {
-  useEffect(() => { document.title = "Wedding Pricing — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Wedding Pricing — Parker Gawryletz", description: "Wedding piano packages from $650. Custom arrangements, professional equipment, and travel included." });
   return (
     <SubPageLayout>
       <HeroStrip title="Wedding Services & Pricing" subtitle="Investment" height="h-[40vh]" />
@@ -128,7 +128,7 @@ export function WeddingsPricing() {
 }
 
 export function TeachingPricing() {
-  useEffect(() => { document.title = "Lesson Pricing — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Lesson Pricing — Parker Gawryletz", description: "Piano lessons in Calgary. $60/hr. All ages. Technique, theory, and expression." });
   return (
     <SubPageLayout>
       <HeroStrip title="$60 per hour." subtitle="Lesson Investment" height="h-[40vh]" />
@@ -177,7 +177,7 @@ export function TeachingPricing() {
 }
 
 export function EventsPricing() {
-  useEffect(() => { document.title = "Event Pricing — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Event Pricing — Parker Gawryletz", description: "Live piano for corporate galas, private dinners, and memorial services. Custom quotes." });
   return (
     <SubPageLayout>
       <HeroStrip title="Three presences." subtitle="Event Investment" height="h-[40vh]" />
@@ -281,7 +281,7 @@ export function EventsPricing() {
    ═══════════════════════════════════════════════ */
 
 export function WeddingsAbout() {
-  useEffect(() => { document.title = "About (Weddings) — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "About (Weddings) — Parker Gawryletz", description: "The witness behind your ceremony. 5–10 weddings per year, Calgary to Banff." });
   return (
     <SubPageLayout>
       <HeroStrip title="The witness behind your ceremony." subtitle="About Parker" height="h-[40vh]" />
@@ -325,7 +325,7 @@ export function WeddingsAbout() {
 }
 
 export function TeachingAbout() {
-  useEffect(() => { document.title = "About (Teaching) — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "About (Teaching) — Parker Gawryletz", description: "Piano instruction with intention, patience, and respect for each student's voice." });
   return (
     <SubPageLayout>
       <HeroStrip title="Music is a language." subtitle="About Parker" height="h-[40vh]" />
@@ -367,7 +367,7 @@ export function TeachingAbout() {
 }
 
 export function EventsAbout() {
-  useEffect(() => { document.title = "About (Events) — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "About (Events) — Parker Gawryletz", description: "Presence, not performance. Live piano for every gathered room." });
   return (
     <SubPageLayout>
       <HeroStrip title="Presence, not performance." subtitle="About Parker" height="h-[40vh]" />
@@ -489,7 +489,7 @@ const eventsSteps = [
 ];
 
 export function WeddingsContact() {
-  useEffect(() => { document.title = "Wedding Inquiry — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Wedding Inquiry — Parker Gawryletz", description: "Hold your wedding date. Inquire about ceremony piano for your Calgary or Banff wedding." });
   return (
     <SubPageLayout>
       <HeroStrip title="Hold my date." subtitle="Wedding Inquiry" height="h-[40vh]" />
@@ -501,7 +501,7 @@ export function WeddingsContact() {
 }
 
 export function TeachingContact() {
-  useEffect(() => { document.title = "Teaching Inquiry — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Teaching Inquiry — Parker Gawryletz", description: "Begin piano lessons in Calgary. All ages and levels welcome." });
   return (
     <SubPageLayout>
       <HeroStrip title="Begin the conversation." subtitle="Teaching Inquiry" height="h-[40vh]" />
@@ -513,7 +513,7 @@ export function TeachingContact() {
 }
 
 export function EventsContact() {
-  useEffect(() => { document.title = "Event Inquiry — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Event Inquiry — Parker Gawryletz", description: "Discuss live piano for your corporate event, private dinner, or memorial service." });
   return (
     <SubPageLayout>
       <HeroStrip title="Discuss your event." subtitle="Event Inquiry" height="h-[40vh]" />

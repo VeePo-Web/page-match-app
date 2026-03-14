@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { ContactWizard } from "@/components/contact/ContactWizard";
-import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const generalSteps = [
   {
@@ -30,7 +30,11 @@ const generalSteps = [
 ];
 
 export default function Contact() {
-  useEffect(() => { document.title = "Contact — Parker Gawryletz"; }, []);
+  usePageMeta({
+    title: "Contact — Parker Gawryletz",
+    description: "Get in touch with Parker Gawryletz. Wedding piano, lessons, and live events in Calgary to Banff.",
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />

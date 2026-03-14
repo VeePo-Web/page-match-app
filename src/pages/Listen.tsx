@@ -3,7 +3,8 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
-import { useEffect, useState } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { useState } from "react";
 import heroWeddings from "@/assets/hero-weddings.jpg";
 
 const movements = [
@@ -18,7 +19,6 @@ function PlayerShell({ movement }: { movement: typeof movements[0] }) {
 
   return (
     <div className="flex items-center gap-3 mt-fitz-4">
-      {/* Play button */}
       <button
         type="button"
         onMouseEnter={() => setIsHovered(true)}
@@ -30,8 +30,6 @@ function PlayerShell({ movement }: { movement: typeof movements[0] }) {
       >
         <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-transparent border-l-gold/50 ml-0.5" />
       </button>
-
-      {/* Progress bar */}
       <div className="flex-1 flex items-center gap-3">
         <div className="flex-1 h-[2px] bg-lines/20 rounded-full overflow-hidden">
           <div className="h-full w-0 bg-gold/40 rounded-full" />
@@ -43,7 +41,11 @@ function PlayerShell({ movement }: { movement: typeof movements[0] }) {
 }
 
 export default function Listen() {
-  useEffect(() => { document.title = "Listen — Parker Gawryletz"; }, []);
+  usePageMeta({
+    title: "Listen — Parker Gawryletz | Ceremony Music",
+    description: "Hear the ceremony. Four movements that follow the emotional arc of a wedding day.",
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
@@ -97,7 +99,7 @@ export default function Listen() {
               <p className="text-muted-foreground mb-fitz-7">Audio samples coming soon. In the meantime, reach out and I'll share recordings that match your ceremony vision.</p>
               <a
                 href="/contact"
-                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
+                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Request Samples
               </a>

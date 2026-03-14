@@ -4,7 +4,9 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { CredentialStrip } from "@/components/CredentialStrip";
-import { useEffect, useState } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Category = "All" | "Ceremony" | "Logistics" | "Pricing";
 
@@ -23,9 +25,48 @@ const faqs: { q: string; a: string; cat: Category }[] = [
 
 const categories: Category[] = ["All", "Ceremony", "Logistics", "Pricing"];
 
+function AccordionItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void }) {
+  return (
+    <div className="py-fitz-5 border-b border-lines/30">
+      <button
+        onClick={onToggle}
+        className="w-full font-display text-lg text-left flex justify-between items-center text-foreground"
+        aria-expanded={isOpen}
+      >
+        {faq.q}
+        <motion.span
+          className="text-sage ml-4 shrink-0 text-xl"
+          animate={{ rotate: isOpen ? 45 : 0 }}
+          transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+        >
+          +
+        </motion.span>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <p className="mt-fitz-3 text-muted-foreground leading-relaxed">{faq.a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function FAQ() {
-  useEffect(() => { document.title = "FAQ — Parker Gawryletz"; }, []);
+  usePageMeta({
+    title: "FAQ — Parker Gawryletz | Wedding Pianist",
+    description: "Common questions about wedding piano services, booking, pricing, and logistics. Calgary to Banff.",
+  });
+
   const [active, setActive] = useState<Category>("All");
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const filtered = active === "All" ? faqs : faqs.filter((f) => f.cat === active);
 
@@ -42,7 +83,7 @@ export default function FAQ() {
               {categories.map((cat) => (
                 <button
                   key={cat}
-                  onClick={() => setActive(cat)}
+                  onClick={() => { setActive(cat); setOpenIndex(null); }}
                   className={`px-4 py-2 rounded-full text-xs uppercase tracking-[0.12em] font-sans border transition-all duration-fast ${
                     active === cat
                       ? "bg-sage-deep text-warm-white border-sage-deep"
@@ -54,16 +95,14 @@ export default function FAQ() {
               ))}
             </div>
 
-            <div className="divide-y divide-lines/30">
+            <div>
               {filtered.map((faq, i) => (
                 <RevealOnScroll key={faq.q} delay={i * 40}>
-                  <details className="py-fitz-5 group">
-                    <summary className="font-display text-lg cursor-pointer list-none flex justify-between items-center text-foreground">
-                      {faq.q}
-                      <span className="text-sage transition-transform duration-[250ms] group-open:rotate-45 ml-4 shrink-0">+</span>
-                    </summary>
-                    <p className="mt-fitz-3 text-muted-foreground leading-relaxed">{faq.a}</p>
-                  </details>
+                  <AccordionItem
+                    faq={faq}
+                    isOpen={openIndex === i}
+                    onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                  />
                 </RevealOnScroll>
               ))}
             </div>

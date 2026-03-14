@@ -68,7 +68,7 @@ export function WeddingsExhale() {
 
         {/* Declaration */}
         <p
-          className={`font-display text-foreground mt-6 md:mt-8 transition-all ${purposeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          className={`font-display text-foreground mt-6 md:mt-8 transition-all drop-cap ${purposeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           style={{ transitionDuration: "900ms", transitionDelay: purposeVisible ? "1000ms" : "0ms", fontSize: "clamp(20px, 3.8vw, 28px)", lineHeight: 1.6, maxWidth: "24ch", margin: "0 auto", marginTop: "clamp(24px, 4vw, 32px)" }}
         >
           To let my music <span className="italic text-sage">sound</span> like

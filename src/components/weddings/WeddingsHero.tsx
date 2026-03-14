@@ -14,6 +14,7 @@ export function WeddingsHero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.6], ["0%", "15%"]);
   const watermarkY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
     <section ref={sectionRef} id="hero" className="relative h-screen flex items-center justify-center overflow-hidden" data-theme="death">
@@ -90,14 +91,19 @@ export function WeddingsHero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue — fades on scroll */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        style={{ opacity: scrollCueOpacity }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 1.6 }}
       >
-        <div className="w-[1px] h-8 bg-gold/25 mx-auto animate-pulse" />
+        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">Scroll</span>
+        <div className="w-[1px] h-6 bg-gold/25 animate-pulse" />
+        <svg width="10" height="6" viewBox="0 0 10 6" className="text-gold/30 animate-bounce" style={{ animationDuration: "2s" }}>
+          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1" fill="none" />
+        </svg>
       </motion.div>
 
       <span className="sr-only">

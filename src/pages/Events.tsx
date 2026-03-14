@@ -8,8 +8,9 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
 import { RevealOnScroll } from "@/components/animation";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { SectionDivider } from "@/components/SectionDivider";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import heroEvents from "@/assets/hero-events.jpg";
 
 const pianoSections = [
@@ -23,7 +24,10 @@ const pianoSections = [
 ];
 
 export default function Events() {
-  useEffect(() => { document.title = "Live Events — Parker Gawryletz"; }, []);
+  usePageMeta({
+    title: "Live Events — Parker Gawryletz | Calgary & Banff",
+    description: "Live piano for corporate galas, private dinners, and memorial services. Calgary to Banff.",
+  });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -131,7 +135,7 @@ export default function Events() {
                 { name: "The Full Occasion", duration: "4+ hours", desc: "Complete musical presence from first guest to final farewell." },
               ].map((tier, i) => (
                 <RevealOnScroll key={tier.name} delay={i * 100}>
-                  <div className={`text-left p-fitz-6 border rounded-md hover:-translate-y-1 transition-transform duration-[180ms] bg-card ${tier.isChosen ? 'border-gold/20' : 'border-lines/40'}`}>
+                  <div className={`text-left p-fitz-6 border rounded-md hover:-translate-y-1 hover:scale-[1.01] transition-all duration-[180ms] bg-card ${tier.isChosen ? 'border-gold/20' : 'border-lines/40'}`}>
                     <h3 className="text-foreground">{tier.name}</h3>
                     <p className="font-display text-2xl font-light mt-fitz-2" style={{ color: "hsl(var(--sage))" }}>{tier.duration}</p>
                     <p className="text-muted-foreground mt-fitz-3 text-sm font-light">{tier.desc}</p>
@@ -146,6 +150,25 @@ export default function Events() {
                 Request a proposal
               </Link>
             </RevealOnScroll>
+          </div>
+        </Section>
+
+        <SectionDivider />
+
+        {/* Other Services */}
+        <Section>
+          <div className="max-w-2xl mx-auto text-center">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">Other Services</p>
+            </RevealOnScroll>
+            <div className="flex justify-center gap-fitz-7 mt-fitz-5">
+              <RevealOnScroll delay={100}>
+                <Link to="/weddings" className="text-sm tracking-[0.16em] uppercase text-sage story-link">Weddings</Link>
+              </RevealOnScroll>
+              <RevealOnScroll delay={200}>
+                <Link to="/teaching" className="text-sm tracking-[0.16em] uppercase text-sage story-link">Teaching</Link>
+              </RevealOnScroll>
+            </div>
           </div>
         </Section>
 
@@ -164,7 +187,7 @@ export default function Events() {
             <RevealOnScroll delay={240}>
               <Link
                 to="/events/contact"
-                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
+                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Discuss Your Event.
               </Link>

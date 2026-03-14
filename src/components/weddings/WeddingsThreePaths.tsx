@@ -52,7 +52,7 @@ export function WeddingsThreePaths() {
               className={cn(
                 "relative p-fitz-6 md:p-fitz-7 rounded-md border transition-all duration-700 flex flex-col",
                 tier.isChosen
-                  ? "bg-sage-deep text-warm-white border-gold/20"
+                  ? "bg-sage-deep text-warm-white border-gold/20 hover:shadow-[0_8px_32px_hsl(var(--gold)/0.12)]"
                   : "bg-card border-lines/40 hover:-translate-y-1 hover:shadow-editorial-hover",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}
@@ -72,7 +72,7 @@ export function WeddingsThreePaths() {
                 className={cn("w-full mt-auto", tier.isChosen ? "bg-gold text-sage-deep hover:bg-gold-light" : "bg-transparent border border-sage/30 text-foreground hover:bg-sage/5")}
                 asChild
               >
-                <Link to="/contact" className="uppercase tracking-[0.1em] text-sm">{tier.ctaText}</Link>
+                <Link to="/weddings/contact" className="uppercase tracking-[0.1em] text-sm">{tier.ctaText}</Link>
               </Button>
             </div>
           ))}

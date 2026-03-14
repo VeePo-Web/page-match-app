@@ -4,9 +4,9 @@ import { useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import gatewayWeddings from "@/assets/gateway-weddings.jpg";
-import gatewayTeaching from "@/assets/gateway-teaching.jpg";
-import gatewayEvents from "@/assets/gateway-events.jpg";
+import gatewayWeddings from "@/assets/gateway-weddings-new.jpg";
+import gatewayTeaching from "@/assets/gateway-teaching-new.jpg";
+import gatewayEvents from "@/assets/gateway-events-new.jpg";
 
 const services = [
   {

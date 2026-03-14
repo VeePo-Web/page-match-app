@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { NavLink, useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function getNavLinks(pathname: string) {
   const aboutTo = pathname.startsWith('/events') ? '/events/about'
@@ -124,31 +125,44 @@ export function MinimalHeader() {
       </header>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[55] bg-background flex flex-col items-center justify-center gap-8">
-          <button className="absolute top-6 right-6 text-foreground" onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
-            <X size={24} />
-          </button>
-          {[
-            { to: "/weddings", label: "Weddings" },
-            { to: "/teaching", label: "Teaching" },
-            { to: "/events", label: "Events" },
-            { to: "/about", label: "About" },
-            { to: "/proof", label: "Proof" },
-            { to: "/contact", label: "Contact" },
-          ].map((link, i) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={() => setIsMenuOpen(false)}
-              className="font-display text-3xl font-light text-foreground hover:text-accent transition-colors opacity-0 animate-fade-in"
-              style={{ animationDelay: `${i * 80}ms`, animationFillMode: "forwards" }}
-            >
-              {link.label}
-            </NavLink>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="fixed inset-0 z-[55] bg-background flex flex-col items-center justify-center gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+          >
+            <button className="absolute top-6 right-6 text-foreground" onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
+              <X size={24} />
+            </button>
+            {[
+              { to: "/weddings", label: "Weddings" },
+              { to: "/teaching", label: "Teaching" },
+              { to: "/events", label: "Events" },
+              { to: "/about", label: "About" },
+              { to: "/proof", label: "Proof" },
+              { to: "/contact", label: "Contact" },
+            ].map((link, i) => (
+              <motion.div
+                key={link.to}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.06, duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
+              >
+                <NavLink
+                  to={link.to}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="font-display text-3xl font-light text-foreground hover:text-accent transition-colors"
+                >
+                  {link.label}
+                </NavLink>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

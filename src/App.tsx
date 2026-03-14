@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { PageTransition } from "@/components/PageTransition";
+import { SkipToContent } from "@/components/SkipToContent";
 
 import Gateway from "./pages/Gateway";
 import Weddings from "./pages/Weddings";
@@ -63,6 +64,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <SkipToContent />
           <SmoothScrollProvider>
             <PageTransition>
               <AppRoutes />

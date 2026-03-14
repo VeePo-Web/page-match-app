@@ -1,7 +1,8 @@
-import { useState, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { RevealOnScroll } from "@/components/animation";
+import { Link } from "react-router-dom";
 
 interface Step {
   title: string;
@@ -21,15 +22,23 @@ interface ContactWizardProps {
   ctaLabel?: string;
   successTitle?: string;
   successMessage?: string;
+  returnPath?: string;
+  returnLabel?: string;
 }
 
-function PillSelector({ options, value, onChange }: { options: string[]; value: string; onChange: (v: string) => void }) {
+function fieldId(label: string) {
+  return `wizard-field-${label.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
+}
+
+function PillSelector({ options, value, onChange, id }: { options: string[]; value: string; onChange: (v: string) => void; id: string }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2" role="radiogroup" aria-labelledby={id}>
       {options.map((opt) => (
         <button
           key={opt}
           type="button"
+          role="radio"
+          aria-checked={value === opt}
           onClick={() => onChange(opt)}
           className={`px-4 py-2 rounded-full text-xs uppercase tracking-[0.12em] font-sans border transition-all duration-fast ${
             value === opt
@@ -44,11 +53,20 @@ function PillSelector({ options, value, onChange }: { options: string[]; value: 
   );
 }
 
-export function ContactWizard({ steps, ctaLabel = "Send", successTitle = "Thank you.", successMessage = "I'll be in touch within 24 hours." }: ContactWizardProps) {
+export function ContactWizard({
+  steps,
+  ctaLabel = "Send",
+  successTitle = "Thank you.",
+  successMessage = "I'll be in touch within 24 hours.",
+  returnPath = "/",
+  returnLabel = "Return home",
+}: ContactWizardProps) {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const stepContentRef = useRef<HTMLDivElement>(null);
 
   const totalSteps = steps.length;
   const isLast = current === totalSteps - 1;
@@ -57,13 +75,27 @@ export function ContactWizard({ steps, ctaLabel = "Send", successTitle = "Thank 
     setFormData((prev) => ({ ...prev, [label]: value }));
   };
 
+  // Focus first input after step change
+  useEffect(() => {
+    if (submitted) return;
+    const timer = setTimeout(() => {
+      const firstInput = stepContentRef.current?.querySelector("input, textarea, select") as HTMLElement | null;
+      firstInput?.focus();
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [current, submitted]);
+
   const handleNext = () => {
-    // Basic HTML5 validation on current step
     const form = document.getElementById("wizard-form") as HTMLFormElement;
     if (form && !form.reportValidity()) return;
     setDirection(1);
     if (isLast) {
-      setSubmitted(true);
+      setIsSubmitting(true);
+      // Simulate submission
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitted(true);
+      }, 800);
     } else {
       setCurrent((p) => p + 1);
     }
@@ -85,6 +117,12 @@ export function ContactWizard({ steps, ctaLabel = "Send", successTitle = "Thank 
         <BreathingDiamond className="mb-fitz-7" />
         <h2 className="mx-auto text-foreground">{successTitle}</h2>
         <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">{successMessage}</p>
+        <Link
+          to={returnPath}
+          className="inline-flex items-center mt-fitz-7 text-sm uppercase tracking-[0.16em] text-sage story-link"
+        >
+          ← {returnLabel}
+        </Link>
       </motion.div>
     );
   }
@@ -94,7 +132,7 @@ export function ContactWizard({ steps, ctaLabel = "Send", successTitle = "Thank 
   return (
     <div className="max-w-xl mx-auto">
       {/* Step indicator */}
-      <div className="flex items-center justify-center gap-2 mb-fitz-7">
+      <div className="flex items-center justify-center gap-2 mb-fitz-7" role="progressbar" aria-valuenow={current + 1} aria-valuemin={1} aria-valuemax={totalSteps} aria-label={`Step ${current + 1} of ${totalSteps}`}>
         {steps.map((_, i) => (
           <div key={i} className="flex items-center gap-2">
             <div
@@ -115,56 +153,64 @@ export function ContactWizard({ steps, ctaLabel = "Send", successTitle = "Thank 
 
       {/* Step title */}
       <p className="overline text-center mb-fitz-5">
-        Step {current + 1} — {step.title}
+        Step {current + 1} of {totalSteps} — {step.title}
       </p>
 
       {/* Form */}
       <div className="p-fitz-6 md:p-fitz-7 rounded-md border border-lines/30 bg-card/80 backdrop-blur-sm">
         <form id="wizard-form" className="space-y-fitz-5" onSubmit={(e) => { e.preventDefault(); handleNext(); }}>
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={current}
-              custom={direction}
-              initial={{ opacity: 0, x: direction * 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -40 }}
-              transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-              className="space-y-fitz-5"
-            >
-              {step.fields.map((field) => (
-                <div key={field.label}>
-                  <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-fitz-2 font-sans">
-                    {field.label}{field.required && " *"}
-                  </label>
-                  {field.options ? (
-                    <PillSelector
-                      options={field.options}
-                      value={formData[field.label] || ""}
-                      onChange={(v) => updateField(field.label, v)}
-                    />
-                  ) : field.type === "textarea" ? (
-                    <textarea
-                      rows={4}
-                      value={formData[field.label] || ""}
-                      onChange={(e) => updateField(field.label, e.target.value)}
-                      required={field.required}
-                      placeholder={field.placeholder}
-                      className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground resize-none"
-                    />
-                  ) : (
-                    <input
-                      type={field.type || "text"}
-                      value={formData[field.label] || ""}
-                      onChange={(e) => updateField(field.label, e.target.value)}
-                      required={field.required}
-                      placeholder={field.placeholder}
-                      className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground"
-                    />
-                  )}
-                </div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          <div ref={stepContentRef} aria-live="polite" aria-atomic="true">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={current}
+                custom={direction}
+                initial={{ opacity: 0, x: direction * 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -40 }}
+                transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
+                className="space-y-fitz-5"
+              >
+                {step.fields.map((field) => {
+                  const id = fieldId(field.label);
+                  return (
+                    <div key={field.label}>
+                      <label htmlFor={id} className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-fitz-2 font-sans">
+                        {field.label}{field.required && " *"}
+                      </label>
+                      {field.options ? (
+                        <PillSelector
+                          options={field.options}
+                          value={formData[field.label] || ""}
+                          onChange={(v) => updateField(field.label, v)}
+                          id={id}
+                        />
+                      ) : field.type === "textarea" ? (
+                        <textarea
+                          id={id}
+                          rows={4}
+                          value={formData[field.label] || ""}
+                          onChange={(e) => updateField(field.label, e.target.value)}
+                          required={field.required}
+                          placeholder={field.placeholder}
+                          className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground resize-none"
+                        />
+                      ) : (
+                        <input
+                          id={id}
+                          type={field.type || "text"}
+                          value={formData[field.label] || ""}
+                          onChange={(e) => updateField(field.label, e.target.value)}
+                          required={field.required}
+                          placeholder={field.placeholder}
+                          className="w-full bg-transparent input-gold-focus py-fitz-3 text-foreground"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           {/* Navigation */}
           <div className="flex justify-between items-center pt-fitz-3">
@@ -181,9 +227,15 @@ export function ContactWizard({ steps, ctaLabel = "Send", successTitle = "Thank 
             )}
             <button
               type="submit"
-              className="px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
+              disabled={isSubmitting}
+              className="px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em] disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {isLast ? ctaLabel : "Continue →"}
+              {isSubmitting ? (
+                <span className="inline-flex items-center gap-2">
+                  <span className="w-3.5 h-3.5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                  Sending…
+                </span>
+              ) : isLast ? ctaLabel : "Continue →"}
             </button>
           </div>
         </form>

@@ -48,16 +48,6 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
   return (
     <PageTransitionContext.Provider value={contextValue}>
-      <div
-        aria-hidden="true"
-        className={cn('fixed inset-0 z-[60] pointer-events-none flex items-center justify-center transition-opacity', phase === 'idle' ? 'opacity-0' : 'opacity-100')}
-        style={{ transitionDuration: '120ms' }}
-      >
-        <div className="relative w-full flex items-center justify-center">
-          <div className={cn('threshold-line', phase === 'exiting' && 'threshold-line--expand', phase === 'entering' && 'threshold-line--contract')} />
-          <span className={cn('threshold-semicolon', phase === 'exiting' && 'threshold-semicolon--in', phase === 'entering' && 'threshold-semicolon--out')}>;</span>
-        </div>
-      </div>
       <div className={cn('page-transition-content', phase === 'exiting' && 'page-transition-content--exit', phase === 'entering' && 'page-transition-content--enter', phase === 'idle' && 'page-transition-content--idle')}>
         {children}
       </div>

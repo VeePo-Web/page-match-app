@@ -5,6 +5,7 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { PianoKeyNav } from "@/components/PianoKeyNav";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { RevealOnScroll } from "@/components/animation";
+import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import heroTeaching from "@/assets/hero-teaching.jpg";
@@ -28,7 +29,6 @@ export default function Teaching() {
       <PianoKeyNav sections={pianoSections} />
 
       <main>
-        {/* Hero */}
         <HeroStrip
           title="Learn the instrument that speaks when words fall short."
           subtitle="Piano Lessons"
@@ -50,6 +50,9 @@ export default function Teaching() {
                 I teach piano the way I play it — with intention, patience, and deep respect for the student's own musical voice. Whether you're a complete beginner or a returning player, my lessons are built around who you are and what you want to say through music.
               </p>
             </RevealOnScroll>
+            <RevealOnScroll delay={360}>
+              <BreathingDiamond className="mt-fitz-7" />
+            </RevealOnScroll>
           </div>
         </Section>
 
@@ -67,9 +70,9 @@ export default function Teaching() {
                 { title: "Devotion", desc: "Consistent practice habits, performance confidence, and the patience to grow at your own pace." },
               ].map((pillar, i) => (
                 <RevealOnScroll key={pillar.title} delay={i * 100}>
-                  <div className="p-fitz-6 border border-lines/30 rounded-lg text-left">
+                  <div className="p-fitz-6 rounded-md text-left" style={{ borderLeft: "2px solid hsl(var(--gold) / 0.3)" }}>
                     <h3 className="text-foreground">{pillar.title}</h3>
-                    <p className="text-muted-foreground mt-fitz-3 text-sm leading-relaxed">{pillar.desc}</p>
+                    <p className="text-muted-foreground mt-fitz-3 text-sm leading-relaxed font-light">{pillar.desc}</p>
                   </div>
                 </RevealOnScroll>
               ))}
@@ -94,7 +97,7 @@ export default function Teaching() {
           </div>
         </Section>
 
-        {/* Threshold — Common Concerns */}
+        {/* Threshold */}
         <Section dark id="threshold">
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll>
@@ -109,9 +112,9 @@ export default function Teaching() {
                 { q: "Do I need a piano at home?", a: "A keyboard with weighted keys is ideal. I can recommend affordable options that sound beautiful." },
               ].map((item, i) => (
                 <RevealOnScroll key={i} delay={i * 100}>
-                  <div className="p-fitz-6 border border-lines/30 rounded-lg">
-                    <p className="font-display text-lg italic text-primary mb-fitz-3">"{item.q}"</p>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{item.a}</p>
+                  <div className="p-fitz-6 rounded-md" style={{ borderLeft: "2px solid hsl(var(--gold) / 0.3)" }}>
+                    <p className="font-display text-lg italic mb-fitz-3" style={{ color: "hsl(var(--gold))" }}>"{item.q}"</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed font-light">{item.a}</p>
                   </div>
                 </RevealOnScroll>
               ))}
@@ -134,7 +137,7 @@ export default function Teaching() {
               </p>
             </RevealOnScroll>
             <RevealOnScroll delay={360}>
-              <Link to="/teaching/pricing" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.18em] uppercase text-primary story-link">
+              <Link to="/teaching/pricing" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.16em] uppercase text-sage story-link">
                 View what's included
               </Link>
             </RevealOnScroll>
@@ -145,6 +148,9 @@ export default function Teaching() {
         <Section dark id="crossing">
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll>
+              <BreathingDiamond className="mb-fitz-5" />
+            </RevealOnScroll>
+            <RevealOnScroll>
               <h2 className="mx-auto">Ready to begin?</h2>
             </RevealOnScroll>
             <RevealOnScroll delay={120}>
@@ -153,7 +159,7 @@ export default function Teaching() {
             <RevealOnScroll delay={240}>
               <Link
                 to="/teaching/contact"
-                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]"
+                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Begin the Conversation.
               </Link>

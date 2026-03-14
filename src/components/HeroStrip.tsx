@@ -13,7 +13,7 @@ interface HeroStripProps {
   showScrollCue?: boolean;
 }
 
-export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImage, children, watermark }: HeroStripProps) {
+export function HeroStrip({ title, subtitle, height = "h-[50vh]", backgroundImage, children, watermark, showScrollCue = false }: HeroStripProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,

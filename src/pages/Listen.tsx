@@ -4,7 +4,7 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
 import { BackToTop } from "@/components/BackToTop";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import heroWeddings from "@/assets/hero-weddings.jpg";

@@ -127,7 +127,7 @@ export function WeddingsPricing() {
 }
 
 export function TeachingPricing() {
-  useEffect(() => { document.title = "Lesson Pricing — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Lesson Pricing — Parker Gawryletz", description: "Piano lessons in Calgary. $60/hr. All ages. Technique, theory, and expression." });
   return (
     <SubPageLayout>
       <HeroStrip title="$60 per hour." subtitle="Lesson Investment" height="h-[40vh]" />

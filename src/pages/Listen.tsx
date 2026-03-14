@@ -55,6 +55,7 @@ export default function Listen() {
           subtitle="The Listening Room"
           backgroundImage={heroWeddings}
           height="h-[50vh]"
+          showScrollCue
         />
 
         <Section>

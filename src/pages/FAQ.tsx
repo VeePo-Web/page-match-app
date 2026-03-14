@@ -120,9 +120,9 @@ export default function FAQ() {
           <div className="max-w-2xl mx-auto text-center mt-fitz-7">
             <RevealOnScroll>
               <p className="text-muted-foreground">Still have questions?</p>
-              <a href="/contact" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.18em] uppercase text-primary story-link">
+              <Link to="/contact" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.18em] uppercase text-primary story-link">
                 Get in touch
-              </a>
+              </Link>
             </RevealOnScroll>
           </div>
         </Section>

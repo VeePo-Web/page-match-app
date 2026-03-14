@@ -26,7 +26,7 @@ function SubPageLayout({ children }: { children: React.ReactNode }) {
    ═══════════════════════════════════════════════ */
 
 export function WeddingsPricing() {
-  useEffect(() => { document.title = "Wedding Pricing — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "Wedding Pricing — Parker Gawryletz", description: "Wedding piano packages from $650. Custom arrangements, professional equipment, and travel included." });
   return (
     <SubPageLayout>
       <HeroStrip title="Wedding Services & Pricing" subtitle="Investment" height="h-[40vh]" />

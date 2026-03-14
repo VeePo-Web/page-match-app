@@ -355,6 +355,14 @@ html.lenis, html.lenis body { height: auto; }
   0%, 100% { box-shadow: 0 8px 24px hsl(var(--vow-yellow) / 0.18); }
   50% { box-shadow: 0 12px 32px hsl(var(--vow-yellow) / 0.28); }
 }
+@keyframes semicolon-breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+/* Breathe-glow utility */
+.breathe-glow { animation: breathe-glow 3.5s ease-in-out infinite; }
+.semicolon-breathe { animation: semicolon-breathe 3.5s ease-in-out infinite; }
 
 /* Safe area for mobile sticky bar */
 .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }

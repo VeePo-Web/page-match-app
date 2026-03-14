@@ -1,5 +1,7 @@
 import { MinimalHeader } from "@/components/MinimalHeader";
 import { Footer } from "@/components/Footer";
+import { HeroStrip } from "@/components/HeroStrip";
+import { Section } from "@/components/Section";
 import { useEffect } from "react";
 
 function LegalPage({ title, children }: { title: string; children: React.ReactNode }) {
@@ -7,9 +9,13 @@ function LegalPage({ title, children }: { title: string; children: React.ReactNo
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main className="container mx-auto px-fitz-4 md:px-fitz-6 py-fitz-9 md:py-fitz-10">
-        <h1 className="mb-fitz-7">{title}</h1>
-        <div className="max-w-2xl text-muted-foreground space-y-fitz-5">{children}</div>
+      <main>
+        <HeroStrip title={title} height="h-[35vh]" />
+        <Section>
+          <div className="max-w-2xl mx-auto text-muted-foreground space-y-fitz-5">
+            {children}
+          </div>
+        </Section>
       </main>
       <Footer />
     </div>

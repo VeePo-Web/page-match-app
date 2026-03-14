@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface PianoSection {
@@ -14,27 +14,31 @@ interface PianoKeyNavProps {
 export function PianoKeyNav({ sections }: PianoKeyNavProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const handleObserver = useCallback(() => {
-    const observers: IntersectionObserver[] = [];
+  const setupObserver = useCallback(() => {
+    // Single observer for all sections
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: "-20% 0px -60% 0px" }
+    );
+
     sections.forEach((section) => {
       const el = document.getElementById(section.id);
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveId(section.id);
-        },
-        { threshold: 0.3, rootMargin: "-20% 0px -60% 0px" }
-      );
-      observer.observe(el);
-      observers.push(observer);
+      if (el) observerRef.current!.observe(el);
     });
-    return () => observers.forEach((o) => o.disconnect());
   }, [sections]);
 
   useEffect(() => {
-    return handleObserver();
-  }, [handleObserver]);
+    setupObserver();
+    return () => { observerRef.current?.disconnect(); };
+  }, [setupObserver]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -51,7 +55,6 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
 
         return (
           <div key={section.id} className="relative flex items-center justify-end">
-            {/* Tooltip */}
             <span
               className={cn(
                 "absolute right-full mr-3 whitespace-nowrap font-sans text-xs tracking-[0.08em] uppercase transition-all duration-[180ms]",
@@ -62,7 +65,6 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
               {section.label}
             </span>
 
-            {/* Key */}
             <button
               onClick={() => scrollTo(section.id)}
               onMouseEnter={() => setHoveredId(section.id)}
@@ -80,7 +82,6 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
         );
       })}
 
-      {/* Golden thread */}
       <div
         className="absolute right-[7px] top-0 bottom-0 w-[1px] -z-10"
         style={{

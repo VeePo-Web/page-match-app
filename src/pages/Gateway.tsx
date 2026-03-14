@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { useCallback, useRef, useEffect, useState } from "react";
+import { useCallback, useRef, useEffect } from "react";
 import gatewayWeddings from "@/assets/gateway-weddings.jpg";
 import gatewayTeaching from "@/assets/gateway-teaching.jpg";
 import gatewayEvents from "@/assets/gateway-events.jpg";
@@ -31,15 +31,23 @@ const services = [
 
 function CardImage({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const rafId = useRef(0);
+
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
+    cancelAnimationFrame(rafId.current);
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 8;
-    ref.current.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
-    ref.current.style.transition = "transform 100ms ease-out";
+    rafId.current = requestAnimationFrame(() => {
+      if (!ref.current) return;
+      ref.current.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+      ref.current.style.transition = "transform 100ms ease-out";
+    });
   }, []);
+
   const handleMouseLeave = useCallback(() => {
+    cancelAnimationFrame(rafId.current);
     if (!ref.current) return;
     ref.current.style.transform = "translate(0, 0) scale(1)";
     ref.current.style.transition = "transform 500ms ease-out";
@@ -49,7 +57,7 @@ function CardImage({ src }: { src: string }) {
     <div className="absolute inset-0 overflow-hidden" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} aria-hidden="true">
       <div
         ref={ref}
-        className="absolute -inset-4"
+        className="absolute -inset-4 will-change-transform"
         style={{
           backgroundImage: `url(${src})`,
           backgroundSize: "cover",
@@ -57,31 +65,9 @@ function CardImage({ src }: { src: string }) {
           opacity: 0.35,
           filter: "brightness(0.7) contrast(1.1) saturate(0.85)",
           animation: "ken-burns 30s ease-in-out infinite alternate",
-          willChange: "transform",
         }}
       />
     </div>
-  );
-}
-
-function SemicolonBreathing() {
-  const [opacity, setOpacity] = useState(0.4);
-
-  useEffect(() => {
-    let frame: number;
-    const breathe = () => {
-      const t = Date.now() / 3500;
-      setOpacity(0.4 + Math.sin(t) * 0.4);
-      frame = requestAnimationFrame(breathe);
-    };
-    frame = requestAnimationFrame(breathe);
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
-  return (
-    <span className="text-primary inline-block" style={{ opacity }}>
-      {" ; "}
-    </span>
   );
 }
 
@@ -132,10 +118,10 @@ export default function Gateway() {
         ))}
       </div>
 
-      {/* Tagline */}
+      {/* Tagline — semicolon uses pure CSS animation */}
       <footer className="mt-6 md:mt-14 shrink-0 text-center opacity-0 animate-fade-in" style={{ animationDelay: "1600ms", animationFillMode: "forwards" }}>
         <p className="font-display text-[16px] font-light text-muted-foreground tracking-tight">
-          'Til Death<SemicolonBreathing />Unto Life<span className="text-primary">.</span>
+          'Til Death<span className="text-primary inline-block semicolon-breathe">{" ; "}</span>Unto Life<span className="text-primary">.</span>
         </p>
       </footer>
     </main>

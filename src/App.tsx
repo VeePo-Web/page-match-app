@@ -23,8 +23,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const Proof = lazy(() => import("./pages/Proof"));
 const Listen = lazy(() => import("./pages/Listen"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const SubPages = lazy(() => import("./pages/SubPages"));
-const Legal = lazy(() => import("./pages/Legal"));
+// SubPages and Legal are imported dynamically via LazySubPage/LazyLegalPage helpers below
 
 const queryClient = new QueryClient();
 

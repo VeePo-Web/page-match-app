@@ -10,6 +10,15 @@ import { ContactWizard } from "@/components/contact/ContactWizard";
 import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
+function useSubPageMeta(meta: { title: string; description: string }) {
+  const { pathname } = useLocation();
+  usePageMeta({
+    ...meta,
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
+  });
+}
+
 /* ─── Shared Sub-page Shell ─── */
 function SubPageLayout({ children }: { children: React.ReactNode }) {
   return (

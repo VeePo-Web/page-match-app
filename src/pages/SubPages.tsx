@@ -15,7 +15,7 @@ function SubPageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
       <MobileStickyBar />
     </div>

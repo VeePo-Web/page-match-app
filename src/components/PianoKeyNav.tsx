@@ -12,7 +12,7 @@ interface PianoKeyNavProps {
 }
 
 export function PianoKeyNav({ sections }: PianoKeyNavProps) {
-  const [activeId, setActiveId] = useState<string>("");
+  const [activeId, setActiveId] = useState<string>(sections[0]?.id ?? "");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 

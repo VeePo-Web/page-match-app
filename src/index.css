@@ -311,7 +311,6 @@ html.lenis, html.lenis body { height: auto; }
   /* Reveal system */
   .reveal {
     opacity: 0;
-    will-change: opacity, transform;
   }
   .reveal.is-visible {
     animation-fill-mode: both;

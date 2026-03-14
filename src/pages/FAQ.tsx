@@ -74,7 +74,7 @@ export default function FAQ() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
+      <main id="main-content">
         <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" />
 
         <Section>

@@ -76,15 +76,7 @@ export function MinimalHeader() {
           transform: isHeaderHidden ? 'translateY(-100%)' : 'translateY(0)',
         }}
       >
-        {/* Gold scroll progress */}
-        {isScrolled && (
-          <div className="absolute bottom-0 left-0 right-0 h-[1px]">
-            <div
-              className="h-full bg-gold/40 transition-[width] duration-100"
-              style={{ width: `${typeof window !== 'undefined' ? Math.min((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100, 100) : 0}%` }}
-            />
-          </div>
-        )}
+        {/* Gold scroll progress handled by ScrollProgress component */}
 
         <div className="flex items-center h-full px-[var(--hero-space-edge,24px)] md:px-[var(--hero-space-edge,48px)] py-5 relative justify-between">
           {/* Logo */}

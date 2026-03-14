@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useRef, useEffect, useState, useLayoutEffect } from 'react';
+import { useMemo, useCallback, useRef, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransitionContext, TransitionPhase, getRouteTiming } from '@/hooks/usePageTransition';

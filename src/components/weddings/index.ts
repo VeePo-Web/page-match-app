@@ -1,0 +1,10 @@
+export { WeddingsHero } from "./WeddingsHero";
+export { WeddingsExhale } from "./WeddingsExhale";
+export { WeddingsProcess } from "./WeddingsProcess";
+export { WeddingsVowMoment } from "./WeddingsVowMoment";
+export { WeddingsInvitation } from "./WeddingsInvitation";
+export { WeddingsTransformation } from "./WeddingsTransformation";
+export { WeddingsWitness } from "./WeddingsWitness";
+export { WeddingsThreePaths } from "./WeddingsThreePaths";
+export { WeddingsTestimonials } from "./WeddingsTestimonials";
+export { WeddingsCrossing } from "./WeddingsCrossing";

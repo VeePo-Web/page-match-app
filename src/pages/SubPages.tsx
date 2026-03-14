@@ -7,7 +7,7 @@ import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { ContactWizard } from "@/components/contact/ContactWizard";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 /* ─── Shared Sub-page Shell ─── */

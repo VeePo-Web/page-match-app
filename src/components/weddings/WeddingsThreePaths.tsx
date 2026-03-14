@@ -14,9 +14,9 @@ interface KeyTier {
 }
 
 const tiers: KeyTier[] = [
-  { name: "The Prelude", price: "$1,200", description: "Ceremony piano — processional through recessional. The essential musical witness.", sentence: "Your vows, carried by piano. Nothing more, nothing less.", ctaText: "Hold my date" },
-  { name: "The Covenant", price: "$2,400", description: "Full ceremony + cocktail hour. Extended musical presence from preparation to celebration.", sentence: "The room is already sacred before the first word is spoken.", ctaText: "Hold my date", isChosen: true },
-  { name: "The Chronicle", price: "$4,200", description: "Complete wedding-day coverage. Rehearsal through last dance.", sentence: "From the first guest to the last glass raised — I am there.", ctaText: "Hold my date" },
+  { name: "The Vow", price: "$650", description: "Ceremony piano — processional through recessional. The essential musical witness.", sentence: "Your vows, carried by piano. Nothing more, nothing less.", ctaText: "Hold my date" },
+  { name: "The Hour", price: "$750", description: "Full ceremony + cocktail hour. Extended musical presence from preparation to celebration.", sentence: "The room is already sacred before the first word is spoken.", ctaText: "Hold my date", isChosen: true },
+  { name: "The Story", price: "$1,200", description: "Complete wedding-day coverage. Rehearsal through last dance.", sentence: "From the first guest to the last glass raised — I am there.", ctaText: "Hold my date" },
 ];
 
 export function WeddingsThreePaths() {
@@ -72,7 +72,7 @@ export function WeddingsThreePaths() {
                 className={cn("w-full mt-auto", tier.isChosen ? "bg-gold text-sage-deep hover:bg-gold-light" : "bg-transparent border border-sage/30 text-foreground hover:bg-sage/5")}
                 asChild
               >
-                <Link to="/weddings/contact" className="uppercase tracking-[0.1em] text-sm">{tier.ctaText}</Link>
+                <Link to="/contact" className="uppercase tracking-[0.1em] text-sm">{tier.ctaText}</Link>
               </Button>
             </div>
           ))}

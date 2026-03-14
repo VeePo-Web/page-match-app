@@ -41,7 +41,7 @@ export default function About() {
               <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">Every story starts with a conversation.</p>
             </RevealOnScroll>
             <RevealOnScroll delay={120}>
-              <Link to="/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta text-sm uppercase tracking-[0.18em]">
+              <Link to="/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
                 Tell Me Your Story.
               </Link>
             </RevealOnScroll>

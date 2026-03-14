@@ -37,15 +37,15 @@ export default function Listen() {
               {movements.map((m, i) => (
                 <RevealOnScroll key={m.number} variant="up" delay={i * 100}>
                   <div className="flex gap-fitz-5 items-start group">
-                    <span className="font-display text-[36px] font-light text-primary/40 leading-none shrink-0 w-12 text-right">
+                    <span className="font-display text-[36px] font-light text-gold/40 leading-none shrink-0 w-12 text-right">
                       {m.number}
                     </span>
-                    <div className="border-l border-primary/10 pl-fitz-5">
+                    <div className="border-l border-gold/10 pl-fitz-5">
                       <h3 className="text-foreground mb-fitz-2">{m.title}</h3>
                       <p className="text-muted-foreground">{m.description}</p>
                       <div className="mt-fitz-4 flex items-center gap-3 opacity-50">
-                        <div className="w-8 h-8 rounded-sm border border-primary/20 flex items-center justify-center">
-                          <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-transparent border-l-primary/40 ml-0.5" />
+                      <div className="w-8 h-8 rounded-sm border border-gold/20 flex items-center justify-center">
+                          <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-transparent border-l-gold/40 ml-0.5" />
                         </div>
                         <span className="font-sans text-xs text-muted-foreground tracking-[0.08em] uppercase">Coming Soon</span>
                       </div>
@@ -63,7 +63,7 @@ export default function Listen() {
               <p className="text-muted-foreground mb-fitz-7">In the meantime, reach out and I'll share recordings that match your ceremony vision.</p>
               <a
                 href="/contact"
-                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta transition-all duration-[180ms] text-sm uppercase tracking-[0.18em] breathe-glow"
+                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Request Samples
               </a>

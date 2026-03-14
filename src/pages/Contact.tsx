@@ -15,7 +15,7 @@ export default function Contact() {
 
         <Section>
           <div className="max-w-xl mx-auto">
-            <div className="p-fitz-6 md:p-fitz-7 rounded-lg border border-lines/20 bg-card/50 backdrop-blur-sm">
+            <div className="p-fitz-6 md:p-fitz-7 rounded-md border border-lines/20 bg-card/50 backdrop-blur-sm">
               <form className="space-y-fitz-5">
                 {[
                   { label: "Your Name", type: "text" },
@@ -37,7 +37,7 @@ export default function Contact() {
                   </div>
                 </RevealOnScroll>
                 <RevealOnScroll>
-                  <button type="submit" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
+                  <button type="submit" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
                     Hold My Date.
                   </button>
                 </RevealOnScroll>
@@ -52,7 +52,7 @@ export default function Contact() {
                   { stat: "Free", label: "Initial consultation" },
                 ].map((s) => (
                   <div key={s.label}>
-                    <p className="font-display text-xl text-primary">{s.stat}</p>
+                    <p className="font-display text-xl" style={{ color: "hsl(var(--sage))" }}>{s.stat}</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-[0.12em] mt-1">{s.label}</p>
                   </div>
                 ))}

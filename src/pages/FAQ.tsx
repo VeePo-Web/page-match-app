@@ -16,9 +16,9 @@ export default function FAQ() {
     { q: "Do you provide your own piano?", a: "I bring a professional digital piano with premium sound. If your venue has a grand piano, I'm happy to play it — I'll arrive early to familiarize myself with the instrument." },
     { q: "What areas do you serve?", a: "Calgary, Cochrane, Canmore, Banff, and the surrounding Canadian Rockies. Travel fees may apply for venues beyond Banff." },
     { q: "How long is a typical ceremony set?", a: "Ceremony piano typically covers 30-45 minutes — from guest seating through recessional. Cocktail hour adds another 60 minutes." },
-    { q: "Do you offer rehearsal attendance?", a: "Yes, included in The Chronicle package. For other packages, rehearsal attendance can be added." },
+    { q: "Do you offer rehearsal attendance?", a: "Yes, included in The Story package. For other packages, rehearsal attendance can be added." },
     { q: "What happens if you get sick?", a: "In my career, I have never missed a ceremony. However, I maintain a network of trusted pianists who could step in if an emergency arose." },
-    { q: "Do you play during the reception too?", a: "Yes — The Chronicle package covers your full wedding day, from rehearsal through last dance. Dinner music and reception piano are included." },
+    { q: "Do you play during the reception too?", a: "Yes — The Story package covers your full wedding day, from rehearsal through last dance. Dinner music and reception piano are included." },
   ];
 
   return (
@@ -34,7 +34,7 @@ export default function FAQ() {
                 <details className="py-fitz-5 group">
                   <summary className="font-display text-lg cursor-pointer list-none flex justify-between items-center text-foreground">
                     {faq.q}
-                    <span className="text-primary transition-transform duration-[250ms] group-open:rotate-45 ml-4 shrink-0">+</span>
+                    <span className="text-sage transition-transform duration-[250ms] group-open:rotate-45 ml-4 shrink-0">+</span>
                   </summary>
                   <p className="mt-fitz-3 text-muted-foreground leading-relaxed">{faq.a}</p>
                 </details>

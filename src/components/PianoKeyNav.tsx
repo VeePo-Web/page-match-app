@@ -19,11 +19,16 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
   const setupObserver = useCallback(() => {
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        // Batch: find the entry closest to viewport center
+        let best: IntersectionObserverEntry | null = null;
+        for (const entry of entries) {
           if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
+            if (!best || entry.intersectionRatio > best.intersectionRatio) {
+              best = entry;
+            }
           }
-        });
+        }
+        if (best) setActiveId(best.target.id);
       },
       { threshold: 0.3, rootMargin: "-20% 0px -60% 0px" }
     );

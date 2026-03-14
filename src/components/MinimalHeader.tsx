@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { NavLink, useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function getNavLinks(pathname: string) {
   const aboutTo = pathname.startsWith('/events') ? '/events/about'

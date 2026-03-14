@@ -104,7 +104,7 @@ function PianoKeyCard({
               }
             : {
                 background:
-                  "linear-gradient(180deg, hsl(40 20% 97%) 0%, hsl(40 15% 93%) 100%)",
+                  "linear-gradient(180deg, hsl(40 20% 97%) 0%, hsl(40 15% 93%) 95%, hsl(40 18% 91%) 100%)",
               }
         }
       >

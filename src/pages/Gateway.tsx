@@ -82,6 +82,8 @@ export default function Gateway() {
   usePageMeta({
     title: "Parker Gawryletz — Ceremony Pianist",
     description: "Ceremony pianist serving Calgary to Banff. Weddings, teaching, and live events.",
+    canonical: `${window.location.origin}/`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   const initial = reducedMotion ? false : { opacity: 0, y: 16 };

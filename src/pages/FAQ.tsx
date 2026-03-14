@@ -137,6 +137,7 @@ export default function FAQ() {
         </Section>
       </main>
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

@@ -366,7 +366,7 @@ export function TeachingAbout() {
 }
 
 export function EventsAbout() {
-  useEffect(() => { document.title = "About (Events) — Parker Gawryletz"; }, []);
+  usePageMeta({ title: "About (Events) — Parker Gawryletz", description: "Presence, not performance. Live piano for every gathered room." });
   return (
     <SubPageLayout>
       <HeroStrip title="Presence, not performance." subtitle="About Parker" height="h-[40vh]" />

@@ -522,7 +522,7 @@ export function TeachingContact() {
 }
 
 export function EventsContact() {
-  usePageMeta({ title: "Event Inquiry — Parker Gawryletz", description: "Discuss live piano for your corporate event, private dinner, or memorial service." });
+  useSubPageMeta({ title: "Event Inquiry — Parker Gawryletz", description: "Discuss live piano for your corporate event, private dinner, or memorial service." });
   return (
     <SubPageLayout>
       <HeroStrip title="Discuss your event." subtitle="Event Inquiry" height="h-[40vh]" />

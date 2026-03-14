@@ -4,6 +4,8 @@ import { Section } from "@/components/Section";
 import { HeroStrip } from "@/components/HeroStrip";
 import { PianoKeyNav } from "@/components/PianoKeyNav";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
 import { RevealOnScroll } from "@/components/animation";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { Link } from "react-router-dom";
@@ -25,6 +27,7 @@ export default function Events() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
       <PianoKeyNav sections={pianoSections} />
 
@@ -34,6 +37,7 @@ export default function Events() {
           subtitle="Live Events"
           height="h-[70vh]"
           backgroundImage={heroEvents}
+          watermark="Events"
         />
 
         {/* Why Live Piano */}
@@ -171,6 +175,7 @@ export default function Events() {
 
       <Footer />
       <MobileStickyBar />
+      <BackToTop />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { BackToTop } from "@/components/BackToTop";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const proofs = [
   {

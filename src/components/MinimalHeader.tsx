@@ -139,6 +139,9 @@ export function MinimalHeader() {
         {isMenuOpen && (
           <motion.div
             className="fixed inset-0 z-[55] bg-background flex flex-col items-center justify-center gap-8"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

@@ -63,7 +63,7 @@ export default function Listen() {
               <p className="text-muted-foreground mb-fitz-7">In the meantime, reach out and I'll share recordings that match your ceremony vision.</p>
               <a
                 href="/contact"
-                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta transition-all duration-[180ms] text-sm uppercase tracking-[0.18em] breathe-glow"
+                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Request Samples
               </a>

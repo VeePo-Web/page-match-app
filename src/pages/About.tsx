@@ -99,6 +99,7 @@ export default function About() {
         </Section>
       </main>
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

@@ -43,9 +43,13 @@ function PlayerShell({ movement }: { movement: typeof movements[0] }) {
 }
 
 export default function Listen() {
+  const { pathname } = useLocation();
+
   usePageMeta({
     title: "Listen — Parker Gawryletz | Ceremony Music",
     description: "Hear the ceremony. Four movements that follow the emotional arc of a wedding day.",
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   return (

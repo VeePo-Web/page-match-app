@@ -60,6 +60,7 @@ function AppRoutes() {
 
 const App = () => (
   <ThemeProvider>
+    <StructuredData />
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />

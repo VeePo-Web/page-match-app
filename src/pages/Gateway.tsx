@@ -347,6 +347,17 @@ export default function Gateway() {
         aria-label="Choose a service"
         role="navigation"
       >
+        {/* Fallboard (key cover) */}
+        <motion.div
+          className="h-2 rounded-t-sm overflow-hidden"
+          initial={reducedMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          style={{
+            background: "linear-gradient(180deg, hsl(30 8% 14%) 0%, hsl(var(--charcoal)) 100%)",
+          }}
+          aria-hidden="true"
+        />
         <div className="relative flex gap-3" style={{ height: "420px" }}>
           {/* Left white key */}
           <PianoKeyCard

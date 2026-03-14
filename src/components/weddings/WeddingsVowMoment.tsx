@@ -29,7 +29,7 @@ export function WeddingsVowMoment() {
           <span className={cn("block transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
             Every vow spoken
           </span>
-          <span className={cn("relative inline-block transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")} style={{ transitionDelay: isVisible ? "400ms" : "0ms" }}>
+          <span className={cn("relative inline-block transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")} style={{ transitionDelay: isVisible ? "500ms" : "0ms" }}>
             <span className="relative z-10">becomes sacred</span>
             <span
               className={cn("absolute -bottom-2 left-0 right-0 h-[1px] rounded-full origin-center transition-transform", isVisible ? "scale-x-100" : "scale-x-0")}

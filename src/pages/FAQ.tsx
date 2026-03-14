@@ -29,12 +29,13 @@ const faqs: { q: string; a: string; cat: Category }[] = [
 
 const categories: Category[] = ["All", "Ceremony", "Logistics", "Pricing"];
 
-function AccordionItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void }) {
+function AccordionItem({ faq, isOpen, onToggle, onKeyNav }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void; onKeyNav: (e: React.KeyboardEvent) => void }) {
   return (
     <div className="py-fitz-5 border-b border-lines/30">
       <button
         onClick={onToggle}
-        className="w-full font-display text-lg text-left flex justify-between items-center text-foreground"
+        onKeyDown={onKeyNav}
+        className="w-full font-display text-lg text-left flex justify-between items-center text-foreground accordion-trigger"
         aria-expanded={isOpen}
       >
         {faq.q}

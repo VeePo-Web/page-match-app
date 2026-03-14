@@ -37,7 +37,7 @@ export default function Listen() {
               {movements.map((m, i) => (
                 <RevealOnScroll key={m.number} variant="up" delay={i * 100}>
                   <div className="flex gap-fitz-5 items-start group">
-                    <span className="font-display text-[36px] font-light text-primary/40 leading-none shrink-0 w-12 text-right">
+                    <span className="font-display text-[36px] font-light text-gold/40 leading-none shrink-0 w-12 text-right">
                       {m.number}
                     </span>
                     <div className="border-l border-primary/10 pl-fitz-5">

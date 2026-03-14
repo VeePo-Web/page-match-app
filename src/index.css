@@ -1,75 +1,115 @@
-/* Fonts loaded via <link> in index.html for non-blocking render */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Lenis smooth scroll */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 @layer base {
   :root {
-    /* Hickory & Rose — Refined Rustic Elegance */
+    /* Sacred Sound — Charcoal/Gold/Green */
+    --rich-black: 240 9% 4%;
+    --ebon-charcoal: 222 10% 7%;
+    --deep-graphite: 218 11% 11%;
+    --slate-smoke: 216 10% 19%;
+    --mist-grey: 214 9% 67%;
+    --porcelain: 210 17% 95%;
+    --absolute-white: 0 0% 100%;
+
+    --vow-yellow: 45 100% 76%;
+    --vine-green: 88 76% 62%;
+    --flame-core: 39 100% 60%;
+
+    --success: 142 71% 45%;
+    --error: 0 84% 60%;
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-default: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Semantic — Life theme default */
     --background: 40 20% 98%;
     --foreground: 30 18% 16%;
-
     --card: 40 30% 95%;
-    --card-foreground: 30 15% 20%;
-
-    --popover: 40 20% 98%;
-    --popover-foreground: 30 15% 20%;
-
-    --primary: 140 25% 35%;
-    --primary-foreground: 40 20% 98%;
-
-    --secondary: 140 25% 90%;
-    --secondary-foreground: 140 25% 35%;
-
-    --muted: 140 15% 96%;
-    --muted-foreground: 30 12% 32%;
-
-    --accent: 180 25% 35%;
-    --accent-foreground: 40 20% 98%;
-
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-
+    --card-foreground: 30 18% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 18% 16%;
+    --primary: var(--vow-yellow);
+    --primary-foreground: 30 18% 16%;
+    --secondary: 40 20% 93%;
+    --secondary-foreground: 30 18% 16%;
+    --muted: 40 15% 92%;
+    --muted-foreground: 30 12% 42%;
+    --accent: var(--vine-green);
+    --accent-foreground: 30 18% 16%;
+    --destructive: var(--error);
+    --destructive-foreground: var(--absolute-white);
     --border: 35 20% 88%;
     --input: 35 20% 88%;
-    --ring: 140 25% 35%;
+    --ring: var(--vow-yellow);
+    --radius: 0.5rem;
 
-    --radius: 0.25rem;
+    /* Surface / Ink */
+    --surface-dark-band: var(--rich-black);
+    --ink-primary: 30 18% 16%;
+    --ink-soft: 30 12% 42%;
+    --ink-inverse: var(--absolute-white);
+    --lines: 35 20% 88%;
+    --lines-soft: 40 15% 92%;
+    --keyline: 45 100% 76% / 0.35;
 
-    /* Brand-specific extended tokens */
-    --sage-deep: 140 25% 35%;
-    --sage: 140 20% 45%;
-    --sage-light: 140 25% 90%;
-    --sage-mist: 140 15% 96%;
-    --cream: 40 30% 95%;
-    --cream-dark: 35 20% 88%;
-    --warm-white: 40 20% 98%;
-    --text-primary: 30 15% 20%;
-    --text-secondary: 30 12% 32%;
-    --text-tertiary: 30 10% 42%;
-    --text-decorative: 30 10% 45%;
-    --text-ghost: 30 8% 55%;
-    --teal: 180 25% 35%;
-    --teal-light: 180 20% 90%;
-    --gold: 40 50% 55%;
+    /* Shadows */
+    --shadow-card: 0 6px 30px hsl(0 0% 0% / 0.35);
+    --shadow-cta: 0 8px 24px hsl(var(--vow-yellow) / 0.18);
+
+    /* Easing */
+    --ease-sacred: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --ease-exhale: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Font */
+    --font-display: "Cormorant Garamond", "Times New Roman", serif;
+    --font-sans: "Inter", system-ui, sans-serif;
+
+    /* Font Scale */
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-lg: 1.125rem;
+    --fs-h4: 1.375rem;
+    --fs-h3: 1.75rem;
+    --fs-h2: 2.5rem;
+    --fs-h1: 4rem;
+
+    /* Fitzgerald Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 40px;
+    --space-8: 56px;
+    --space-9: 80px;
+    --space-10: 120px;
+
+    /* Animation */
+    --duration-fast: 400ms;
+    --duration-default: 600ms;
+    --duration-slow: 900ms;
+    --duration-stagger: 80ms;
+    --reveal-distance-y: 24px;
+    --reveal-scale: 0.96;
+    --reveal-blur: 8px;
+
+    /* Hero */
+    --hero-space-edge: clamp(24px, 4vw, 48px);
+
+    --color-ink-soft: hsl(var(--muted-foreground));
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -81,245 +121,268 @@ html.lenis, html.lenis body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    /* Hickory & Rose is a warm brand — dark mode mirrors light for brand consistency */
-    --background: 30 10% 10%;
-    --foreground: 40 20% 92%;
+  /* Death theme */
+  .dark,
+  [data-theme="death"] {
+    --background: var(--rich-black);
+    --foreground: var(--absolute-white);
+    --card: var(--ebon-charcoal);
+    --card-foreground: var(--absolute-white);
+    --popover: var(--ebon-charcoal);
+    --popover-foreground: var(--absolute-white);
+    --primary: var(--vow-yellow);
+    --primary-foreground: var(--rich-black);
+    --secondary: var(--deep-graphite);
+    --secondary-foreground: var(--absolute-white);
+    --muted: var(--deep-graphite);
+    --muted-foreground: var(--mist-grey);
+    --accent: var(--vine-green);
+    --accent-foreground: var(--rich-black);
+    --destructive: var(--error);
+    --destructive-foreground: var(--absolute-white);
+    --border: var(--slate-smoke);
+    --input: var(--slate-smoke);
+    --ink-primary: var(--absolute-white);
+    --ink-soft: var(--mist-grey);
+    --ink-inverse: var(--rich-black);
+    --lines: var(--slate-smoke);
+    --lines-soft: var(--deep-graphite);
+  }
 
-    --card: 30 10% 14%;
-    --card-foreground: 40 20% 92%;
-
-    --popover: 30 10% 12%;
-    --popover-foreground: 40 20% 92%;
-
-    --primary: 140 25% 55%;
-    --primary-foreground: 30 10% 10%;
-
-    --secondary: 140 15% 20%;
-    --secondary-foreground: 140 25% 80%;
-
-    --muted: 30 10% 18%;
-    --muted-foreground: 30 12% 68%;
-
-    --accent: 180 20% 45%;
-    --accent-foreground: 30 10% 10%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 30 10% 22%;
-    --input: 30 10% 22%;
-    --ring: 140 25% 55%;
-
-    --sage-deep: 140 25% 55%;
-    --sage: 140 20% 50%;
-    --sage-light: 140 15% 20%;
-    --sage-mist: 140 10% 14%;
-    --cream: 40 15% 16%;
-    --cream-dark: 35 10% 22%;
-    --warm-white: 30 10% 10%;
-    --text-primary: 40 20% 92%;
-    --text-secondary: 30 10% 72%;
-    --text-tertiary: 30 10% 58%;
-    --text-decorative: 30 8% 55%;
-    --text-ghost: 30 6% 48%;
-    --teal: 180 20% 45%;
-    --teal-light: 180 10% 18%;
-    --gold: 40 40% 50%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  /* Responsive type */
+  @media (max-width: 767px) {
+    :root {
+      --fs-h1: 2.75rem;
+      --fs-h2: 2rem;
+      --fs-h3: 1.5rem;
+    }
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
   html {
+    scroll-behavior: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 1.7;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: "kern", "liga", "calt";
+    text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4, h5 {
-    font-family: 'Cormorant Garamond', serif;
-    letter-spacing: -0.025em;
-    font-weight: 400;
-    text-wrap: balance;
+  h1, .h1 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h1);
+    line-height: 1.05;
+    font-weight: 600;
+    max-width: 14ch;
+    letter-spacing: -0.02em;
+  }
+
+  h2, .h2 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    line-height: 1.1;
+    font-weight: 500;
+    max-width: 22ch;
+    letter-spacing: -0.01em;
+  }
+
+  h3, .h3 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  h4, .h4 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
+    line-height: 1.25;
+    font-weight: 500;
+  }
+
+  .p-lead {
+    font-family: var(--font-sans);
+    font-size: var(--fs-lg);
+    line-height: 1.7;
+    max-width: 55ch;
   }
 
   p {
-    text-wrap: pretty;
+    font-family: var(--font-sans);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    max-width: 66ch;
+  }
+
+  .overline {
+    font-family: var(--font-sans);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: hsl(var(--primary));
   }
 
   ::selection {
-    background-color: hsl(140 25% 35% / 0.15);
-    color: hsl(30 15% 20%);
+    background-color: hsl(var(--vow-yellow) / 0.2);
+    color: hsl(var(--foreground));
   }
 }
 
 @layer utilities {
-  .font-script {
-    font-family: 'Great Vibes', cursive;
-  }
-  
-  .font-serif-wedding {
-    font-family: 'Cormorant Garamond', serif;
-  }
-  
-  .font-sans-wedding {
-    font-family: 'Jost', sans-serif;
-  }
-
-  .font-overline {
-    font-family: 'Jost', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    line-height: 1.5;
+  /* Film Grain */
+  .grain { position: relative; }
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
   }
 
-  /* Intentional decorative light-weight for large display text or ornamental elements */
-  .font-light-editorial {
-    font-weight: 300;
+  /* Chapter Rule */
+  .chapter-rule {
+    width: 48px;
+    height: 2px;
+    background: hsl(var(--vow-yellow));
+    margin: 0.75rem auto 1.5rem auto;
   }
 
-  /* Editorial drop cap — apply to the first paragraph of a prose section */
-  .drop-cap::first-letter {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 3.5em;
-    line-height: 0.8;
-    float: left;
-    margin-right: 0.08em;
-    margin-top: 0.05em;
-    color: hsl(var(--foreground));
+  /* Section themes */
+  .section--dark {
+    background-color: hsl(var(--surface-dark-band));
+    color: hsl(var(--absolute-white));
   }
 
-  /* Thin editorial rule — horizontal separator */
-  .editorial-rule {
-    width: 3rem;
-    height: 1px;
-    background-color: hsl(var(--primary));
-    border: none;
-    margin: 0;
+  .section--surface {
+    background-color: hsl(var(--card));
   }
 
-  /* Pull-quote with decorative em dash */
-  .pull-quote-dashes::before,
-  .pull-quote-dashes::after {
-    content: '—';
-    display: inline-block;
-    margin: 0 0.35em;
-    opacity: 0.3;
-  }
-
-  /* Gold shimmer for editorial accents */
-  @keyframes shimmer-gold {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  .shimmer-gold {
-    background: linear-gradient(
-      90deg,
-      hsl(var(--primary)) 0%,
-      hsl(var(--gold)) 50%,
-      hsl(var(--primary)) 100%
-    );
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer-gold 4s ease-in-out infinite;
-  }
-
-  /* Shimmer sweep for accordion open state */
-  @keyframes shimmer-sweep {
-    0% { transform: translateX(-100%); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translateX(200%); opacity: 0; }
-  }
-
-  /* Gold underline focus effect for Inquire form inputs */
-  .input-gold-focus {
+  /* Story Link */
+  .story-link {
     position: relative;
+    display: inline-block;
   }
-  .input-gold-focus::after {
+  .story-link::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--gold)), hsl(var(--primary)));
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--primary));
     transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform-origin: right;
+    transition: transform 180ms var(--ease-sacred);
   }
-  .input-gold-focus:focus-within::after {
+  .story-link:hover::after {
     transform: scaleX(1);
+    transform-origin: left;
   }
 
-  /* Cinematic film grain texture overlay — apply to hero sections for editorial depth */
-  .grain-overlay {
-    position: relative;
+  /* Reveal system */
+  .reveal {
+    opacity: 0;
+    will-change: opacity, transform;
   }
-  .grain-overlay::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    pointer-events: none;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-size: 128px 128px;
-    mix-blend-mode: overlay;
+  .reveal.is-visible {
+    animation-fill-mode: both;
+    animation-timing-function: var(--ease-out-expo);
+  }
+  .reveal--up.is-visible {
+    animation-name: reveal-up;
+    animation-duration: var(--duration-default);
+    animation-fill-mode: both;
+    animation-delay: var(--animation-delay, 0ms);
+  }
+  .reveal--scale.is-visible {
+    animation-name: reveal-scale;
+    animation-duration: var(--duration-default);
+    animation-fill-mode: both;
+    animation-delay: var(--animation-delay, 0ms);
+  }
+  .reveal--blur.is-visible {
+    animation-name: reveal-blur;
+    animation-duration: var(--duration-slow);
+    animation-fill-mode: both;
+    animation-delay: var(--animation-delay, 0ms);
   }
 
-  /* Subtle vignette for cinematic hero sections */
-  .vignette::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 4;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%);
-  }
+  /* Stagger */
+  .stagger-reveal > .reveal:nth-child(1) { --animation-delay: 0ms; }
+  .stagger-reveal > .reveal:nth-child(2) { --animation-delay: 80ms; }
+  .stagger-reveal > .reveal:nth-child(3) { --animation-delay: 160ms; }
+  .stagger-reveal > .reveal:nth-child(4) { --animation-delay: 240ms; }
+  .stagger-reveal > .reveal:nth-child(5) { --animation-delay: 320ms; }
+  .stagger-reveal > .reveal:nth-child(6) { --animation-delay: 400ms; }
 }
 
-/* Breathing diamond — CSS-only infinite animations (off JS thread) */
-@keyframes breathing-glow {
-  0%, 100% { opacity: 0.3; transform: scale(0.85); }
-  50% { opacity: 0.7; transform: scale(1.15); }
+/* Keyframes */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(var(--reveal-distance-y)); }
+  to { opacity: 1; transform: translateY(0); }
 }
-@keyframes breathing-scale {
-  0%, 100% { opacity: 0.6; transform: rotate(45deg) scale(0.9); }
-  50% { opacity: 1; transform: rotate(45deg) scale(1.1); }
+@keyframes reveal-scale {
+  from { opacity: 0; transform: scale(var(--reveal-scale)) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes reveal-blur {
+  from { opacity: 0; filter: blur(var(--reveal-blur)); transform: translateY(16px); }
+  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes ken-burns {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.06) translate(-1%, -0.5%); }
+  100% { transform: scale(1) translate(0, 0); }
 }
 
-/* Ambient floating bokeh particles */
-@keyframes float-particle {
-  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-  20% { opacity: var(--particle-opacity, 0.04); }
-  80% { opacity: var(--particle-opacity, 0.04); }
-  50% { transform: translateY(-40px) translateX(8px); }
+/* Page transition */
+.page-transition-content {
+  transition: opacity 350ms var(--ease-sacred), filter 350ms var(--ease-sacred);
 }
+.page-transition-content--exit {
+  opacity: 0;
+  filter: blur(4px);
+}
+.page-transition-content--enter {
+  animation: fade-in 450ms var(--ease-sacred) both;
+}
+.page-transition-content--idle {
+  opacity: 1;
+  filter: none;
+}
+
+/* Threshold transition line */
+.threshold-line {
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, transparent, hsl(var(--vow-yellow) / 0.6), transparent);
+  transition: width 350ms var(--ease-sacred);
+}
+.threshold-line--expand { width: 60%; }
+.threshold-line--contract { width: 0; }
+.threshold-semicolon {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: hsl(var(--vow-yellow));
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.threshold-semicolon--in { opacity: 1; }
+.threshold-semicolon--out { opacity: 0; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -328,4 +391,5 @@ html.lenis, html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .reveal { opacity: 1; transform: none; filter: none; }
 }

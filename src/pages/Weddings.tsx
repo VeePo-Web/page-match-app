@@ -44,7 +44,7 @@ export default function Weddings() {
       <ScrollProgress />
       <MinimalHeader />
       <PianoKeyNav sections={pianoSections} />
-      <main>
+      <main id="main-content">
         <WeddingsHero />
         <Suspense fallback={<SectionFallback />}>
           <WeddingsExhale />

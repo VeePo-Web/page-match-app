@@ -7,6 +7,7 @@ import { CredentialStrip } from "@/components/CredentialStrip";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type Category = "All" | "Ceremony" | "Logistics" | "Pricing";
 
@@ -73,7 +74,7 @@ export default function FAQ() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
+      <main id="main-content">
         <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" />
 
         <Section>
@@ -119,9 +120,9 @@ export default function FAQ() {
           <div className="max-w-2xl mx-auto text-center mt-fitz-7">
             <RevealOnScroll>
               <p className="text-muted-foreground">Still have questions?</p>
-              <a href="/contact" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.18em] uppercase text-primary story-link">
+              <Link to="/contact" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.18em] uppercase text-primary story-link">
                 Get in touch
-              </a>
+              </Link>
             </RevealOnScroll>
           </div>
         </Section>

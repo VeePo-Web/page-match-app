@@ -18,7 +18,7 @@ export default function About() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
+      <main id="main-content">
         <HeroStrip title="The witness behind the keys." subtitle="About" height="h-[60vh]" />
 
         {/* Origin story — asymmetric */}

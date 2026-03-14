@@ -38,7 +38,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
+      <main id="main-content">
         <HeroStrip title="Tell me your story." subtitle="Get in Touch" height="h-[40vh]" />
         <Section>
           <ContactWizard steps={generalSteps} ctaLabel="Send Message" />

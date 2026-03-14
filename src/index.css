@@ -16,6 +16,7 @@ html.lenis, html.lenis body { height: auto; }
     --sage-light: 148 18% 92%;
     --cream: 40 30% 95%;
     --gold: 40 45% 52%;
+    --gold-text: 40 45% 38%;
     --gold-light: 40 50% 72%;
     --warm-white: 40 20% 98%;
     --charcoal: 30 8% 18%;
@@ -237,7 +238,14 @@ html.lenis, html.lenis body { height: auto; }
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-weight: 400;
-    color: hsl(var(--gold));
+    color: hsl(var(--gold-text));
+  }
+
+  /* Focus visible — global keyboard accessibility */
+  :focus-visible {
+    outline: 2px solid hsl(var(--gold));
+    outline-offset: 2px;
+  }
   }
 
   ::selection {
@@ -310,7 +318,6 @@ html.lenis, html.lenis body { height: auto; }
   /* Reveal system */
   .reveal {
     opacity: 0;
-    will-change: opacity, transform;
   }
   .reveal.is-visible {
     animation-fill-mode: both;

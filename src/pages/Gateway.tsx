@@ -83,7 +83,7 @@ export default function Gateway() {
   });
 
   return (
-    <main className="min-h-screen w-screen overflow-hidden bg-background flex flex-col items-center py-12 md:py-0 md:justify-center relative" aria-label="Choose your path">
+    <main id="main-content" className="min-h-screen w-screen overflow-hidden bg-background flex flex-col items-center py-12 md:py-0 md:justify-center relative" aria-label="Choose your path">
       {/* Watermark monogram */}
       <div
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"

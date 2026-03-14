@@ -35,7 +35,7 @@ export default function Proof() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
+      <main id="main-content">
         <HeroStrip
           title="The details that protect your moment."
           subtitle="Proof of Craft"

@@ -9,7 +9,7 @@ function LegalPage({ title, description, children }: { title: string; descriptio
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
+      <main id="main-content">
         <HeroStrip title={title} height="h-[35vh]" />
         <Section>
           <div className="max-w-2xl mx-auto text-muted-foreground space-y-fitz-5">

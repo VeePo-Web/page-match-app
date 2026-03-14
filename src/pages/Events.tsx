@@ -35,7 +35,7 @@ export default function Events() {
       <MinimalHeader />
       <PianoKeyNav sections={pianoSections} />
 
-      <main>
+      <main id="main-content">
         <HeroStrip
           title="Live piano for moments that demand presence."
           subtitle="Live Events"

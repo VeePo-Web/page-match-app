@@ -76,15 +76,7 @@ export function MinimalHeader() {
           transform: isHeaderHidden ? 'translateY(-100%)' : 'translateY(0)',
         }}
       >
-        {/* Gold scroll progress */}
-        {isScrolled && (
-          <div className="absolute bottom-0 left-0 right-0 h-[1px]">
-            <div
-              className="h-full bg-gold/40 transition-[width] duration-100"
-              style={{ width: `${typeof window !== 'undefined' ? Math.min((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100, 100) : 0}%` }}
-            />
-          </div>
-        )}
+        {/* Gold scroll progress handled by ScrollProgress component */}
 
         <div className="flex items-center h-full px-[var(--hero-space-edge,24px)] md:px-[var(--hero-space-edge,48px)] py-5 relative justify-between">
           {/* Logo */}
@@ -115,9 +107,9 @@ export function MinimalHeader() {
 
           {/* CTA + Menu */}
           <div className="flex items-center gap-4">
-            {pathname !== '/contact' && (
+            {pathname !== '/contact' && !pathname.endsWith('/contact') && (
               <Link
-                to="/contact"
+                to={pathname.startsWith('/weddings') ? '/weddings/contact' : pathname.startsWith('/teaching') ? '/teaching/contact' : pathname.startsWith('/events') ? '/events/contact' : '/contact'}
                 className="hidden md:inline-flex items-center px-5 py-2 text-sm font-sans tracking-[0.06em] uppercase bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms]"
               >
                 {ctaLabel}
@@ -139,6 +131,9 @@ export function MinimalHeader() {
         {isMenuOpen && (
           <motion.div
             className="fixed inset-0 z-[55] bg-background flex flex-col items-center justify-center gap-8"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

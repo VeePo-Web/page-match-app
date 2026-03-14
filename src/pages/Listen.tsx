@@ -50,7 +50,7 @@ export default function Listen() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
+      <main id="main-content">
         <HeroStrip
           title="Hear the ceremony."
           subtitle="The Listening Room"

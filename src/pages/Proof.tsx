@@ -6,6 +6,7 @@ import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { Link } from "react-router-dom";
 
 const proofs = [
   {

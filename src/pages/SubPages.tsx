@@ -4,6 +4,8 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { BackToTop } from "@/components/BackToTop";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { ContactWizard } from "@/components/contact/ContactWizard";

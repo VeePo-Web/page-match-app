@@ -7,7 +7,6 @@ export function MobileStickyBar() {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Hide on gateway and contact pages
   const hidden = pathname === "/" || pathname.endsWith("/contact");
 
   useEffect(() => {
@@ -43,19 +42,19 @@ export function MobileStickyBar() {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       )}
     >
-      {/* Golden progress thread */}
-      <div className="h-[2px] w-full bg-muted/20">
+      {/* Gold progress thread */}
+      <div className="h-[1px] w-full bg-muted/20">
         <div
-          className="h-full bg-primary transition-[width] duration-100"
+          className="h-full bg-gold/50 transition-[width] duration-100"
           style={{ width: `${scrollProgress * 100}%` }}
         />
       </div>
 
       {/* Bar */}
-      <div className="bg-card/95 backdrop-blur-md border-t border-lines/30 px-fitz-4 py-fitz-3 safe-area-bottom">
+      <div className="bg-background/95 backdrop-blur-md border-t border-lines/30 px-fitz-4 py-fitz-3 safe-area-bottom">
         <Link
           to={ctaHref}
-          className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta text-sm uppercase tracking-[0.18em] font-sans"
+          className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta text-sm uppercase tracking-[0.12em] font-sans font-normal"
         >
           {ctaLabel}
         </Link>

@@ -22,9 +22,9 @@ export function Section({ children, dark = false, id, className, backgroundImage
       data-theme={dark ? "death" : undefined}
     >
       {/* Layer 0: Background */}
-      <div className="absolute inset-0" style={{ background: dark ? "hsl(var(--rich-black))" : "hsl(var(--card))" }} aria-hidden="true" />
+      <div className="absolute inset-0" style={{ background: dark ? "hsl(var(--sage-deep))" : "hsl(var(--cream))" }} aria-hidden="true" />
 
-      {/* Layer 1: Ken Burns background image */}
+      {/* Layer 1: Background image */}
       {backgroundImage && (
         <div
           className="absolute inset-0 z-[0]"
@@ -32,8 +32,8 @@ export function Section({ children, dark = false, id, className, backgroundImage
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: dark ? 0.08 : 0.06,
-            filter: "brightness(0.75) contrast(1.08) saturate(0.9)",
+            opacity: dark ? 0.06 : 0.04,
+            filter: "brightness(0.8) contrast(1.05) saturate(0.85)",
             animation: "ken-burns 30s ease-in-out infinite alternate",
             willChange: "transform",
           }}
@@ -41,49 +41,36 @@ export function Section({ children, dark = false, id, className, backgroundImage
         />
       )}
 
-      {/* Layer 2: Film grain */}
-      <div
-        className="grain pointer-events-none absolute inset-0 z-[1]"
-        style={{ opacity: dark ? 0.08 : 0.03 }}
-        aria-hidden="true"
-      />
-
-      {/* Layer 2b: Warm fog (dark sections only) */}
+      {/* Layer 2: Subtle grain on dark sections only */}
       {dark && (
         <div
-          className="pointer-events-none absolute inset-0 z-[1]"
-          style={{
-            background: "radial-gradient(ellipse at 50% 60%, hsl(var(--vow-yellow) / 0.02), transparent 70%)",
-          }}
+          className="grain pointer-events-none absolute inset-0 z-[1]"
+          style={{ opacity: 0.04 }}
           aria-hidden="true"
         />
       )}
 
-      {/* Layer 3: Vignette */}
-      <div
-        className="pointer-events-none absolute inset-0 z-[1]"
-        style={{
-          background: dark
-            ? "radial-gradient(ellipse at center, transparent 30%, hsl(var(--rich-black) / 0.7) 100%)"
-            : "radial-gradient(ellipse at center, transparent 50%, hsl(var(--card) / 0.4) 100%)",
-        }}
-        aria-hidden="true"
-      />
+      {/* Layer 3: Vignette — dark sections only */}
+      {dark && (
+        <div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 40%, hsl(var(--sage-deep) / 0.6) 100%)",
+          }}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Layer 4: Content */}
       <div
         className={cn(
           "relative z-[2] transition-all duration-700",
           !noPadding && "container mx-auto px-fitz-4 md:px-fitz-6 py-fitz-9 md:py-fitz-10",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}
       >
         {children}
       </div>
-
-      {/* Layer 5: Section fade edges */}
-      <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 z-[3]" style={{ background: `linear-gradient(to bottom, ${dark ? "hsl(var(--rich-black))" : "hsl(var(--background))"}, transparent)` }} aria-hidden="true" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 z-[3]" style={{ background: `linear-gradient(to top, ${dark ? "hsl(var(--rich-black))" : "hsl(var(--background))"}, transparent)` }} aria-hidden="true" />
     </section>
   );
 }

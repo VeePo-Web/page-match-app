@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
+import { Link } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import heroWeddings from "@/assets/hero-weddings.jpg";

@@ -40,6 +40,7 @@ export default function Proof() {
           title="The details that protect your moment."
           subtitle="Proof of Craft"
           height="h-[50vh]"
+          showScrollCue
         />
 
         <Section dark>

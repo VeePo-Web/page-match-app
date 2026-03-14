@@ -1,23 +1,35 @@
 import heroWeddings from "@/assets/hero-weddings.jpg";
 import { GoldFrame } from "@/components/GoldFrame";
-import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function WeddingsHero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.6], ["0%", "15%"]);
+  const watermarkY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden" data-theme="death">
+    <section ref={sectionRef} id="hero" className="relative h-screen flex items-center justify-center overflow-hidden" data-theme="death">
       {/* Background */}
       <div className="absolute inset-0 bg-sage-deep" />
 
-      {/* Ken Burns image */}
-      <div
+      {/* Parallax image */}
+      <motion.div
         className="absolute inset-0"
         style={{
+          y: imageY,
           backgroundImage: `url(${heroWeddings})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.12,
           filter: "brightness(0.7) contrast(1.08) saturate(0.8)",
-          animation: "ken-burns 30s ease-in-out infinite alternate",
           willChange: "transform",
         }}
         aria-hidden="true"
@@ -33,38 +45,60 @@ export function WeddingsHero() {
         aria-hidden="true"
       />
 
+      {/* Watermark */}
+      <motion.div
+        className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none select-none"
+        style={{ y: watermarkY }}
+        aria-hidden="true"
+      >
+        <span className="font-display text-[14vw] md:text-[10vw] font-light tracking-tight uppercase" style={{ color: "hsl(var(--warm-white) / 0.03)" }}>
+          Vows
+        </span>
+      </motion.div>
+
       {/* Gold frame */}
       <GoldFrame />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-        <p
-          className="overline mb-fitz-5 opacity-0 animate-fade-in"
-          style={{ animationDelay: "600ms", animationFillMode: "forwards" }}
+      <motion.div
+        className="relative z-10 text-center px-6 max-w-3xl mx-auto"
+        style={{ opacity: contentOpacity, y: contentY }}
+      >
+        <motion.p
+          className="overline mb-fitz-5"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
         >
           Wedding Pianist
-        </p>
-        <h1
-          className="text-foreground mx-auto opacity-0 animate-fade-in"
-          style={{ animationDelay: "900ms", animationFillMode: "forwards" }}
+        </motion.p>
+        <motion.h1
+          className="text-foreground mx-auto"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
         >
           I carry your vows so they can carry your guests.
-        </h1>
-        <div
-          className="mt-fitz-5 opacity-0 animate-fade-in"
-          style={{ animationDelay: "1200ms", animationFillMode: "forwards" }}
+        </motion.h1>
+        <motion.div
+          className="mt-fitz-5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.2, ease: [0.22, 0.61, 0.36, 1] }}
         >
           <div className="editorial-rule" />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll cue */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in"
-        style={{ animationDelay: "1600ms", animationFillMode: "forwards" }}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1.6 }}
       >
         <div className="w-[1px] h-8 bg-gold/25 mx-auto animate-pulse" />
-      </div>
+      </motion.div>
 
       <span className="sr-only">
         Parker Gawryletz, wedding pianist serving Calgary to Banff.

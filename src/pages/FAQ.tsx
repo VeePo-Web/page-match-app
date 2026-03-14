@@ -64,9 +64,13 @@ function AccordionItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen:
 }
 
 export default function FAQ() {
+  const { pathname } = useLocation();
+
   usePageMeta({
     title: "FAQ — Parker Gawryletz | Wedding Pianist",
     description: "Common questions about wedding piano services, booking, pricing, and logistics. Calgary to Banff.",
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   const [active, setActive] = useState<Category>("All");
@@ -76,7 +80,9 @@ export default function FAQ() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
+      <BackToTop />
       <main id="main-content">
         <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" />
 

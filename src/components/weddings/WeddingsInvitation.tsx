@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -22,7 +22,6 @@ export function WeddingsInvitation() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const section = sectionElRef.current;
     if (!section) return;
-
     const onScroll = () => {
       if (rafRef.current) return;
       rafRef.current = requestAnimationFrame(() => {
@@ -31,33 +30,25 @@ export function WeddingsInvitation() {
         const vh = window.innerHeight;
         const progress = Math.max(0, Math.min(1, (vh - rect.top) / (rect.height + vh)));
         if (imageColRef.current) {
-          imageColRef.current.style.transform = `translateY(${(progress - 0.5) * 24}px)`;
+          imageColRef.current.style.transform = `translateY(${(progress - 0.5) * 20}px)`;
         }
       });
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
+    return () => { window.removeEventListener("scroll", onScroll); if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, []);
 
   return (
     <section
       id="invitation"
       ref={setCombinedRef}
-      className="invitation-texture relative py-fitz-9 md:py-fitz-10 overflow-hidden"
-      style={{ background: "hsl(var(--card))" }}
+      className="relative py-fitz-9 md:py-fitz-10 overflow-hidden"
+      data-theme="death"
+      style={{ background: "hsl(var(--sage-deep))" }}
       aria-labelledby="invitation-heading"
     >
-      <span className="sr-only">Parker's personal invitation — he plays only five weddings a year and devotes months of preparation to each one.</span>
-
-      {/* Warm glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 50% at 50% 55%, hsl(var(--vow-yellow) / 0.06) 0%, transparent 70%)" }} aria-hidden="true" />
-
-      {/* Film grain */}
-      <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.03 }} aria-hidden="true" />
+      {/* Grain */}
+      <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.04 }} aria-hidden="true" />
 
       <div className="container mx-auto px-fitz-4 md:px-fitz-6 relative z-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-20 items-center">
@@ -67,11 +58,11 @@ export function WeddingsInvitation() {
             className={cn("transition-all duration-[900ms]", isVisible ? "opacity-100" : "opacity-0 translate-y-6")}
             style={{ transitionDelay: isVisible ? "300ms" : "0ms", willChange: "transform" }}
           >
-            <div className="aspect-[3/4] overflow-hidden relative rounded-sm" style={{ border: "1px solid hsl(var(--vow-yellow) / 0.12)", boxShadow: "0 20px 60px -12px hsl(30 10% 10% / 0.08)" }}>
+            <div className="aspect-[3/4] overflow-hidden relative rounded-sm" style={{ border: "1px solid hsl(var(--gold) / 0.15)", boxShadow: "0 20px 60px -12px hsl(var(--sage-deep) / 0.3)" }}>
               <img
                 src={invitationPortrait}
                 alt="Grand piano keys stretching into soft bokeh with a single candle flame reflected in polished black lacquer"
-                className="w-full h-full object-cover invitation-ken-burns"
+                className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
@@ -80,7 +71,7 @@ export function WeddingsInvitation() {
 
           {/* Right: Copy */}
           <div className="text-center md:text-left">
-            <p className={cn("text-xs uppercase tracking-[0.22em] text-muted-foreground mb-8 transition-all duration-500", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
+            <p className={cn("overline mb-8 transition-all duration-500", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
               The Invitation
             </p>
 
@@ -91,10 +82,10 @@ export function WeddingsInvitation() {
               "You deserve someone who has stood where you are about to stand — and knows what it takes."
             </p>
 
-            {/* Breathing golden rule */}
+            {/* Gold rule */}
             <span
-              className={cn("block w-12 h-px my-10 transition-all duration-500 mx-auto md:mx-0", isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0")}
-              style={{ background: "hsl(var(--vow-yellow) / 0.35)", transitionDelay: isVisible ? "200ms" : "0ms", transformOrigin: "left", animation: isVisible ? "invitation-rule-breathe 4s ease-in-out infinite" : "none" }}
+              className={cn("block w-12 h-px my-10 mx-auto md:mx-0 transition-all duration-500", isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0")}
+              style={{ background: "hsl(var(--gold) / 0.4)", transitionDelay: isVisible ? "200ms" : "0ms", transformOrigin: "left" }}
               aria-hidden="true"
             />
 
@@ -107,8 +98,8 @@ export function WeddingsInvitation() {
               <span className="relative inline-block italic">
                 Yours
                 <span
-                  className={cn("absolute bottom-0 left-0 h-[2px] bg-vow-yellow origin-left transition-all duration-700", isVisible ? "scale-x-100" : "scale-x-0")}
-                  style={{ transitionDelay: isVisible ? "1000ms" : "0ms", transitionTimingFunction: "cubic-bezier(0.22, 0.61, 0.36, 1)", width: "100%", boxShadow: isVisible ? "0 0 8px hsl(var(--vow-yellow) / 0.3)" : "none" }}
+                  className={cn("absolute bottom-0 left-0 h-[1px] bg-gold origin-left transition-all duration-700", isVisible ? "scale-x-100" : "scale-x-0")}
+                  style={{ transitionDelay: isVisible ? "1000ms" : "0ms", transitionTimingFunction: "cubic-bezier(0.22, 0.61, 0.36, 1)", width: "100%" }}
                 />
               </span>{" "}
               could be one of them.
@@ -123,20 +114,17 @@ export function WeddingsInvitation() {
             </p>
 
             <div className={cn("mt-10 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")} style={{ transitionDelay: isVisible ? "800ms" : "0ms" }}>
-              <Link to="/about" className="inline-flex items-center text-sm tracking-[0.18em] uppercase text-primary story-link">
+              <Link to="/about" className="inline-flex items-center text-sm tracking-[0.16em] uppercase story-link" style={{ color: "hsl(var(--gold))" }}>
                 Hear my story
               </Link>
             </div>
 
-            <p className={cn("text-xs uppercase tracking-[0.22em] text-muted-foreground mt-10 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")} style={{ transitionDelay: isVisible ? "900ms" : "0ms" }}>
-              500+ events <span className="text-primary opacity-30">·</span> SOCAN licensed <span className="text-primary opacity-30">·</span> $4M insured
+            <p className={cn("text-xs uppercase tracking-[0.2em] text-muted-foreground mt-10 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")} style={{ transitionDelay: isVisible ? "900ms" : "0ms" }}>
+              500+ events <span className="opacity-30">·</span> SOCAN licensed <span className="opacity-30">·</span> $4M insured
             </p>
           </div>
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] z-[3]" style={{ background: "linear-gradient(to bottom, transparent, hsl(var(--background)))" }} aria-hidden="true" />
     </section>
   );
 }

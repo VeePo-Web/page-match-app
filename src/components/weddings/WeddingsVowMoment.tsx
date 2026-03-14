@@ -25,7 +25,7 @@ export function WeddingsVowMoment() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <blockquote className="text-[clamp(42px,5.5vw,64px)] font-display font-light italic leading-[1.2] text-foreground">
+        <blockquote className="text-[clamp(36px,5vw,58px)] font-display font-light italic leading-[1.2] text-foreground" style={{ textWrap: "balance" }}>
           <span className={cn("block transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
             Every vow spoken
           </span>

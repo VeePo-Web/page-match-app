@@ -233,12 +233,13 @@ function MobileBlackKey({
           minHeight: "140px",
         }}
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
+        <img
+          src={service.image}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           style={{
-            backgroundImage: `url(${service.image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             opacity: 0.1,
             filter: "brightness(0.8) contrast(1.05) saturate(0.6)",
           }}

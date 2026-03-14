@@ -40,7 +40,8 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
   }, [setupObserver]);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id)?.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
   };
 
   return (

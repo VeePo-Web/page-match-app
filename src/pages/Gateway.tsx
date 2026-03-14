@@ -416,17 +416,21 @@ export default function Gateway() {
         aria-label="Choose a service"
         role="navigation"
       >
-        <PianoKeyCard
-          service={whiteKeys[0]}
-          index={0}
-          reducedMotion={reducedMotion}
-        />
+        <div className="mx-4 min-h-[160px]">
+          <PianoKeyCard
+            service={whiteKeys[0]}
+            index={0}
+            reducedMotion={reducedMotion}
+          />
+        </div>
         <MobileBlackKey service={blackKey} reducedMotion={reducedMotion} />
-        <PianoKeyCard
-          service={whiteKeys[1]}
-          index={2}
-          reducedMotion={reducedMotion}
-        />
+        <div className="mx-4 min-h-[160px]">
+          <PianoKeyCard
+            service={whiteKeys[1]}
+            index={2}
+            reducedMotion={reducedMotion}
+          />
+        </div>
 
         {/* Mobile shelf */}
         <div className="mx-6 mt-1">

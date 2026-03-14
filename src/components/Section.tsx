@@ -104,7 +104,8 @@ export function Section({ children, dark = false, id, className, backgroundImage
         className={cn(
           "relative z-[2] transition-all duration-700",
           !noPadding && "container mx-auto px-fitz-4 md:px-fitz-6 py-fitz-9 md:py-fitz-10",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+          stagger && "stagger-reveal"
         )}
       >
         {children}

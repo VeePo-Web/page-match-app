@@ -172,7 +172,28 @@ export function ContactWizard({
 
       {/* Form */}
       <div className="p-fitz-6 md:p-fitz-7 rounded-md border border-lines/30 bg-card/80 backdrop-blur-sm">
-        <form id="wizard-form" className="space-y-fitz-5" onSubmit={(e) => { e.preventDefault(); handleNext(); }}>
+        <form
+          id="wizard-form"
+          className="space-y-fitz-5"
+          onSubmit={(e) => { e.preventDefault(); handleNext(); }}
+          onKeyDown={(e) => {
+            if (e.key !== "Tab") return;
+            const form = e.currentTarget;
+            const focusable = Array.from(form.querySelectorAll<HTMLElement>(
+              'input, textarea, select, button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            ));
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }}
+        >
           <div ref={stepContentRef} aria-live="polite" aria-atomic="true">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div

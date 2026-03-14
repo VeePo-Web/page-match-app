@@ -369,7 +369,12 @@ export function TeachingAbout() {
       </Section>
 
       <Section>
-        <div className="max-w-2xl mx-auto text-center">
+        <CredentialStrip items={[
+          { stat: "10+", label: "Years Teaching" },
+          { stat: "$60", label: "Per Hour" },
+          { stat: "All Ages", label: "Welcome" },
+        ]} />
+        <div className="max-w-2xl mx-auto text-center mt-fitz-7">
           <RevealOnScroll>
             <Link to="/teaching/contact" className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">Begin the Conversation.</Link>
           </RevealOnScroll>

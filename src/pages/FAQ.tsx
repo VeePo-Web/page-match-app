@@ -7,6 +7,7 @@ import { CredentialStrip } from "@/components/CredentialStrip";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type Category = "All" | "Ceremony" | "Logistics" | "Pricing";
 

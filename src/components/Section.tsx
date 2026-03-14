@@ -15,7 +15,7 @@ interface SectionProps {
   stagger?: boolean;
 }
 
-export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark, glow = false }: SectionProps) {
+export function Section({ children, dark = false, id, className, backgroundImage, noPadding = false, watermark, glow = false, stagger = false }: SectionProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.08 });
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({

@@ -1,20 +1,23 @@
 import { MinimalHeader } from "@/components/MinimalHeader";
 import { Footer } from "@/components/Footer";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { cn } from "@/lib/utils";
+import { Section } from "@/components/Section";
+import { HeroStrip } from "@/components/HeroStrip";
+import { PianoKeyNav } from "@/components/PianoKeyNav";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { RevealOnScroll } from "@/components/animation";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import heroTeaching from "@/assets/hero-teaching.jpg";
 
-function Section({ children, className, dark = false }: { children: React.ReactNode; className?: string; dark?: boolean }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <section ref={ref as React.RefObject<HTMLElement>} className={cn("relative overflow-hidden", dark ? "section--dark" : "", className)} data-theme={dark ? "death" : undefined}>
-      {dark && <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.08 }} aria-hidden="true" />}
-      <div className={cn("container mx-auto px-fitz-4 md:px-fitz-6 py-fitz-9 md:py-fitz-10 relative z-[2] transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-        {children}
-      </div>
-    </section>
-  );
-}
+const pianoSections = [
+  { id: "hero", label: "The Call" },
+  { id: "exhale", label: "The Language" },
+  { id: "pillars", label: "Three Pillars", isBlackKey: true },
+  { id: "methodology", label: "The Approach" },
+  { id: "threshold", label: "Common Concerns", isBlackKey: true },
+  { id: "offering", label: "Investment" },
+  { id: "crossing", label: "Begin" },
+];
 
 export default function Teaching() {
   useEffect(() => { document.title = "Piano Lessons — Parker Gawryletz"; }, []);
@@ -22,50 +25,145 @@ export default function Teaching() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
+      <PianoKeyNav sections={pianoSections} />
+
       <main>
-        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden" data-theme="death">
-          <div className="absolute inset-0 bg-[hsl(var(--rich-black))]" />
-          <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.12 }} aria-hidden="true" />
-          <div className="relative z-10 text-center px-6">
-            <p className="overline mb-fitz-5">Piano Lessons</p>
-            <h1 className="text-foreground mx-auto">Learn the instrument that speaks when words fall short.</h1>
-          </div>
-        </section>
+        {/* Hero */}
+        <HeroStrip
+          title="Learn the instrument that speaks when words fall short."
+          subtitle="Piano Lessons"
+          height="h-[70vh]"
+          backgroundImage={heroTeaching}
+        />
 
-        <Section>
+        {/* The Language */}
+        <Section id="exhale">
           <div className="max-w-2xl mx-auto text-center">
-            <p className="overline mb-fitz-3">The Approach</p>
-            <h2 className="mx-auto">Music is not a skill. It is a language.</h2>
-            <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
-              I teach piano the way I play it — with intention, patience, and deep respect for the student's own musical voice. Whether you're a complete beginner or a returning player, my lessons are built around who you are and what you want to say through music.
-            </p>
-          </div>
-        </Section>
-
-        <Section dark>
-          <div className="max-w-2xl mx-auto text-center">
-            <p className="overline mb-fitz-3">Three Pillars</p>
-            <h2 className="mx-auto">Technique. Expression. Devotion.</h2>
-            <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
-              Every lesson balances technical foundations with expressive musicality. You'll develop strong fingers and a stronger ear — learning not just how to play, but how to listen.
-            </p>
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">The Approach</p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <h2 className="mx-auto">Music is not a skill. It is a language.</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
+                I teach piano the way I play it — with intention, patience, and deep respect for the student's own musical voice. Whether you're a complete beginner or a returning player, my lessons are built around who you are and what you want to say through music.
+              </p>
+            </RevealOnScroll>
           </div>
         </Section>
 
-        <Section>
+        {/* Three Pillars */}
+        <Section dark id="pillars">
+          <div className="max-w-3xl mx-auto text-center">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">Three Pillars</p>
+              <h2 className="mx-auto">Technique. Expression. Devotion.</h2>
+            </RevealOnScroll>
+            <div className="grid md:grid-cols-3 gap-fitz-6 mt-fitz-9">
+              {[
+                { title: "Technique", desc: "Strong foundations — posture, fingering, sight-reading, theory. The craft that supports the art." },
+                { title: "Expression", desc: "Dynamics, phrasing, emotional interpretation. Learning to make the piano sing, not just sound." },
+                { title: "Devotion", desc: "Consistent practice habits, performance confidence, and the patience to grow at your own pace." },
+              ].map((pillar, i) => (
+                <RevealOnScroll key={pillar.title} delay={i * 100}>
+                  <div className="p-fitz-6 border border-lines/30 rounded-lg text-left">
+                    <h3 className="text-foreground">{pillar.title}</h3>
+                    <p className="text-muted-foreground mt-fitz-3 text-sm leading-relaxed">{pillar.desc}</p>
+                  </div>
+                </RevealOnScroll>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* Methodology */}
+        <Section id="methodology">
           <div className="max-w-2xl mx-auto text-center">
-            <p className="overline mb-fitz-3">Investment</p>
-            <h2 className="mx-auto">$60 per hour.</h2>
-            <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
-              Weekly lessons in Calgary. All ages, all levels. Each session is tailored to your goals and progress.
-            </p>
-            <a href="/teaching/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
-              Begin the Conversation
-            </a>
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">How It Works</p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <h2 className="mx-auto">Every lesson is a conversation.</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
+                We begin with a conversation — not about music theory, but about you. What draws you to the piano? What do you hope to express? From there, I build a curriculum that balances technical growth with the joy of playing music that matters to you.
+              </p>
+            </RevealOnScroll>
+          </div>
+        </Section>
+
+        {/* Threshold — Common Concerns */}
+        <Section dark id="threshold">
+          <div className="max-w-3xl mx-auto">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3 text-center">Common Concerns</p>
+              <h2 className="mx-auto text-center">You might be wondering.</h2>
+            </RevealOnScroll>
+            <div className="grid md:grid-cols-2 gap-fitz-6 mt-fitz-9">
+              {[
+                { q: "Am I too old to start?", a: "There is no age limit on self-expression. Some of my most devoted students began in their 40s, 50s, and 60s." },
+                { q: "I tried before and quit.", a: "That's not a failure — it's information. We'll find the approach that makes you want to keep coming back." },
+                { q: "How long before I can play something real?", a: "Most students play recognizable pieces within the first month. Beautiful ones within three." },
+                { q: "Do I need a piano at home?", a: "A keyboard with weighted keys is ideal. I can recommend affordable options that sound beautiful." },
+              ].map((item, i) => (
+                <RevealOnScroll key={i} delay={i * 100}>
+                  <div className="p-fitz-6 border border-lines/30 rounded-lg">
+                    <p className="font-display text-lg italic text-primary mb-fitz-3">"{item.q}"</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.a}</p>
+                  </div>
+                </RevealOnScroll>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* Offering */}
+        <Section id="offering">
+          <div className="max-w-2xl mx-auto text-center">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">Investment</p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <h2 className="mx-auto">$60 per hour.</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
+                Weekly lessons in Calgary. All ages, all levels. Each session is tailored to your goals and progress.
+              </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={360}>
+              <Link to="/teaching/pricing" className="inline-flex items-center mt-fitz-5 text-sm tracking-[0.18em] uppercase text-primary story-link">
+                View what's included
+              </Link>
+            </RevealOnScroll>
+          </div>
+        </Section>
+
+        {/* The Crossing */}
+        <Section dark id="crossing">
+          <div className="max-w-2xl mx-auto text-center">
+            <RevealOnScroll>
+              <h2 className="mx-auto">Ready to begin?</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">Every musician starts with a single note.</p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <Link
+                to="/teaching/contact"
+                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]"
+              >
+                Begin the Conversation.
+              </Link>
+            </RevealOnScroll>
           </div>
         </Section>
       </main>
+
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

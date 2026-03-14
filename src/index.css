@@ -347,6 +347,17 @@ html.lenis, html.lenis body { height: auto; }
   50% { transform: scale(1.06) translate(-1%, -0.5%); }
   100% { transform: scale(1) translate(0, 0); }
 }
+@keyframes golden-thread-breathe {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.35; }
+}
+@keyframes breathe-glow {
+  0%, 100% { box-shadow: 0 8px 24px hsl(var(--vow-yellow) / 0.18); }
+  50% { box-shadow: 0 12px 32px hsl(var(--vow-yellow) / 0.28); }
+}
+
+/* Safe area for mobile sticky bar */
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
 
 /* Page transition */
 .page-transition-content {

@@ -1,20 +1,23 @@
 import { MinimalHeader } from "@/components/MinimalHeader";
 import { Footer } from "@/components/Footer";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { cn } from "@/lib/utils";
+import { Section } from "@/components/Section";
+import { HeroStrip } from "@/components/HeroStrip";
+import { PianoKeyNav } from "@/components/PianoKeyNav";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { RevealOnScroll } from "@/components/animation";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import heroEvents from "@/assets/hero-events.jpg";
 
-function Section({ children, className, dark = false }: { children: React.ReactNode; className?: string; dark?: boolean }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <section ref={ref as React.RefObject<HTMLElement>} className={cn("relative overflow-hidden", dark ? "section--dark" : "", className)} data-theme={dark ? "death" : undefined}>
-      {dark && <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.08 }} aria-hidden="true" />}
-      <div className={cn("container mx-auto px-fitz-4 md:px-fitz-6 py-fitz-9 md:py-fitz-10 relative z-[2] transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-        {children}
-      </div>
-    </section>
-  );
-}
+const pianoSections = [
+  { id: "hero", label: "The Atmosphere" },
+  { id: "exhale", label: "Why Live Piano" },
+  { id: "occasions", label: "Occasions", isBlackKey: true },
+  { id: "approach", label: "The Approach" },
+  { id: "threshold", label: "Concerns", isBlackKey: true },
+  { id: "offering", label: "Three Presences" },
+  { id: "crossing", label: "Begin" },
+];
 
 export default function Events() {
   useEffect(() => { document.title = "Live Events — Parker Gawryletz"; }, []);
@@ -22,55 +25,143 @@ export default function Events() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
-      <main>
-        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden" data-theme="death">
-          <div className="absolute inset-0 bg-[hsl(var(--rich-black))]" />
-          <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.12 }} aria-hidden="true" />
-          <div className="relative z-10 text-center px-6">
-            <p className="overline mb-fitz-5">Live Events</p>
-            <h1 className="text-foreground mx-auto">Live piano for moments that demand presence.</h1>
-          </div>
-        </section>
+      <PianoKeyNav sections={pianoSections} />
 
-        <Section>
+      <main>
+        <HeroStrip
+          title="Live piano for moments that demand presence."
+          subtitle="Live Events"
+          height="h-[70vh]"
+          backgroundImage={heroEvents}
+        />
+
+        {/* Why Live Piano */}
+        <Section id="exhale">
           <div className="max-w-2xl mx-auto text-center">
-            <p className="overline mb-fitz-3">The Occasions</p>
-            <h2 className="mx-auto">Corporate galas. Private dinners. Memorial services.</h2>
-            <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
-              Every event carries its own emotional weight. I bring the same devotion to a corporate gala that I bring to a wedding — because every gathered room deserves music that understands the moment.
-            </p>
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">The Difference</p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <h2 className="mx-auto">A playlist fills silence. A pianist reads the room.</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
+                Live piano responds to the energy of your event in real time — adjusting tempo, volume, and mood to match what the room needs in each moment. It's the difference between background noise and a living, breathing atmosphere.
+              </p>
+            </RevealOnScroll>
           </div>
         </Section>
 
-        <Section dark>
+        {/* Occasions */}
+        <Section dark id="occasions">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="overline mb-fitz-3">Three Presences</p>
-            <div className="grid md:grid-cols-3 gap-fitz-6 mt-fitz-7">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">The Occasions</p>
+              <h2 className="mx-auto">Corporate galas. Private dinners. Memorial services.</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={200}>
+              <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
+                Every event carries its own emotional weight. I bring the same devotion to a corporate gala that I bring to a wedding — because every gathered room deserves music that understands the moment.
+              </p>
+            </RevealOnScroll>
+          </div>
+        </Section>
+
+        {/* Approach */}
+        <Section id="approach">
+          <div className="max-w-2xl mx-auto text-center">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">How I Work</p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <h2 className="mx-auto">I collaborate with your event team.</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <p className="p-lead mt-fitz-5 mx-auto text-muted-foreground">
+                I work directly with your event planner, venue coordinator, and AV team to ensure seamless integration. From cue sheets to sound checks, every detail is handled before your first guest arrives.
+              </p>
+            </RevealOnScroll>
+          </div>
+        </Section>
+
+        {/* Threshold */}
+        <Section dark id="threshold">
+          <div className="max-w-3xl mx-auto">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3 text-center">Common Concerns</p>
+              <h2 className="mx-auto text-center">You might be wondering.</h2>
+            </RevealOnScroll>
+            <div className="grid md:grid-cols-2 gap-fitz-6 mt-fitz-9">
               {[
-                { name: "Ambient", price: "From $800", desc: "Background piano that elevates without interrupting. Perfect for cocktails and dinners." },
-                { name: "Featured", price: "From $1,500", desc: "Curated performance integrated into your event's programme. Sets and transitions designed for your agenda." },
-                { name: "Immersive", price: "From $3,000", desc: "Full evening coverage. I become part of your event's fabric — from guest arrival to final farewell." },
-              ].map((tier) => (
-                <div key={tier.name} className="text-left p-fitz-6 border border-lines rounded-lg">
-                  <h3 className="text-foreground">{tier.name}</h3>
-                  <p className="font-display text-2xl font-light text-primary mt-fitz-2">{tier.price}</p>
-                  <p className="text-muted-foreground mt-fitz-3">{tier.desc}</p>
-                </div>
+                { q: "Do you bring your own instrument?", a: "Yes. I bring a professional digital piano with full sound system, or I can play a venue grand piano if one is available." },
+                { q: "Can you learn specific songs?", a: "Absolutely. I prepare custom repertoire for every event based on your preferences and the atmosphere you want to create." },
+                { q: "How much space do you need?", a: "A 6×6 foot area near a power outlet. I handle all setup and teardown — you won't notice the logistics." },
+                { q: "Do you take requests during the event?", a: "I can, or I can maintain a curated setlist. We decide together during planning." },
+              ].map((item, i) => (
+                <RevealOnScroll key={i} delay={i * 100}>
+                  <div className="p-fitz-6 border border-lines/30 rounded-lg">
+                    <p className="font-display text-lg italic text-primary mb-fitz-3">"{item.q}"</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.a}</p>
+                  </div>
+                </RevealOnScroll>
               ))}
             </div>
           </div>
         </Section>
 
-        <Section>
+        {/* Three Presences */}
+        <Section id="offering">
+          <div className="max-w-4xl mx-auto text-center">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">Three Presences</p>
+              <h2 className="mx-auto">Choose your level of musical presence.</h2>
+            </RevealOnScroll>
+            <div className="grid md:grid-cols-3 gap-fitz-6 mt-fitz-9">
+              {[
+                { name: "Ambient", price: "From $800", desc: "Background piano that elevates without interrupting. Perfect for cocktails and dinners." },
+                { name: "Featured", price: "From $1,500", desc: "Curated performance integrated into your event's programme. Sets and transitions designed for your agenda." },
+                { name: "Immersive", price: "From $3,000", desc: "Full evening coverage. I become part of your event's fabric — from guest arrival to final farewell." },
+              ].map((tier, i) => (
+                <RevealOnScroll key={tier.name} delay={i * 100}>
+                  <div className="text-left p-fitz-6 border border-lines/30 rounded-lg hover:-translate-y-1 transition-transform duration-[180ms]">
+                    <h3 className="text-foreground">{tier.name}</h3>
+                    <p className="font-display text-2xl font-light text-primary mt-fitz-2">{tier.price}</p>
+                    <p className="text-muted-foreground mt-fitz-3 text-sm">{tier.desc}</p>
+                  </div>
+                </RevealOnScroll>
+              ))}
+            </div>
+            <RevealOnScroll delay={400}>
+              <Link to="/events/pricing" className="inline-flex items-center mt-fitz-7 text-sm tracking-[0.18em] uppercase text-primary story-link">
+                View full details
+              </Link>
+            </RevealOnScroll>
+          </div>
+        </Section>
+
+        {/* The Crossing */}
+        <Section dark id="crossing">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="mx-auto">Let's discuss your event.</h2>
-            <a href="/events/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]">
-              Discuss Your Event
-            </a>
+            <RevealOnScroll>
+              <h2 className="mx-auto">Let's discuss your event.</h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">Every great event starts with a conversation.</p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <Link
+                to="/events/contact"
+                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-fantasy-cta hover:shadow-fantasy-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.18em]"
+              >
+                Discuss Your Event.
+              </Link>
+            </RevealOnScroll>
           </div>
         </Section>
       </main>
+
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

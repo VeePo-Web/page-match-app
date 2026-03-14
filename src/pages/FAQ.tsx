@@ -4,10 +4,13 @@ import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { CredentialStrip } from "@/components/CredentialStrip";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 type Category = "All" | "Ceremony" | "Logistics" | "Pricing";
 
@@ -61,9 +64,13 @@ function AccordionItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen:
 }
 
 export default function FAQ() {
+  const { pathname } = useLocation();
+
   usePageMeta({
     title: "FAQ — Parker Gawryletz | Wedding Pianist",
     description: "Common questions about wedding piano services, booking, pricing, and logistics. Calgary to Banff.",
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   const [active, setActive] = useState<Category>("All");
@@ -73,7 +80,9 @@ export default function FAQ() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
+      <BackToTop />
       <main id="main-content">
         <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" />
 
@@ -128,6 +137,7 @@ export default function FAQ() {
         </Section>
       </main>
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

@@ -3,9 +3,16 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useLocation } from "react-router-dom";
 
 function LegalPage({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
-  usePageMeta({ title: `${title} — Parker Gawryletz`, description });
+  const { pathname } = useLocation();
+  usePageMeta({
+    title: `${title} — Parker Gawryletz`,
+    description,
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
+  });
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />

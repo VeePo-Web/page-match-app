@@ -5,6 +5,7 @@ import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
 import { lazy, Suspense } from "react";
+import { useLocation } from "react-router-dom";
 import { WeddingsHero } from "@/components/weddings";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
@@ -34,9 +35,13 @@ const pianoSections = [
 const SectionFallback = () => <div className="min-h-[40vh]" />;
 
 export default function Weddings() {
+  const { pathname } = useLocation();
+
   usePageMeta({
     title: "Wedding Pianist — Parker Gawryletz | Calgary to Banff",
     description: "Wedding pianist for ceremonies in Calgary, Cochrane, Canmore & Banff. Packages from $650. Custom arrangements included.",
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   return (

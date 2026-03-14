@@ -7,14 +7,19 @@ import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import aboutKeys from "@/assets/about-keys.jpg";
 
 export default function About() {
+  const { pathname } = useLocation();
+
   usePageMeta({
     title: "About — Parker Gawryletz | Ceremony Pianist",
     description: "Ceremony pianist based in Calgary, serving couples and events across the Canadian Rockies. 5–10 weddings per year.",
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   return (
@@ -94,6 +99,7 @@ export default function About() {
         </Section>
       </main>
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

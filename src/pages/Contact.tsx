@@ -3,7 +3,11 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { ContactWizard } from "@/components/contact/ContactWizard";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useLocation } from "react-router-dom";
 
 const generalSteps = [
   {
@@ -30,13 +34,18 @@ const generalSteps = [
 ];
 
 export default function Contact() {
+  const { pathname } = useLocation();
+
   usePageMeta({
     title: "Contact — Parker Gawryletz",
     description: "Get in touch with Parker Gawryletz. Wedding piano, lessons, and live events in Calgary to Banff.",
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
       <main id="main-content">
         <HeroStrip title="Tell me your story." subtitle="Get in Touch" height="h-[40vh]" />
@@ -45,6 +54,8 @@ export default function Contact() {
         </Section>
       </main>
       <Footer />
+      <MobileStickyBar />
+      <BackToTop />
     </div>
   );
 }

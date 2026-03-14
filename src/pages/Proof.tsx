@@ -7,7 +7,7 @@ import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { BackToTop } from "@/components/BackToTop";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const proofs = [
   {
@@ -28,9 +28,13 @@ const proofs = [
 ];
 
 export default function Proof() {
+  const { pathname } = useLocation();
+
   usePageMeta({
     title: "Proof of Craft — Parker Gawryletz",
     description: "SPL monitoring, triple redundancy, full insurance. The details that protect your ceremony.",
+    canonical: `${window.location.origin}${pathname}`,
+    ogImage: `${window.location.origin}/og-image.jpg`,
   });
 
   return (

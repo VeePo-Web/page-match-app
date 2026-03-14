@@ -4,8 +4,9 @@ import { PianoKeyNav } from "@/components/PianoKeyNav";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
-import { useEffect, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { WeddingsHero } from "@/components/weddings";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const WeddingsExhale = lazy(() => import("@/components/weddings/WeddingsExhale").then(m => ({ default: m.WeddingsExhale })));
 const WeddingsProcess = lazy(() => import("@/components/weddings/WeddingsProcess").then(m => ({ default: m.WeddingsProcess })));
@@ -33,9 +34,10 @@ const pianoSections = [
 const SectionFallback = () => <div className="min-h-[40vh]" />;
 
 export default function Weddings() {
-  useEffect(() => {
-    document.title = "Parker Gawryletz — Wedding Pianist, Calgary to Banff";
-  }, []);
+  usePageMeta({
+    title: "Wedding Pianist — Parker Gawryletz | Calgary to Banff",
+    description: "Wedding pianist for ceremonies in Calgary, Cochrane, Canmore & Banff. Packages from $650. Custom arrangements included.",
+  });
 
   return (
     <div className="min-h-screen flex flex-col">

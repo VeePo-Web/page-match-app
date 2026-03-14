@@ -6,10 +6,14 @@ import { RevealOnScroll } from "@/components/animation";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 export default function About() {
-  useEffect(() => { document.title = "About — Parker Gawryletz"; }, []);
+  usePageMeta({
+    title: "About — Parker Gawryletz | Ceremony Pianist",
+    description: "Ceremony pianist based in Calgary, serving couples and events across the Canadian Rockies. 5–10 weddings per year.",
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
@@ -21,7 +25,7 @@ export default function About() {
           <div className="max-w-4xl mx-auto grid md:grid-cols-12 gap-fitz-7 items-start">
             <div className="md:col-span-7">
               <RevealOnScroll>
-                <p className="p-lead text-muted-foreground">
+                <p className="p-lead text-muted-foreground drop-cap">
                   I'm Parker Gawryletz, a ceremony pianist based in Calgary, serving couples and events across the Canadian Rockies — from Cochrane to Canmore to Banff.
                 </p>
               </RevealOnScroll>
@@ -73,7 +77,7 @@ export default function About() {
               <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">Every story starts with a conversation.</p>
             </RevealOnScroll>
             <RevealOnScroll delay={120}>
-              <Link to="/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
+              <Link to="/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
                 Tell Me Your Story.
               </Link>
             </RevealOnScroll>

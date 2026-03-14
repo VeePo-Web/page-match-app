@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { Section } from "@/components/Section";
 
 const testimonials = [
   { quote: "He played the song I walked down the aisle to — and I forgot there were a hundred people watching.", names: "Sarah & James", venue: "Azuridge Estate Hotel, Priddis" },
@@ -12,18 +13,12 @@ export function WeddingsTestimonials() {
   const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <section
-      id="testimonials"
-      ref={sectionRef as React.RefObject<HTMLElement>}
-      className="relative py-fitz-9 md:py-fitz-10 overflow-hidden"
-      data-theme="death"
-      style={{ background: "hsl(var(--sage-deep))" }}
-      aria-label="Testimonials from couples"
-    >
-      {/* Grain */}
-      <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.04 }} aria-hidden="true" />
-
-      <div className="container mx-auto px-fitz-4 relative z-10">
+    <Section dark id="testimonials" className="!py-0">
+      <div
+        ref={sectionRef as React.RefObject<HTMLDivElement>}
+        className="py-fitz-9 md:py-fitz-10"
+        aria-label="Testimonials from couples"
+      >
         <div className="max-w-2xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
@@ -48,7 +43,6 @@ export function WeddingsTestimonials() {
           <div className="space-y-14">
             {testimonials.map((t, i) => (
               <div key={i} className={cn("relative text-center transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3")} style={{ transitionDelay: isVisible ? `${400 + i * 120}ms` : "0ms" }}>
-                {/* Gold quote mark */}
                 <span className="font-display text-4xl leading-none block mb-4" style={{ color: "hsl(var(--gold) / 0.3)" }} aria-hidden="true">"</span>
                 <blockquote className="font-display font-light italic leading-relaxed mb-6 text-foreground text-xl md:text-2xl max-w-[22ch] mx-auto" style={{ textWrap: "balance" as any }}>
                   {t.quote}
@@ -66,6 +60,6 @@ export function WeddingsTestimonials() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

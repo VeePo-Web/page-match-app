@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 import { useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import gatewayWeddings from "@/assets/gateway-weddings.jpg";
 import gatewayTeaching from "@/assets/gateway-teaching.jpg";
 import gatewayEvents from "@/assets/gateway-events.jpg";
-import { useEffect } from "react";
 
 const services = [
   {
@@ -77,9 +77,10 @@ function CardImage({ src }: { src: string }) {
 }
 
 export default function Gateway() {
-  useEffect(() => {
-    document.title = "Parker Gawryletz — Ceremony Pianist";
-  }, []);
+  usePageMeta({
+    title: "Parker Gawryletz — Ceremony Pianist",
+    description: "Ceremony pianist serving Calgary to Banff. Weddings, teaching, and live events.",
+  });
 
   return (
     <main className="min-h-screen w-screen overflow-hidden bg-background flex flex-col items-center py-12 md:py-0 md:justify-center relative" aria-label="Choose your path">
@@ -132,7 +133,7 @@ export default function Gateway() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 + i * 0.15, duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -6, scale: 1.01, transition: { type: "spring", stiffness: 300, damping: 20 } }}
             className="flex-1 min-h-0 md:flex-none md:aspect-[6/7] md:flex-1"
           >
             <Link
@@ -140,7 +141,8 @@ export default function Gateway() {
               className={cn(
                 "group relative overflow-hidden rounded-md block h-full",
                 "border border-lines/60 bg-card transition-all duration-300",
-                "cursor-pointer hover:border-sage/30 hover:shadow-editorial-hover"
+                "cursor-pointer hover:border-sage/30 hover:shadow-editorial-hover",
+                "border-b-2 border-b-transparent hover:border-b-gold/30"
               )}
             >
               <CardImage src={s.image} />

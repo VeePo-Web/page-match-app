@@ -376,10 +376,11 @@ html.lenis, html.lenis body { height: auto; }
   /* Gold input focus */
   .input-gold-focus {
     border-bottom: 1px solid hsl(var(--lines));
-    transition: border-color 250ms ease;
+    transition: border-color 250ms ease, box-shadow 250ms ease;
   }
   .input-gold-focus:focus {
     border-bottom-color: hsl(var(--gold));
+    box-shadow: 0 2px 8px hsl(var(--gold) / 0.08);
     outline: none;
   }
 }

@@ -5,7 +5,7 @@ import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
-import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const proofs = [
   {
@@ -26,7 +26,11 @@ const proofs = [
 ];
 
 export default function Proof() {
-  useEffect(() => { document.title = "Proof of Craft — Parker Gawryletz"; }, []);
+  usePageMeta({
+    title: "Proof of Craft — Parker Gawryletz",
+    description: "SPL monitoring, triple redundancy, full insurance. The details that protect your ceremony.",
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
@@ -39,7 +43,6 @@ export default function Proof() {
 
         <Section dark>
           <div className="max-w-4xl mx-auto">
-            {/* Credential strip */}
             <CredentialStrip items={[
               { stat: "500+", label: "Events Played" },
               { stat: "Zero", label: "Missed Ceremonies" },
@@ -76,7 +79,7 @@ export default function Proof() {
               <p className="text-muted-foreground mb-fitz-7 text-sm">Ask me for SPL reports, insurance certificates, or references — I'll send them within 24 hours.</p>
               <a
                 href="/contact"
-                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
+                className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Ask Me Anything
               </a>

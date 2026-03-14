@@ -27,7 +27,7 @@ export function Footer() {
 
         <BreathingDiamond className="mb-fitz-9" />
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-fitz-9">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-fitz-6 md:gap-fitz-9">
           {/* Name */}
           <div className={cn("col-span-1 md:col-span-2 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
             <p className="font-display font-light tracking-[0.04em]" style={{ fontSize: "clamp(24px, 3vw, 32px)", color: "hsl(var(--warm-white))" }}>

@@ -8,8 +8,9 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
 import { RevealOnScroll } from "@/components/animation";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { SectionDivider } from "@/components/SectionDivider";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import heroTeaching from "@/assets/hero-teaching.jpg";
 
 const pianoSections = [
@@ -23,7 +24,10 @@ const pianoSections = [
 ];
 
 export default function Teaching() {
-  useEffect(() => { document.title = "Piano Lessons — Parker Gawryletz"; }, []);
+  usePageMeta({
+    title: "Piano Lessons — Parker Gawryletz | Calgary",
+    description: "Piano lessons in Calgary. $60/hr. All ages and levels. Technique, expression, and devotion.",
+  });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -148,6 +152,25 @@ export default function Teaching() {
           </div>
         </Section>
 
+        <SectionDivider />
+
+        {/* Other Services */}
+        <Section>
+          <div className="max-w-2xl mx-auto text-center">
+            <RevealOnScroll>
+              <p className="overline mb-fitz-3">Other Services</p>
+            </RevealOnScroll>
+            <div className="flex justify-center gap-fitz-7 mt-fitz-5">
+              <RevealOnScroll delay={100}>
+                <Link to="/weddings" className="text-sm tracking-[0.16em] uppercase text-sage story-link">Weddings</Link>
+              </RevealOnScroll>
+              <RevealOnScroll delay={200}>
+                <Link to="/events" className="text-sm tracking-[0.16em] uppercase text-sage story-link">Events</Link>
+              </RevealOnScroll>
+            </div>
+          </div>
+        </Section>
+
         {/* The Crossing */}
         <Section dark id="crossing">
           <div className="max-w-2xl mx-auto text-center">
@@ -163,7 +186,7 @@ export default function Teaching() {
             <RevealOnScroll delay={240}>
               <Link
                 to="/teaching/contact"
-                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
+                className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]"
               >
                 Begin the Conversation.
               </Link>

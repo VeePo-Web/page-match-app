@@ -6,6 +6,8 @@ import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { BackToTop } from "@/components/BackToTop";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { Link, useLocation } from "react-router-dom";
 
@@ -39,8 +41,10 @@ export default function Proof() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <MinimalHeader />
       <BackToTop />
+      <MobileStickyBar />
       <main id="main-content">
         <HeroStrip
           title="The details that protect your moment."

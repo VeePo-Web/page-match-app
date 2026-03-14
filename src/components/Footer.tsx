@@ -83,10 +83,11 @@ export function Footer() {
               <p className="font-sans text-[10px] uppercase tracking-[0.2em] block mb-3" style={{ color: "hsl(var(--gold))" }}>Stay Informed</p>
               <a
                 href="mailto:parker@parkergawryletz.com?subject=Newsletter%20Signup&body=I'd%20like%20to%20stay%20informed%20about%20your%20services."
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.12em] px-4 py-2 border border-gold/30 rounded-sm hover:bg-gold/10 transition-all duration-fast"
+                className="group/cta inline-flex items-center gap-2 text-xs uppercase tracking-[0.12em] px-4 py-2 border border-gold/30 rounded-sm hover:bg-gold/15 hover:border-gold/50 transition-all duration-200"
                 style={{ color: "hsl(var(--gold))" }}
               >
-                Subscribe via Email →
+                Subscribe via Email
+                <span className="inline-block opacity-0 -translate-x-2 group-hover/cta:opacity-100 group-hover/cta:translate-x-0 transition-all duration-200">→</span>
               </a>
             </div>
           </div>

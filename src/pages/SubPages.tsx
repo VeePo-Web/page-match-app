@@ -126,7 +126,7 @@ export function WeddingsPricing() {
             <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">I accept only 5–10 weddings per year.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <Link to="/weddings/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
+            <Link to="/weddings/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               Hold My Date.
             </Link>
           </RevealOnScroll>
@@ -275,7 +275,7 @@ export function EventsPricing() {
             <p className="p-lead mt-fitz-3 mx-auto text-muted-foreground">Every great event starts with a conversation.</p>
           </RevealOnScroll>
           <RevealOnScroll delay={120}>
-            <Link to="/events/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
+            <Link to="/events/contact" className="inline-flex items-center mt-fitz-7 px-8 py-3 bg-gold text-sage-deep rounded-sm shadow-cta hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-[180ms] text-sm uppercase tracking-[0.12em]">
               Request a Proposal.
             </Link>
           </RevealOnScroll>

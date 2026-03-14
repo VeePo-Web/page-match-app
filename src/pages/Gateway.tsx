@@ -85,15 +85,15 @@ function PianoKeyCard({
           isBlack
             ? [
                 "rounded-b-md",
-                "border border-transparent",
+                "border border-transparent border-b-[hsl(148_22%_38%)]",
                 "shadow-[0_6px_24px_hsl(var(--charcoal)/0.25)]",
                 "hover:shadow-[0_2px_10px_hsl(var(--charcoal)/0.35)]",
               ]
             : [
                 "rounded-b-md",
                 "border border-lines/60",
-                "shadow-[0_4px_16px_hsl(var(--charcoal)/0.06)]",
-                "hover:shadow-[0_2px_8px_hsl(var(--charcoal)/0.12)]",
+                "shadow-[0_4px_16px_hsl(var(--charcoal)/0.06),inset_-1px_0_0_hsl(var(--lines)/0.3),inset_1px_0_0_hsl(var(--lines)/0.3)]",
+                "hover:shadow-[0_2px_8px_hsl(var(--charcoal)/0.12),inset_-1px_0_0_hsl(var(--lines)/0.3),inset_1px_0_0_hsl(var(--lines)/0.3)]",
               ]
         )}
         style={
@@ -104,7 +104,7 @@ function PianoKeyCard({
               }
             : {
                 background:
-                  "linear-gradient(180deg, hsl(40 20% 97%) 0%, hsl(40 15% 93%) 100%)",
+                  "linear-gradient(180deg, hsl(40 20% 97%) 0%, hsl(40 15% 93%) 95%, hsl(40 18% 91%) 100%)",
               }
         }
       >
@@ -225,7 +225,7 @@ function MobileBlackKey({
     >
       <Link
         to={service.href}
-        className="group relative overflow-hidden block rounded-md border border-transparent shadow-[0_4px_20px_hsl(var(--charcoal)/0.2)] hover:shadow-[0_2px_10px_hsl(var(--charcoal)/0.3)] transition-all duration-300"
+        className="group relative overflow-hidden block rounded-md border-l-2 border-l-gold/40 border border-transparent shadow-[0_4px_20px_hsl(var(--charcoal)/0.2)] hover:shadow-[0_2px_10px_hsl(var(--charcoal)/0.3)] transition-all duration-300"
         style={{
           background:
             "linear-gradient(180deg, hsl(148 22% 32%) 0%, hsl(148 22% 24%) 60%, hsl(148 22% 18%) 100%)",

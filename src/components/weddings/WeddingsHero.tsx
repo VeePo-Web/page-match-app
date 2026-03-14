@@ -1,6 +1,6 @@
 import heroWeddings from "@/assets/hero-weddings.jpg";
 import { GoldFrame } from "@/components/GoldFrame";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export function WeddingsHero() {
@@ -16,12 +16,21 @@ export function WeddingsHero() {
   const watermarkY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
   const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
+  // Preload hero image for fast LCP
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = heroWeddings;
+    link.setAttribute("fetchpriority", "high");
+    document.head.appendChild(link);
+    return () => { document.head.removeChild(link); };
+  }, []);
+
   return (
     <section ref={sectionRef} id="hero" className="relative h-screen flex items-center justify-center overflow-hidden" data-theme="death">
-      {/* Background */}
       <div className="absolute inset-0 bg-sage-deep" />
 
-      {/* Parallax image */}
       <motion.div
         className="absolute inset-0"
         style={{
@@ -31,22 +40,18 @@ export function WeddingsHero() {
           backgroundPosition: "center",
           opacity: 0.12,
           filter: "brightness(0.7) contrast(1.08) saturate(0.8)",
-          willChange: "transform",
         }}
         aria-hidden="true"
       />
 
-      {/* Grain */}
       <div className="grain pointer-events-none absolute inset-0 z-[1]" style={{ opacity: 0.04 }} aria-hidden="true" />
 
-      {/* Vignette */}
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{ background: "radial-gradient(ellipse at center, transparent 30%, hsl(var(--sage-deep) / 0.7) 100%)" }}
         aria-hidden="true"
       />
 
-      {/* Watermark */}
       <motion.div
         className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none select-none"
         style={{ y: watermarkY }}
@@ -57,10 +62,8 @@ export function WeddingsHero() {
         </span>
       </motion.div>
 
-      {/* Gold frame */}
       <GoldFrame />
 
-      {/* Content */}
       <motion.div
         className="relative z-10 text-center px-6 max-w-3xl mx-auto"
         style={{ opacity: contentOpacity, y: contentY }}
@@ -91,7 +94,6 @@ export function WeddingsHero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue — fades on scroll */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         style={{ opacity: scrollCueOpacity }}

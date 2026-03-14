@@ -5,6 +5,8 @@ import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import aboutKeys from "@/assets/about-keys.jpg";
@@ -18,10 +20,11 @@ export default function About() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
+      <ScrollProgress />
+      <BackToTop />
       <main id="main-content">
         <HeroStrip title="The witness behind the keys." subtitle="About" height="h-[60vh]" />
 
-        {/* Origin story — asymmetric */}
         <Section>
           <div className="max-w-4xl mx-auto grid md:grid-cols-12 gap-fitz-7 items-start">
             <div className="md:col-span-7">
@@ -59,7 +62,6 @@ export default function About() {
           </div>
         </Section>
 
-        {/* Philosophy — dark pull quote */}
         <Section dark>
           <div className="max-w-3xl mx-auto text-center">
             <RevealOnScroll>
@@ -72,12 +74,10 @@ export default function About() {
           </div>
         </Section>
 
-        {/* Credential strip */}
         <Section>
           <CredentialStrip />
         </Section>
 
-        {/* CTA */}
         <Section dark>
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll>

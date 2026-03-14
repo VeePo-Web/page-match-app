@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { RevealOnScroll } from "@/components/animation";
@@ -14,7 +14,7 @@ interface FieldDef {
   type?: "text" | "email" | "tel" | "date" | "textarea";
   required?: boolean;
   placeholder?: string;
-  options?: string[]; // pill selector
+  options?: string[];
 }
 
 interface ContactWizardProps {
@@ -75,7 +75,6 @@ export function ContactWizard({
     setFormData((prev) => ({ ...prev, [label]: value }));
   };
 
-  // Focus first input after step change
   useEffect(() => {
     if (submitted) return;
     const timer = setTimeout(() => {
@@ -85,17 +84,32 @@ export function ContactWizard({
     return () => clearTimeout(timer);
   }, [current, submitted]);
 
+  const handleSubmit = () => {
+    // Build mailto with form data
+    const subject = encodeURIComponent(`New Inquiry — ${formData["Service"] || "General"}`);
+    const bodyParts = Object.entries(formData)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`);
+    const body = encodeURIComponent(bodyParts.join("\n"));
+    const mailtoUrl = `mailto:parker@parkergawryletz.com?subject=${subject}&body=${body}`;
+
+    // Open mailto
+    window.location.href = mailtoUrl;
+
+    // Show success state after brief delay
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }, 600);
+  };
+
   const handleNext = () => {
     const form = document.getElementById("wizard-form") as HTMLFormElement;
     if (form && !form.reportValidity()) return;
     setDirection(1);
     if (isLast) {
-      setIsSubmitting(true);
-      // Simulate submission
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setSubmitted(true);
-      }, 800);
+      handleSubmit();
     } else {
       setCurrent((p) => p + 1);
     }

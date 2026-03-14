@@ -1,27 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useScrollPosition } from "@/hooks/useScrollPosition";
 
 export function MobileStickyBar() {
   const { pathname } = useLocation();
-  const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const { scrollY, scrollPercent } = useScrollPosition();
 
   const hidden = pathname === "/" || pathname.endsWith("/contact");
-
-  useEffect(() => {
-    if (hidden) return;
-    const onScroll = () => {
-      const y = window.scrollY;
-      setIsVisible(y > 400);
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(docHeight > 0 ? y / docHeight : 0);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [hidden]);
-
   if (hidden) return null;
+
+  const isVisible = scrollY > 400;
 
   const ctaLabel = pathname.startsWith("/teaching")
     ? "Begin the Conversation"
@@ -46,7 +34,7 @@ export function MobileStickyBar() {
       <div className="h-[1px] w-full bg-muted/20">
         <div
           className="h-full bg-gold/50 transition-[width] duration-100"
-          style={{ width: `${scrollProgress * 100}%` }}
+          style={{ width: `${scrollPercent * 100}%` }}
         />
       </div>
 

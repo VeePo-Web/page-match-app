@@ -5,6 +5,7 @@ import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
 import { CredentialStrip } from "@/components/CredentialStrip";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import { BackToTop } from "@/components/BackToTop";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { Link } from "react-router-dom";
 
@@ -35,6 +36,7 @@ export default function Proof() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
+      <BackToTop />
       <main id="main-content">
         <HeroStrip
           title="The details that protect your moment."

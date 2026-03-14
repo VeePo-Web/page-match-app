@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { HeroStrip } from "@/components/HeroStrip";
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation/RevealOnScroll";
+import { BackToTop } from "@/components/BackToTop";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
@@ -50,6 +51,7 @@ export default function Listen() {
   return (
     <div className="min-h-screen flex flex-col">
       <MinimalHeader />
+      <BackToTop />
       <main id="main-content">
         <HeroStrip
           title="Hear the ceremony."

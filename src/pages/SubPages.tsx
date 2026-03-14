@@ -510,7 +510,7 @@ export function WeddingsContact() {
 }
 
 export function TeachingContact() {
-  usePageMeta({ title: "Teaching Inquiry — Parker Gawryletz", description: "Begin piano lessons in Calgary. All ages and levels welcome." });
+  useSubPageMeta({ title: "Teaching Inquiry — Parker Gawryletz", description: "Begin piano lessons in Calgary. All ages and levels welcome." });
   return (
     <SubPageLayout>
       <HeroStrip title="Begin the conversation." subtitle="Teaching Inquiry" height="h-[40vh]" />

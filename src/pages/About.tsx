@@ -69,7 +69,7 @@ export default function About() {
           </div>
         </Section>
 
-        <Section dark>
+        <Section dark backgroundImage={aboutQuoteBg}>
           <div className="max-w-3xl mx-auto text-center">
             <RevealOnScroll>
               <div className="editorial-rule mb-fitz-7" />

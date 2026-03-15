@@ -15,9 +15,9 @@ const EventsSections = lazy(() => import("@/components/events/EventsSections"));
 const pianoSections = [
   { id: "hero", label: "The Atmosphere" },
   { id: "exhale", label: "Why Live Piano" },
-  { id: "occasions", label: "Occasions", isBlackKey: true },
+  { id: "occasions", label: "Occasions" },
   { id: "approach", label: "The Approach" },
-  { id: "threshold", label: "Concerns", isBlackKey: true },
+  { id: "threshold", label: "Concerns" },
   { id: "offering", label: "Three Presences" },
   { id: "crossing", label: "Begin" },
 ];

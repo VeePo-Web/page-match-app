@@ -8,6 +8,8 @@ import { BackToTop } from "@/components/BackToTop";
 
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useLocation } from "react-router-dom";
+import contactHeroBg from "@/assets/contact-hero-bg.jpg";
+import contactFormBg from "@/assets/contact-form-bg.jpg";
 
 export default function Contact() {
   const { pathname } = useLocation();

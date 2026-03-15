@@ -51,7 +51,7 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
 
   return (
     <nav
-      className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-end gap-1"
+      className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-end gap-[6px]"
       aria-label="Section navigation"
     >
       {sections.map((section) => {
@@ -64,21 +64,25 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
               className={cn(
                 "absolute right-full mr-3 whitespace-nowrap font-sans text-xs tracking-[0.06em] uppercase transition-all duration-[180ms]",
                 isHovered || isActive ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2 pointer-events-none",
-                isActive ? "text-sage" : "text-muted-foreground"
+                isActive ? "text-gold" : "text-muted-foreground"
               )}
             >
               {section.label}
             </span>
+
+            {isActive && (
+              <span className="absolute right-[10px] w-[2px] h-[2px] rounded-full bg-gold" aria-hidden="true" />
+            )}
 
             <button
               onClick={() => scrollTo(section.id)}
               onMouseEnter={() => setHoveredId(section.id)}
               onMouseLeave={() => setHoveredId(null)}
               className={cn(
-                "transition-all duration-[180ms] rounded-sm",
-                section.isBlackKey
-                  ? cn("w-3 h-5", isActive ? "bg-sage" : "bg-muted-foreground/25 hover:bg-muted-foreground/40")
-                  : cn("w-4 h-7", isActive ? "bg-sage" : "bg-foreground/15 hover:bg-foreground/30"),
+                "rounded-full transition-all duration-200",
+                isActive
+                  ? "w-[4px] h-6 bg-gold"
+                  : "w-[3px] h-6 bg-foreground/12 hover:bg-foreground/25"
               )}
               aria-label={`Navigate to ${section.label}`}
               aria-current={isActive ? "true" : undefined}
@@ -88,7 +92,7 @@ export function PianoKeyNav({ sections }: PianoKeyNavProps) {
       })}
 
       <div
-        className="absolute right-[7px] top-0 bottom-0 w-[1px] -z-10"
+        className="absolute right-[5px] top-0 bottom-0 w-[1px] -z-10"
         style={{
           background: "linear-gradient(to bottom, transparent, hsl(var(--gold) / 0.15), transparent)",
           animation: "golden-thread-breathe 4s ease-in-out infinite",

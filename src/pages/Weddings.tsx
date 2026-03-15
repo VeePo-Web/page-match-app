@@ -22,13 +22,13 @@ const WeddingsCrossing = lazy(() => import("@/components/weddings/WeddingsCrossi
 const pianoSections = [
   { id: "hero", label: "The Vigil" },
   { id: "exhale", label: "The Exhale" },
-  { id: "process", label: "The Preparation", isBlackKey: true },
+  { id: "process", label: "The Preparation" },
   { id: "vow-moment", label: "The Vow Moment" },
-  { id: "invitation", label: "The Invitation", isBlackKey: true },
+  { id: "invitation", label: "The Invitation" },
   { id: "transformation", label: "The Transformation" },
-  { id: "witness", label: "The Witness", isBlackKey: true },
+  { id: "witness", label: "The Witness" },
   { id: "three-paths", label: "The Offering" },
-  { id: "testimonials", label: "Kind Words", isBlackKey: true },
+  { id: "testimonials", label: "Kind Words" },
   { id: "crossing", label: "The Crossing" },
 ];
 

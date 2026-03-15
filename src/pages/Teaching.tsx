@@ -15,9 +15,9 @@ const TeachingSections = lazy(() => import("@/components/teaching/TeachingSectio
 const pianoSections = [
   { id: "hero", label: "The Call" },
   { id: "exhale", label: "The Language" },
-  { id: "pillars", label: "Three Pillars", isBlackKey: true },
+  { id: "pillars", label: "Three Pillars" },
   { id: "methodology", label: "The Approach" },
-  { id: "threshold", label: "Common Concerns", isBlackKey: true },
+  { id: "threshold", label: "Common Concerns" },
   { id: "offering", label: "Investment" },
   { id: "crossing", label: "Begin" },
 ];

@@ -10,6 +10,8 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { Link, useLocation } from "react-router-dom";
+import proofHeroBg from "@/assets/proof-hero-bg.jpg";
+import proofCredentialsBg from "@/assets/proof-credentials-bg.jpg";
 
 const proofs = [
   {
@@ -50,10 +52,11 @@ export default function Proof() {
           title="The details that protect your moment."
           subtitle="Proof of Craft"
           height="h-[50vh]"
+          backgroundImage={proofHeroBg}
           showScrollCue
         />
 
-        <Section dark>
+        <Section dark backgroundImage={proofCredentialsBg}>
           <div className="max-w-4xl mx-auto">
             <CredentialStrip items={[
               { stat: "500+", label: "Events Played" },

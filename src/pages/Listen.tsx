@@ -9,7 +9,8 @@ import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
-import heroWeddings from "@/assets/hero-weddings.jpg";
+import listenHeroBg from "@/assets/listen-hero-bg.jpg";
+import listenMovementsBg from "@/assets/listen-movements-bg.jpg";
 
 const movements = [
   { number: "I", title: "The Vigil", description: "What plays while the room holds its breath. Prelude selections that honour the weight of anticipation.", duration: "4:32" },
@@ -64,7 +65,7 @@ export default function Listen() {
         <HeroStrip
           title="Hear the ceremony."
           subtitle="The Listening Room"
-          backgroundImage={heroWeddings}
+          backgroundImage={listenHeroBg}
           height="h-[50vh]"
           showScrollCue
         />
@@ -79,7 +80,7 @@ export default function Listen() {
           </div>
         </Section>
 
-        <Section dark>
+        <Section dark backgroundImage={listenMovementsBg}>
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll variant="up">
               <p className="overline mb-fitz-5">Four Movements</p>

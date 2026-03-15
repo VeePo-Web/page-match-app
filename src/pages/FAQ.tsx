@@ -11,6 +11,8 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import faqHeroBg from "@/assets/faq-hero-bg.jpg";
+import faqTrustBg from "@/assets/faq-trust-bg.jpg";
 
 type Category = "All" | "Ceremony" | "Logistics" | "Pricing";
 
@@ -85,7 +87,7 @@ export default function FAQ() {
       <MinimalHeader />
       <BackToTop />
       <main id="main-content">
-        <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" />
+        <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" backgroundImage={faqHeroBg} />
 
         <Section>
           <div className="max-w-2xl mx-auto">
@@ -130,7 +132,7 @@ export default function FAQ() {
         </Section>
 
         {/* Trust stack */}
-        <Section dark>
+        <Section dark backgroundImage={faqTrustBg}>
           <CredentialStrip items={[
             { stat: "Zero", label: "Missed Ceremonies" },
             { stat: "$4M", label: "Insured" },

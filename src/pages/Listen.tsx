@@ -9,7 +9,8 @@ import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
-import heroWeddings from "@/assets/hero-weddings.jpg";
+import listenHeroBg from "@/assets/listen-hero-bg.jpg";
+import listenMovementsBg from "@/assets/listen-movements-bg.jpg";
 
 const movements = [
   { number: "I", title: "The Vigil", description: "What plays while the room holds its breath. Prelude selections that honour the weight of anticipation.", duration: "4:32" },

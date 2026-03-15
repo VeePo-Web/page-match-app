@@ -11,6 +11,8 @@ import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import aboutKeys from "@/assets/about-keys.jpg";
+import aboutQuoteBg from "@/assets/about-quote-bg.jpg";
+import aboutCtaBg from "@/assets/about-cta-bg.jpg";
 
 export default function About() {
   const { pathname } = useLocation();

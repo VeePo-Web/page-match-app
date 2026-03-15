@@ -87,7 +87,7 @@ export default function FAQ() {
       <MinimalHeader />
       <BackToTop />
       <main id="main-content">
-        <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" />
+        <HeroStrip title="Common Questions" subtitle="FAQ" height="h-[40vh]" backgroundImage={faqHeroBg} />
 
         <Section>
           <div className="max-w-2xl mx-auto">

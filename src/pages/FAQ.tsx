@@ -11,6 +11,8 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import faqHeroBg from "@/assets/faq-hero-bg.jpg";
+import faqTrustBg from "@/assets/faq-trust-bg.jpg";
 
 type Category = "All" | "Ceremony" | "Logistics" | "Pricing";
 

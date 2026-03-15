@@ -1,63 +1,55 @@
 
-# Gawryletz Music Services — Sacred Sound Wireframe
 
-## Status: Phase 6 In Progress
+# Phase 21: Uniform Section Navigation (PianoKeyNav) Across All Service Pages
 
-## Completed
-- Design system replaced (Sacred Sound palette: charcoal/gold/green)
-- All Hickory & Rose components, config, and assets deleted
-- Shared layout components created (MinimalHeader, Footer, PageTransition, SmoothScrollProvider, ThemeProvider)
-- Hooks created (useScrollReveal, usePageTransition, useVigilSequence)
-- All 22 routes wired in App.tsx
-- Gateway page with 3 bento service cards
-- Weddings landing (8 sections: hero, exhale, process, invitation, transformation, pricing preview, testimonials, CTA)
-- Teaching landing (4 sections)
-- Events landing (4 sections)
-- All sub-pages: pricing, about, contact for each vertical
-- Utility pages: About, Contact, FAQ, Proof, Listen
-- Legal pages: Privacy, Terms, Accessibility
-- NotFound page
-- Death/Life theme system via next-themes
-- Pricing corrected to match Vow Architect source (Phase 5)
-- Shadow/border-radius/accent color polish (Phase 5)
+The right-side section navigation currently uses a "piano key" metaphor with two visual variants (`isBlackKey` and regular) creating inconsistent sizing. The user wants all nav indicators to be **uniform** — same size, same shape — while preserving the elegant scroll-tracking and label-reveal behavior.
 
-## Phase 6 Progress
-- ✅ framer-motion parallax on HeroStrip + WeddingsHero (useScroll/useTransform)
-- ✅ Watermark text prop on HeroStrip + Section
-- ✅ ScrollProgress component (gold gradient bar)
-- ✅ BackToTop component (appears at 40% scroll)
-- ✅ Lazy loading on Weddings page (React.lazy + Suspense)
-- ✅ ScrollProgress + BackToTop added to Weddings, Teaching, Events
-- ⬜ Multi-step contact form wizard
-- ⬜ Gateway cinematic upgrade (motion cards, credential strip)
-- ⬜ About pages editorial enrichment
-- ⬜ Pricing pages editorial enrichment
-- ⬜ FAQ chip filters + trust stack
-- ⬜ Listen & Proof depth pass
-- ⬜ SEO + structured data
-- ⬜ Footer enrichment
+---
 
-## Architecture
-```
-/                    → Gateway (3 bento cards)
-/weddings            → Wedding landing (long-scroll)
-/weddings/pricing    → Wedding pricing (3 tiers)
-/weddings/about      → About Parker (wedding context)
-/weddings/contact    → Wedding inquiry form
-/teaching            → Teaching landing
-/teaching/pricing    → $60/hr lesson pricing
-/teaching/about      → About Parker (teaching context)
-/teaching/contact    → Teaching inquiry form
-/events              → Events landing
-/events/pricing      → Events pricing (3 presences)
-/events/about        → About Parker (events context)
-/events/contact      → Events inquiry form
-/listen              → Listening room (placeholder)
-/proof               → Proof of craft (SPL, insurance, redundancy)
-/faq                 → FAQ (6 questions)
-/contact             → General contact form
-/about               → General about
-/privacy-policy      → Privacy policy
-/terms               → Terms of service
-/accessibility       → Accessibility statement
-```
+## Current State
+
+Each service page (Weddings, Teaching, Events) defines `pianoSections` with an `isBlackKey` boolean that renders smaller keys (w-3 h-5) vs larger keys (w-4 h-7). This creates visual inconsistency across pages and an uneven rhythm in the nav rail.
+
+---
+
+## Changes
+
+### 1. Remove `isBlackKey` Differentiation
+
+**File:** `src/components/PianoKeyNav.tsx`
+
+- Remove the `isBlackKey` conditional sizing from the button className
+- Make all indicators uniform: `w-[3px] h-6` — thin vertical bars (like a minimal scroll-position indicator, not chunky rectangles)
+- Active state: `bg-gold` (matches brand accent, more visible than `bg-sage`)
+- Inactive state: `bg-foreground/12 hover:bg-foreground/25`
+- Active indicator gets a subtle width expansion: `w-[3px]` inactive → `w-[4px]` active with `transition-all duration-200`
+- Keep the `isBlackKey` property in the interface (backward compat) but ignore it visually
+
+### 2. Refine the Label Reveal
+
+- Change active label color from `text-sage` to `text-gold` for better contrast and brand alignment
+- Add a thin gold dot (2px circle) between the label text and the bar indicator when active, acting as a visual connector
+
+### 3. Golden Thread Line
+
+- Keep the existing breathing gold thread behind the indicators
+- Adjust `right` position to align with the new thinner bars
+
+### 4. Update Section Arrays (Remove `isBlackKey`)
+
+**Files:** `src/pages/Weddings.tsx`, `src/pages/Teaching.tsx`, `src/pages/Events.tsx`
+
+- Remove all `isBlackKey: true` entries from the `pianoSections` arrays since they no longer affect rendering
+- This keeps the data clean and avoids confusion
+
+---
+
+## Summary of File Changes
+
+| File | Change |
+|------|--------|
+| `src/components/PianoKeyNav.tsx` | Uniform bar sizing, gold active state, dot connector |
+| `src/pages/Weddings.tsx` | Remove `isBlackKey` from pianoSections |
+| `src/pages/Teaching.tsx` | Remove `isBlackKey` from pianoSections |
+| `src/pages/Events.tsx` | Remove `isBlackKey` from pianoSections |
+

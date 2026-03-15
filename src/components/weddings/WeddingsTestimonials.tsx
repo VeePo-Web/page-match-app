@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { Section } from "@/components/Section";
+import testimonialsBg from "@/assets/weddings-testimonials-bg.jpg";
 
 const testimonials = [
   { quote: "He played the song I walked down the aisle to — and I forgot there were a hundred people watching.", names: "Sarah & James", venue: "Azuridge Estate Hotel, Priddis" },
@@ -13,7 +14,7 @@ export function WeddingsTestimonials() {
   const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <Section dark id="testimonials" className="!py-0">
+    <Section dark id="testimonials" className="!py-0" backgroundImage={testimonialsBg}>
       <div
         ref={sectionRef as React.RefObject<HTMLDivElement>}
         className="py-fitz-9 md:py-fitz-10"

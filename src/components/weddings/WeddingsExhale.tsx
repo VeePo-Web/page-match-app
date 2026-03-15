@@ -1,6 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useEffect, useState } from "react";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import exhaleBg from "@/assets/weddings-exhale-bg.jpg";
 
 export function WeddingsExhale() {
   const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.3 });
@@ -24,6 +25,19 @@ export function WeddingsExhale() {
       style={{ background: "hsl(var(--cream))" }}
       aria-label="My promise to you"
     >
+      {/* Background image */}
+      <img
+        src={exhaleBg}
+        alt=""
+        aria-hidden="true"
+        width={1920}
+        height={1080}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={{ opacity: 0.05, filter: "brightness(0.8) saturate(0.7)", animation: "ken-burns 30s ease-in-out infinite alternate" }}
+        loading="lazy"
+        decoding="async"
+      />
+
       {/* Content */}
       <div className="relative z-10 max-w-[640px] mx-auto px-6 text-center">
         {/* Breathing Diamond */}

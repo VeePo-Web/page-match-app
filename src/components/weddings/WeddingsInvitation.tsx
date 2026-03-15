@@ -63,7 +63,7 @@ export function WeddingsInvitation() {
               <GoldFrame animate={false} />
               <img
                 src={invitationPortrait}
-                alt="Grand piano keys stretching into soft bokeh with a single candle flame reflected in polished black lacquer"
+                alt="Close-up of grand piano keys in warm golden light with soft bokeh background"
                 width={800}
                 height={1067}
                 className="w-full h-full object-cover"

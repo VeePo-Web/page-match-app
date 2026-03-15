@@ -1,10 +1,11 @@
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import processBg from "@/assets/weddings-process-bg.jpg";
 
 export function WeddingsProcess() {
   return (
-    <Section dark id="process">
+    <Section dark id="process" backgroundImage={processBg}>
       <div className="max-w-2xl mx-auto text-center">
         <RevealOnScroll>
           <p className="overline mb-fitz-3">How I Prepare</p>

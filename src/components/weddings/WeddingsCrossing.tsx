@@ -21,7 +21,7 @@ export function WeddingsCrossing() {
     >
       {/* Background image */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <img src={heroCrossing} alt="" aria-hidden="true" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover opacity-[0.06] pointer-events-none" style={{ animation: "ken-burns 30s ease-in-out infinite alternate", filter: "brightness(0.8) contrast(1.05) saturate(0.8)" }} loading="lazy" decoding="async" />
+        <img src={heroCrossing} alt="" aria-hidden="true" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover opacity-[0.08] pointer-events-none" style={{ animation: "ken-burns 30s ease-in-out infinite alternate", filter: "brightness(0.8) contrast(1.05) saturate(0.8)" }} loading="lazy" decoding="async" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl text-center">

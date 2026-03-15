@@ -56,7 +56,7 @@ export default function Proof() {
           showScrollCue
         />
 
-        <Section dark>
+        <Section dark backgroundImage={proofCredentialsBg}>
           <div className="max-w-4xl mx-auto">
             <CredentialStrip items={[
               { stat: "500+", label: "Events Played" },

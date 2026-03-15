@@ -132,7 +132,7 @@ export default function FAQ() {
         </Section>
 
         {/* Trust stack */}
-        <Section dark>
+        <Section dark backgroundImage={faqTrustBg}>
           <CredentialStrip items={[
             { stat: "Zero", label: "Missed Ceremonies" },
             { stat: "$4M", label: "Insured" },

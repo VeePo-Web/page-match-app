@@ -26,8 +26,8 @@ export default function Contact() {
       <ScrollProgress />
       <MinimalHeader />
       <main id="main-content">
-        <HeroStrip title="Tell me your story." subtitle="Get in Touch" height="h-[40vh]" />
-        <Section>
+        <HeroStrip title="Tell me your story." subtitle="Get in Touch" height="h-[40vh]" backgroundImage={contactHeroBg} />
+        <Section backgroundImage={contactFormBg}>
           <ContactForm serviceContext="General" ctaLabel="Send Message" />
         </Section>
       </main>

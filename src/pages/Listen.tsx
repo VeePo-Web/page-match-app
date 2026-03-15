@@ -80,7 +80,7 @@ export default function Listen() {
           </div>
         </Section>
 
-        <Section dark>
+        <Section dark backgroundImage={listenMovementsBg}>
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll variant="up">
               <p className="overline mb-fitz-5">Four Movements</p>

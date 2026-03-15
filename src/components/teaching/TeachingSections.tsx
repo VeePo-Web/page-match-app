@@ -3,12 +3,17 @@ import { RevealOnScroll } from "@/components/animation";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { SectionDivider } from "@/components/SectionDivider";
 import { Link } from "react-router-dom";
+import teachingLanguageBg from "@/assets/teaching-language-bg.jpg";
+import teachingPillarsBg from "@/assets/teaching-pillars-bg.jpg";
+import teachingMethodologyBg from "@/assets/teaching-methodology-bg.jpg";
+import teachingThresholdBg from "@/assets/teaching-threshold-bg.jpg";
+import teachingCrossingBg from "@/assets/teaching-crossing-bg.jpg";
 
 export default function TeachingSections() {
   return (
     <>
       {/* The Language */}
-      <Section id="exhale">
+      <Section id="exhale" backgroundImage={teachingLanguageBg}>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
             <p className="overline mb-fitz-3">The Approach</p>
@@ -28,7 +33,7 @@ export default function TeachingSections() {
       </Section>
 
       {/* Three Pillars */}
-      <Section dark id="pillars">
+      <Section dark id="pillars" backgroundImage={teachingPillarsBg}>
         <div className="max-w-3xl mx-auto text-center">
           <RevealOnScroll>
             <p className="overline mb-fitz-3">Three Pillars</p>
@@ -52,7 +57,7 @@ export default function TeachingSections() {
       </Section>
 
       {/* Methodology */}
-      <Section id="methodology">
+      <Section id="methodology" backgroundImage={teachingMethodologyBg}>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
             <p className="overline mb-fitz-3">How It Works</p>
@@ -69,7 +74,7 @@ export default function TeachingSections() {
       </Section>
 
       {/* Threshold */}
-      <Section dark id="threshold">
+      <Section dark id="threshold" backgroundImage={teachingThresholdBg}>
         <div className="max-w-3xl mx-auto">
           <RevealOnScroll>
             <p className="overline mb-fitz-3 text-center">Common Concerns</p>
@@ -135,7 +140,7 @@ export default function TeachingSections() {
       </Section>
 
       {/* The Crossing */}
-      <Section dark id="crossing">
+      <Section dark id="crossing" backgroundImage={teachingCrossingBg}>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
             <BreathingDiamond className="mb-fitz-5" />

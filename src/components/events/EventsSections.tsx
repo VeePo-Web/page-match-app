@@ -3,12 +3,17 @@ import { RevealOnScroll } from "@/components/animation";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
 import { SectionDivider } from "@/components/SectionDivider";
 import { Link } from "react-router-dom";
+import eventsExhaleBg from "@/assets/events-exhale-bg.jpg";
+import eventsOccasionsBg from "@/assets/events-occasions-bg.jpg";
+import eventsApproachBg from "@/assets/events-approach-bg.jpg";
+import eventsThresholdBg from "@/assets/events-threshold-bg.jpg";
+import eventsCrossingBg from "@/assets/events-crossing-bg.jpg";
 
 export default function EventsSections() {
   return (
     <>
       {/* Why Live Piano */}
-      <Section id="exhale">
+      <Section id="exhale" backgroundImage={eventsExhaleBg}>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
             <p className="overline mb-fitz-3">The Difference</p>
@@ -28,7 +33,7 @@ export default function EventsSections() {
       </Section>
 
       {/* Occasions */}
-      <Section dark id="occasions">
+      <Section dark id="occasions" backgroundImage={eventsOccasionsBg}>
         <div className="max-w-3xl mx-auto text-center">
           <RevealOnScroll>
             <p className="overline mb-fitz-3">The Occasions</p>
@@ -43,7 +48,7 @@ export default function EventsSections() {
       </Section>
 
       {/* Approach */}
-      <Section id="approach">
+      <Section id="approach" backgroundImage={eventsApproachBg}>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
             <p className="overline mb-fitz-3">How I Work</p>
@@ -60,7 +65,7 @@ export default function EventsSections() {
       </Section>
 
       {/* Threshold */}
-      <Section dark id="threshold">
+      <Section dark id="threshold" backgroundImage={eventsThresholdBg}>
         <div className="max-w-3xl mx-auto">
           <RevealOnScroll>
             <p className="overline mb-fitz-3 text-center">Common Concerns</p>
@@ -136,7 +141,7 @@ export default function EventsSections() {
       </Section>
 
       {/* The Crossing */}
-      <Section dark id="crossing">
+      <Section dark id="crossing" backgroundImage={eventsCrossingBg}>
         <div className="max-w-2xl mx-auto text-center">
           <RevealOnScroll>
             <BreathingDiamond className="mb-fitz-5" />

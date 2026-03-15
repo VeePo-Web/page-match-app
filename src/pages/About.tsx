@@ -11,6 +11,8 @@ import { Link, useLocation } from "react-router-dom";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import aboutKeys from "@/assets/about-keys.jpg";
+import aboutQuoteBg from "@/assets/about-quote-bg.jpg";
+import aboutCtaBg from "@/assets/about-cta-bg.jpg";
 
 export default function About() {
   const { pathname } = useLocation();
@@ -67,7 +69,7 @@ export default function About() {
           </div>
         </Section>
 
-        <Section dark>
+        <Section dark backgroundImage={aboutQuoteBg}>
           <div className="max-w-3xl mx-auto text-center">
             <RevealOnScroll>
               <div className="editorial-rule mb-fitz-7" />
@@ -83,7 +85,7 @@ export default function About() {
           <CredentialStrip />
         </Section>
 
-        <Section dark>
+        <Section dark backgroundImage={aboutCtaBg}>
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll>
               <BreathingDiamond className="mb-fitz-5" />

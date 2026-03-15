@@ -85,7 +85,7 @@ export default function About() {
           <CredentialStrip />
         </Section>
 
-        <Section dark>
+        <Section dark backgroundImage={aboutCtaBg}>
           <div className="max-w-2xl mx-auto text-center">
             <RevealOnScroll>
               <BreathingDiamond className="mb-fitz-5" />

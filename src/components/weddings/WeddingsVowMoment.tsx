@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { GoldFrame } from "@/components/GoldFrame";
+import vowBg from "@/assets/weddings-vow-bg.jpg";
 
 export function WeddingsVowMoment() {
   const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.3 });
@@ -13,6 +14,19 @@ export function WeddingsVowMoment() {
       style={{ background: "hsl(var(--cream))" }}
       aria-label="The sacred vow"
     >
+      {/* Background image */}
+      <img
+        src={vowBg}
+        alt=""
+        aria-hidden="true"
+        width={1920}
+        height={1080}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={{ opacity: 0.06, filter: "brightness(0.8) saturate(0.7)", animation: "ken-burns 30s ease-in-out infinite alternate" }}
+        loading="lazy"
+        decoding="async"
+      />
+
       {/* Radial warmth glow */}
       <div
         className="absolute inset-0 pointer-events-none"

@@ -1,10 +1,11 @@
 import { Section } from "@/components/Section";
 import { RevealOnScroll } from "@/components/animation";
 import { Link } from "react-router-dom";
+import witnessBg from "@/assets/weddings-witness-bg.jpg";
 
 export function WeddingsWitness() {
   return (
-    <Section dark id="witness">
+    <Section dark id="witness" backgroundImage={witnessBg}>
       <div className="max-w-2xl mx-auto text-center">
         <RevealOnScroll>
           <p className="overline mb-fitz-3">The Witness</p>

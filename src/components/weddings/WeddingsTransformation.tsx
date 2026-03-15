@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BreathingDiamond } from "@/components/BreathingDiamond";
+import transformationBg from "@/assets/weddings-transformation-bg.jpg";
 
 const fears = [
   "What if the music sounds like every other ceremony your guests have sat through",
@@ -27,6 +28,19 @@ export function WeddingsTransformation() {
       aria-label="The Transformation — fears honoured, promises made"
       style={{ background: "hsl(var(--cream))" }}
     >
+      {/* Background image */}
+      <img
+        src={transformationBg}
+        alt=""
+        aria-hidden="true"
+        width={1920}
+        height={1080}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={{ opacity: 0.04, filter: "brightness(0.8) saturate(0.7)", animation: "ken-burns 35s ease-in-out infinite alternate" }}
+        loading="lazy"
+        decoding="async"
+      />
+
       <div className="relative z-10 mx-auto px-6 md:px-8 py-fitz-9 md:py-fitz-10">
         {/* Fears */}
         <div className="max-w-[640px] mx-auto mb-16 md:mb-24">

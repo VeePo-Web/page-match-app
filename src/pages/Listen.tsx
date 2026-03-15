@@ -65,7 +65,7 @@ export default function Listen() {
         <HeroStrip
           title="Hear the ceremony."
           subtitle="The Listening Room"
-          backgroundImage={heroWeddings}
+          backgroundImage={listenHeroBg}
           height="h-[50vh]"
           showScrollCue
         />

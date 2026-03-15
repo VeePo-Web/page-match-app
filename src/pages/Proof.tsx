@@ -10,6 +10,8 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { Link, useLocation } from "react-router-dom";
+import proofHeroBg from "@/assets/proof-hero-bg.jpg";
+import proofCredentialsBg from "@/assets/proof-credentials-bg.jpg";
 
 const proofs = [
   {

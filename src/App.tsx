@@ -87,6 +87,8 @@ function AppRoutes() {
         <Route path="/privacy-policy" element={<LazyLegalPage component="PrivacyPolicy" />} />
         <Route path="/terms" element={<LazyLegalPage component="Terms" />} />
         <Route path="/accessibility" element={<LazyLegalPage component="Accessibility" />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/admin/photos" element={<AdminPhotos />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

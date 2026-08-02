@@ -22,6 +22,8 @@ const Contact = lazy(() => import("./pages/Contact"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Proof = lazy(() => import("./pages/Proof"));
 const Listen = lazy(() => import("./pages/Listen"));
+const Auth = lazy(() => import("./pages/Auth"));
+const AdminPhotos = lazy(() => import("./pages/AdminPhotos"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 // SubPages and Legal are imported dynamically via LazySubPage/LazyLegalPage helpers below
 
@@ -85,6 +87,8 @@ function AppRoutes() {
         <Route path="/privacy-policy" element={<LazyLegalPage component="PrivacyPolicy" />} />
         <Route path="/terms" element={<LazyLegalPage component="Terms" />} />
         <Route path="/accessibility" element={<LazyLegalPage component="Accessibility" />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/admin/photos" element={<AdminPhotos />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

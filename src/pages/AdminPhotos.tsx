@@ -85,9 +85,10 @@ export default function AdminPhotos() {
     }
   };
 
-  const updatePhoto = async (id: string, patch: Record<string, unknown>) => {
-    setPhotos((prev) => prev.map((p) => (p.id === id ? { ...p, ...patch } as PhotoWithUrl : p)));
-    const { error } = await supabase.from("photos").update(patch).eq("id", id);
+  const updatePhoto = async (id: string, patch: Partial<PhotoWithUrl>) => {
+    setPhotos((prev) => prev.map((p) => (p.id === id ? ({ ...p, ...patch } as PhotoWithUrl) : p)));
+    const { url: _url, ...dbPatch } = patch as PhotoWithUrl;
+    const { error } = await supabase.from("photos").update(dbPatch).eq("id", id);
     if (error) toast.error(error.message);
   };
 
